@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08131f">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Host Dashboard · XY&Z Musical Bingo</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .host-shell{width:min(920px,calc(100% - 2rem));margin:0 auto;padding:2rem 0 5rem}.host-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.host-card{padding:1.25rem;border:1px solid var(--line);border-radius:22px;background:var(--panel)}.host-card.full{grid-column:1/-1}.host-card label{display:grid;gap:.45rem;margin-bottom:1rem;font-weight:800}.host-card input,.host-card select{width:100%;min-height:48px;padding:.75rem .85rem;border:1px solid var(--line);border-radius:14px;background:#091521;color:var(--text)}.host-actions{display:flex;flex-wrap:wrap;gap:.65rem}.host-log{min-height:110px;padding:1rem;border-radius:16px;background:#07111c;color:var(--muted);white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.88rem}.status-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .7rem;border-radius:999px;background:rgba(255,255,255,.06);font-weight:800}.status-chip.active{color:#83f3a8;background:rgba(30,215,96,.1)}@media(max-width:700px){.host-grid{grid-template-columns:1fr}.host-card.full{grid-column:auto}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true">XY<span>&amp;</span>Z</span>
+      <span class="brand-copy"><strong>Host Dashboard</strong><small>Private event controls</small></span>
+    </a>
+    <a class="button secondary small" href="/">Guest site</a>
+  </header>
+
+  <main class="host-shell">
+    <section class="hero">
+      <p class="eyebrow">PRIVATE HOST CONTROL</p>
+      <h1>Start one session. Play normally.</h1>
+      <p class="lead">Choose the venue and round, start the live session, then let the Windows bridge publish songs from djay Pro automatically.</p>
+    </section>
+
+    <section class="section host-grid">
+      <div class="host-card">
+        <h2>Connection</h2>
+        <label>Private host key
+          <input id="host-key" type="password" autocomplete="current-password" placeholder="Paste HOST_BRIDGE_KEY">
+        </label>
+        <div class="host-actions">
+          <button class="button secondary" id="save-key" type="button">Save on this laptop</button>
+          <button class="button secondary" id="forget-key" type="button">Forget key</button>
+        </div>
+      </div>
+
+      <div class="host-card">
+        <h2>Event</h2>
+        <label>Venue
+          <select id="venue-select"></select>
+        </label>
+        <label>Round
+          <select id="round-select"></select>
+        </label>
+      </div>
+
+      <div class="host-card full">
+        <div class="section-heading">
+          <div><p class="eyebrow">SESSION CONTROLS</p><h2>Live musical bingo</h2></div>
+          <span class="status-chip" id="session-status">No session checked</span>
+        </div>
+        <div class="host-actions">
+          <button class="button primary" id="start-session" type="button">Start new session</button>
+          <button class="button secondary" id="end-session" type="button">End active session</button>
+          <button class="button secondary" id="clear-history" type="button">Clear song history</button>
+          <a class="button spotify" id="guest-link" href="/" target="_blank" rel="noreferrer">Open guest page</a>
+        </div>
+      </div>
+
+      <div class="host-card full">
+        <h2>Activity</h2>
+        <div class="host-log" id="host-log" aria-live="polite">Ready.</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/data.js"></script>
+  <script src="/host.js"></script>
+</body>
+</html>

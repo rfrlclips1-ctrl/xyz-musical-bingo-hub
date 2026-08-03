@@ -1,0 +1,46 @@
+XY&Z COMBINED MUSICAL BINGO — SETUP CHECKLIST
+
+MASTER SITE
+[ ] 1. Create or confirm the Netlify site name.
+[ ] 2. If the final URL is not https://xyandzmusicalbingo.netlify.app, replace that URL in:
+       public/data.js
+       QR_ROUTES.csv
+       legacy/island-vibes/index.html
+       legacy/mangrove-sands/index.html
+       bridge/bridge-config.json after it is generated
+[ ] 3. Drag the entire project folder into Netlify or connect it to a Git repository.
+
+LIVE NOW PLAYING (OPTIONAL, PLAYLIST APP WORKS WITHOUT THIS)
+[ ] 4. Create a Supabase project.
+[ ] 5. Run supabase/setup.sql in the Supabase SQL editor.
+[ ] 6. Add Netlify environment variables:
+       SUPABASE_URL
+       SUPABASE_PUBLISHABLE_KEY
+       SUPABASE_SECRET_KEY
+       HOST_BRIDGE_KEY
+[ ] 7. Trigger a fresh Netlify deploy.
+[ ] 8. Open /host.html and confirm venue + round selectors appear.
+
+WINDOWS DJAY BRIDGE
+[ ] 9. Install What's Now Playing on the djay laptop.
+[ ] 10. Enable its web server on port 8899.
+[ ] 11. Verify http://127.0.0.1:8899/v1/last while a song is playing.
+[ ] 12. Run bridge/Start Bridge.bat once.
+[ ] 13. Edit bridge/bridge-config.json with the site URL, HOST_BRIDGE_KEY, and venueSlug.
+[ ] 14. Run Start Bridge.bat again.
+[ ] 15. Start a session at /host.html and test with bridge/Test Bridge - Demo.bat.
+
+OLD PRINTED QR CODES
+[ ] 16. Deploy legacy/island-vibes as the content of the old Island Vibes Netlify site.
+[ ] 17. Deploy legacy/mangrove-sands as the content of the old Mangrove Sands Netlify site.
+[ ] 18. Scan at least one old card from each venue to confirm it reaches the new master app.
+
+NEW QR CODES
+[ ] 19. Use the venue-specific URLs in QR_ROUTES.csv.
+[ ] 20. Do not point new cards to the generic homepage.
+[ ] 21. Add the missing Diner Music Spotify URL before printing a new Diner Music pack.
+
+NETLIFY CONTACT FORM
+- After deployment, submit one test inquiry from /contact.
+- Confirm it appears in Netlify > Forms > business-inquiry.
+- Add an email notification in Netlify Forms settings if desired.

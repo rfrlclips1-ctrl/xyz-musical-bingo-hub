@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08131f">
+  <meta name="description" content="XY&Z Productions Musical Bingo venue and playlist hub.">
+  <title>XY&Z Musical Bingo</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#app">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <a class="brand" href="/" data-link aria-label="XY&Z Musical Bingo home">
+      <span class="brand-mark brand-mark-image" aria-hidden="true"><img src="/assets/xyz-productions-logo.png" alt=""></span>
+      <span class="brand-copy"><strong>Musical Bingo</strong><small>by XY&amp;Z Productions</small></span>
+    </a>
+    <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+      <a href="/" data-link>Home</a>
+      <a href="/island-vibes" data-link>Island Vibes</a>
+      <a href="/mangrove-sands" data-link>Mangrove Sands</a>
+      <a href="/playlists" data-link>All Playlists</a>
+      <a href="/contact" data-link>Contact</a>
+    </nav>
+  </header>
+
+  <main id="app" tabindex="-1" aria-live="polite"></main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="/assets/xyz-productions-logo.png" alt="XY&Z Productions">
+      <p>Musical Bingo, Trivia &amp; Hosting</p>
+    </div>
+    <div class="footer-links">
+      <a href="/contact" data-link>Business inquiries</a>
+      <a href="https://www.instagram.com/xyandzproductions/" target="_blank" rel="noreferrer">@XYandZproductions</a>
+    </div>
+  </footer>
+
+  <form name="business-inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="business-inquiry">
+    <input name="bot-field">
+    <input name="name">
+    <input name="email">
+    <input name="business">
+    <input name="event-type">
+    <input name="event-date">
+    <textarea name="message"></textarea>
+  </form>
+
+  <noscript>This app needs JavaScript enabled to display venue and playlist pages.</noscript>
+  <script src="/data.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
