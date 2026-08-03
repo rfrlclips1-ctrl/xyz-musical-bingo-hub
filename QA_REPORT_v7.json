@@ -1,0 +1,35 @@
+{
+  "version": "v7",
+  "checks": {
+    "javascript_syntax_checked_separately": true,
+    "home_number_metrics_removed": true,
+    "home_qr_examples_removed": true,
+    "island_vibes_time_730": true,
+    "venue_page_counts_removed": true,
+    "venue_card_labels_removed": true,
+    "library_shared_filter_preserved": true,
+    "island_instagram_added": true,
+    "mangrove_website_added": true,
+    "business_card_examples_added": true,
+    "live_base_url_updated": true,
+    "contact_form_preserved": true,
+    "qr_codes_decode": true,
+    "required_assets_exist": true,
+    "qr_route_count": 19,
+    "qr_route_catalog_uses_live_base": true
+  },
+  "qr_validation": {
+    "qr-island-vibes-northeaster.png": {
+      "decoded": "https://mellifluous-parfait-a01655.netlify.app/island-vibes/northeaster",
+      "matches": true
+    },
+    "qr-mangrove-sands-northeaster.png": {
+      "decoded": "https://mellifluous-parfait-a01655.netlify.app/mangrove-sands/northeaster",
+      "matches": true
+    }
+  },
+  "notes": [
+    "Static route application uses Netlify SPA redirects.",
+    "All playlist shared/exclusive indicators remain available in the All Playlists library only."
+  ]
+}

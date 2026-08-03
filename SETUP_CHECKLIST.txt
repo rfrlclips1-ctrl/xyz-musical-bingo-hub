@@ -2,7 +2,7 @@ XY&Z COMBINED MUSICAL BINGO — SETUP CHECKLIST
 
 MASTER SITE
 [ ] 1. Create or confirm the Netlify site name.
-[ ] 2. If the final URL is not https://xyandzmusicalbingo.netlify.app, replace that URL in:
+[ ] 2. If the final URL is not https://mellifluous-parfait-a01655.netlify.app, replace that URL in:
        public/data.js
        QR_ROUTES.csv
        legacy/island-vibes/index.html

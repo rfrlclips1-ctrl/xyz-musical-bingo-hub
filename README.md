@@ -43,7 +43,7 @@ Netlify's catch-all redirect serves `index.html`, and the browser router renders
 ## Quick deploy
 
 1. Confirm the desired Netlify URL.
-2. Replace `https://xyandzmusicalbingo.netlify.app` if your final site name differs.
+2. Replace `https://mellifluous-parfait-a01655.netlify.app` if your final site name differs.
 3. Deploy the full folder to Netlify. `netlify.toml` already points to `public` and `netlify/functions`.
 4. The venue, playlist, Spotify, filtering, and QR-route features work immediately.
 

@@ -2,7 +2,7 @@ window.XYZ_BINGO = {
   site: {
     name: "XY&Z Musical Bingo",
     shortName: "XY&Z Bingo",
-    baseUrl: "https://xyandzmusicalbingo.netlify.app",
+    baseUrl: "https://mellifluous-parfait-a01655.netlify.app",
     instagram: "https://www.instagram.com/xyandzproductions/",
     contactLabel: "@XYandZproductions",
     location: "Vero Beach, Florida",
@@ -15,7 +15,7 @@ window.XYZ_BINGO = {
       name: "Island Vibes Kava Bar",
       shortName: "Island Vibes",
       eyebrow: "WEDNESDAY NIGHT MUSICAL BINGO",
-      schedule: "Wednesdays · approximately 7:15 PM",
+      schedule: "Wednesdays · 7:30 PM",
       description: "Bright, energetic musical bingo with tropical-nightlife branding and a rotating catalog built specifically for Island Vibes.",
       theme: "island",
       mark: "IV",
@@ -25,6 +25,8 @@ window.XYZ_BINGO = {
       brandStyle: "Neon tropical nightlife",
       location: "Vero Beach, Florida",
       announcement: "Scan your card, open tonight’s playlist, and keep the good vibes going.",
+      externalUrl: "https://www.instagram.com/islandvibesverobeach/",
+      externalLabel: "Visit Island Vibes on Instagram",
       rounds: [
         "vibes-bingo",
         "beach-bingo",
@@ -56,6 +58,8 @@ window.XYZ_BINGO = {
       brandStyle: "Coastal golf-club warmth",
       location: "Vero Beach, Florida",
       announcement: "Choose tonight’s round or scan the QR code printed on your card.",
+      externalUrl: "https://mangrovesands.com/",
+      externalLabel: "Visit the Mangrove Sands website",
       rounds: [
         "beach-bingo",
         "turn-that-down",

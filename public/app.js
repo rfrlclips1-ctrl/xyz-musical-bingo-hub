@@ -47,20 +47,9 @@
       <img class="mangrove-alt-logo" src="${escapeHtml(venue.alternateLogo)}" alt="Alternate Mangrove Sands Golf Club logo">
     </div>` : "";
 
-  const venueRoundSummary = (rounds, venue) => {
-    const exclusive = rounds.filter((round) => round.venues.length === 1).length;
-    const shared = rounds.filter((round) => round.venues.length > 1).length;
-    return `<div class="venue-round-summary" aria-label="${escapeHtml(venue.shortName)} playlist summary">
-      <span><strong>${rounds.length}</strong> total rounds</span>
-      <span><strong>${exclusive}</strong> venue-exclusive</span>
-      <span><strong>${shared}</strong> shared rounds</span>
-    </div>`;
-  };
-
   const roundCard = (venue, round) => `
     <a class="round-card" href="${routeUrl(venue.slug, round.slug)}" data-link>
       <div class="round-art ${escapeHtml(round.accent)}">${escapeHtml(round.title.toUpperCase())}</div>
-      <span class="round-availability">${round.venues.length > 1 ? "Shared round · venue-specific page" : `${escapeHtml(venue.shortName)} exclusive`}</span>
       <h3>${escapeHtml(round.title)}</h3>
       <p>${escapeHtml(round.subtitle)}</p>
       <div class="tags">${tags(round.categories)}</div>
@@ -68,7 +57,6 @@
 
   const homePage = () => {
     const venues = Object.values(DATA.venues);
-    const allRounds = Object.values(DATA.rounds);
     return `
       <div class="page-shell">
         <section class="hero">
@@ -80,11 +68,7 @@
             <a class="button secondary" href="#venues">Choose a venue</a>
             <a class="button secondary" href="/contact" data-link>Book an event</a>
           </div>
-          <div class="metric-row" aria-label="App summary">
-            <div class="metric"><strong>${venues.length}</strong><span>separate venue experiences</span></div>
-            <div class="metric"><strong>${allRounds.length}</strong><span>active playlist rounds</span></div>
-            <div class="metric"><strong>1</strong><span>shared app and host system</span></div>
-          </div>
+
         </section>
 
         <section class="section" id="venues">
@@ -109,23 +93,26 @@
           </div>
         </section>
 
-        <section class="section">
-          <div class="section-heading">
-            <div><p class="eyebrow">HOW QR CODES WORK</p><h2>No venue choice after scanning.</h2></div>
-          </div>
-          <div class="round-layout">
-            <div class="round-main">
-              <h3>Island Vibes card example</h3>
-              <p class="help-text"><code>/island-vibes/northeaster</code> opens the Island Vibes version with Island Vibes colors, schedule, navigation, and live board.</p>
-            </div>
-            <div class="round-side">
-              <h3>Mangrove Sands card example</h3>
-              <p class="help-text"><code>/mangrove-sands/northeaster</code> opens the Mangrove Sands version—even when the underlying Spotify playlist is shared.</p>
-            </div>
-          </div>
-        </section>
       </div>`;
   };
+
+  const islandTriviaTeaser = (venue) => venue.slug === "island-vibes" ? `
+    <section class="section trivia-teaser" aria-labelledby="island-trivia-title">
+      <div class="trivia-teaser-copy">
+        <p class="eyebrow">NEXT BUILD · ISLAND VIBES</p>
+        <h2 id="island-trivia-title">Trivia is coming to the Island Vibes hub.</h2>
+        <p>Musical Bingo remains the main experience today. This reserved area will become the home for Island Vibes trivia nights, weekly categories, event details, and future host tools.</p>
+        <div class="trivia-feature-row" aria-label="Planned trivia features">
+          <span>Weekly trivia</span><span>Round categories</span><span>Venue updates</span>
+        </div>
+        <a class="button trivia-button" href="/island-vibes/trivia" data-link>Preview the trivia area</a>
+      </div>
+      <div class="trivia-teaser-art" aria-hidden="true">
+        <span class="trivia-note">♪</span>
+        <strong>?</strong>
+        <span class="trivia-bubble">TRIVIA</span>
+      </div>
+    </section>` : "";
 
   const venuePage = (venue) => {
     const rounds = venue.rounds.map((slug) => DATA.rounds[slug]).filter(Boolean);
@@ -146,17 +133,18 @@
             <div class="hero-actions">
               <a class="button ${venue.theme === "island" ? "primary" : "secondary"}" href="#venue-rounds">View playlists</a>
               <a class="button secondary" href="/playlists?venue=${encodeURIComponent(venue.slug)}" data-link>Open full catalog</a>
+              <a class="button venue-external" href="${escapeHtml(venue.externalUrl)}" target="_blank" rel="noreferrer">${escapeHtml(venue.externalLabel)} ↗</a>
             </div>
             <p class="notice">${escapeHtml(venue.schedule)} · ${escapeHtml(venue.location)}</p>
             ${mangroveHeroAssets(venue)}
           </section>
 
+          ${islandTriviaTeaser(venue)}
+
           <section class="section" id="venue-rounds">
             <div class="section-heading">
-              <div><p class="eyebrow">${escapeHtml(venue.shortName)} PLAYLISTS</p><h2>Every round currently assigned to this venue</h2></div>
-              <p>${rounds.length} active rounds</p>
+              <div><p class="eyebrow">${escapeHtml(venue.shortName)} PLAYLISTS</p><h2>Choose a round</h2></div>
             </div>
-            ${venueRoundSummary(rounds, venue)}
             <div class="round-grid">${rounds.map((round) => roundCard(venue, round)).join("")}</div>
           </section>
 
@@ -176,6 +164,47 @@
         </div>
       </div>`;
   };
+
+  const triviaPlaceholderPage = (venue) => `
+    <div class="venue-page island trivia-placeholder-page">
+      <div class="page-shell">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="/" data-link>Home</a><span>›</span>
+          <a href="/${escapeHtml(venue.slug)}" data-link>${escapeHtml(venue.shortName)}</a><span>›</span>
+          <span>Trivia</span>
+        </nav>
+
+        <section class="trivia-placeholder-hero">
+          <div>
+            <div class="venue-hero-brand">
+              ${venueLogo(venue, "hero")}
+              <div class="venue-identity-copy">
+                <span class="venue-brand-style">Future Island Vibes experience</span>
+                <strong>Trivia is the next expansion.</strong>
+              </div>
+            </div>
+            <p class="eyebrow">COMING NEXT TO ISLAND VIBES</p>
+            <h1>Island Vibes Trivia</h1>
+            <p class="lead">This page is reserved for the upcoming trivia experience. The future build can add weekly categories, schedules, host controls, and game-night updates without changing the Musical Bingo system.</p>
+            <div class="button-row">
+              <a class="button primary" href="/island-vibes" data-link>Back to Musical Bingo</a>
+              <a class="button secondary" href="${escapeHtml(venue.externalUrl)}" target="_blank" rel="noreferrer">Visit Island Vibes on Instagram ↗</a>
+            </div>
+          </div>
+          <div class="trivia-placeholder-mark" aria-hidden="true"><span>?</span><small>COMING SOON</small></div>
+        </section>
+
+        <section class="section trivia-roadmap" aria-labelledby="trivia-roadmap-title">
+          <div class="section-heading"><div><p class="eyebrow">FUTURE BUILD SPACE</p><h2 id="trivia-roadmap-title">Ready for the next phase.</h2></div></div>
+          <div class="trivia-roadmap-grid">
+            <article><span>01</span><h3>Weekly trivia schedule</h3><p>Show the next event, start time, theme, and venue details.</p></article>
+            <article><span>02</span><h3>Categories and rounds</h3><p>Preview the night’s topics without revealing questions or answers.</p></article>
+            <article><span>03</span><h3>Host and player tools</h3><p>Add future score, announcements, and game-night features when ready.</p></article>
+          </div>
+          <div class="notice">This is an intentional placeholder. Musical Bingo is complete and remains fully active while the trivia side is developed next.</div>
+        </section>
+      </div>
+    </div>`;
 
   const playlistLibrary = () => {
     const params = new URLSearchParams(location.search);
@@ -261,6 +290,58 @@
               <h2>Musical Bingo, Trivia &amp; Hosting</h2>
               <p>Recurring venue nights, one-time events, branded card packs, playlist systems, QR experiences, and live hosting.</p>
             </article>
+          </section>
+
+          <section class="section card-system-showcase" aria-labelledby="card-system-title">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">BRANDED PLAYER EXPERIENCE</p>
+                <h2 id="card-system-title">See how the card-to-phone system works.</h2>
+              </div>
+              <p>One platform, customized for every venue.</p>
+            </div>
+            <div class="card-example-grid">
+              <article class="card-example island-card-example">
+                <div class="card-example-top">
+                  <img src="/assets/island-vibes-logo.png" alt="Island Vibes logo">
+                  <div><span>Island Vibes</span><strong>Northeaster</strong></div>
+                </div>
+                <div class="card-example-board" aria-hidden="true">
+                  <span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span>
+                  <span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span>
+                  <span>SONG</span><span>SONG</span><b>FREE</b><span>SONG</span><span>SONG</span>
+                  <span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span>
+                  <span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span>
+                </div>
+                <div class="card-example-footer">
+                  <img src="/assets/qr-island-vibes-northeaster.png" alt="QR code opening the Island Vibes Northeaster round">
+                  <p><strong>Venue-specific QR</strong><span>Opens the Island Vibes-branded player page.</span></p>
+                </div>
+              </article>
+
+              <article class="card-example mangrove-card-example">
+                <div class="card-example-top">
+                  <img src="/assets/mangrove-sands-primary.png" alt="Mangrove Sands logo">
+                  <div><span>Mangrove Sands</span><strong>Northeaster</strong></div>
+                </div>
+                <div class="card-example-board" aria-hidden="true">
+                  <span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span>
+                  <span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span>
+                  <span>SONG</span><span>SONG</span><b>FREE</b><span>SONG</span><span>SONG</span>
+                  <span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span>
+                  <span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span><span>SONG</span>
+                </div>
+                <div class="card-example-footer">
+                  <img src="/assets/qr-mangrove-sands-northeaster.png" alt="QR code opening the Mangrove Sands Northeaster round">
+                  <p><strong>Same round, different venue</strong><span>Opens the Mangrove Sands-branded player page.</span></p>
+                </div>
+              </article>
+            </div>
+            <div class="card-system-steps">
+              <div><strong>1</strong><span>A player scans the QR printed on their card.</span></div>
+              <div><strong>2</strong><span>The correct venue and round open automatically.</span></div>
+              <div><strong>3</strong><span>The playlist, live board, and venue branding stay together.</span></div>
+            </div>
           </section>
 
           <section class="section contact-layout" id="inquiry-form">
@@ -557,6 +638,10 @@
       const venue = DATA.venues[parts[0]];
       app.innerHTML = venuePage(venue);
       document.title = `${venue.shortName} Musical Bingo · XY&Z`;
+    } else if (path === "/island-vibes/trivia") {
+      const venue = DATA.venues["island-vibes"];
+      app.innerHTML = triviaPlaceholderPage(venue);
+      document.title = `Island Vibes Trivia · Coming Soon · XY&Z`;
     } else if (parts.length === 2 && DATA.venues[parts[0]]) {
       const venue = DATA.venues[parts[0]];
       const round = roundForVenue(parts[0], parts[1]);

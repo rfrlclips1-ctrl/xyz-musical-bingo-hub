@@ -1,0 +1,10 @@
+{
+  "version": "v10",
+  "change": "Rebuilt the upper-left XY&Z header mark as an intentional compact lockup and added cache-busting",
+  "asset": "public/assets/xyz-productions-header-v10.png",
+  "desktop_slot": "140x70",
+  "mobile_slot": "112x56",
+  "small_mobile_slot": "96x48",
+  "cache_busting": ["styles.css?v=10", "xyz-productions-header-v10.png?v=10"],
+  "verification_marker": "body[data-build=v10]"
+}

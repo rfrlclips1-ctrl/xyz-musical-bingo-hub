@@ -1,0 +1,14 @@
+{
+  "version": "v8",
+  "checks": {
+    "header_asset_exists": true,
+    "header_uses_cropped_asset": true,
+    "trivia_teaser_present": true,
+    "trivia_placeholder_route_present": true,
+    "trivia_placeholder_page_present": true,
+    "trivia_styles_present": true,
+    "spa_redirect_present": true,
+    "existing_round_count_unchanged": true
+  },
+  "all_passed": true
+}
