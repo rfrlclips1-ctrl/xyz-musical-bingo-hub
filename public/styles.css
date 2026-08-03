@@ -1200,3 +1200,393 @@ body[data-venue="island"] .site-footer {
   .contact-brand-showcase { min-height: 260px; border-radius: 22px; }
   .contact-brand-orbit span { width: 48px; height: 48px; border-radius: 14px; }
 }
+
+/* v7: streamlined home, even venue cards, venue links, and business card examples */
+.venue-grid { align-items: stretch; }
+.venue-card {
+  min-height: 560px;
+  height: 100%;
+}
+.venue-card > div:first-child {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.venue-card-brand {
+  min-height: 194px;
+  align-items: center;
+}
+.venue-card .venue-brand-style { margin-left: auto; }
+.venue-card h2 { min-height: 2.35em; }
+.venue-card p { min-height: 6.2em; }
+.venue-card .venue-tagline { min-height: 1.5em; }
+.venue-card .schedule { margin-top: auto; }
+.venue-enter { margin-top: 1.4rem; }
+
+.venue-brand.island.card {
+  width: 180px;
+  height: 180px;
+}
+.venue-brand.mangrove.card {
+  width: 180px;
+  height: 190px;
+}
+
+.button.venue-external {
+  border-color: currentColor;
+  background: transparent;
+}
+.venue-page.island .button.venue-external {
+  color: #bdfcff;
+  border-color: rgba(86,234,215,.42);
+  background: rgba(28,211,215,.09);
+}
+.venue-page.mangrove .button.venue-external {
+  color: #244c35;
+  border-color: rgba(53,95,73,.26);
+  background: rgba(255,255,255,.72);
+}
+
+.card-system-showcase {
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 8% 4%, rgba(255,79,139,.10), transparent 27%),
+    radial-gradient(circle at 92% 0%, rgba(56,215,200,.11), transparent 26%),
+    var(--panel);
+}
+.card-example-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.card-example {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 24px;
+  overflow: hidden;
+}
+.island-card-example {
+  color: #f7fbff;
+  border: 1px solid rgba(82,232,235,.30);
+  background:
+    radial-gradient(circle at 85% 6%, rgba(255,205,72,.25), transparent 23%),
+    radial-gradient(circle at 8% 88%, rgba(255,62,162,.24), transparent 35%),
+    linear-gradient(145deg, #03536a, #12183d 60%, #27143f);
+}
+.mangrove-card-example {
+  color: #193228;
+  border: 1px solid rgba(53,95,73,.20);
+  background: linear-gradient(145deg, #fffdf6, #eee4c9 62%, #c9ddd2);
+}
+.card-example-top {
+  display: grid;
+  grid-template-columns: 88px minmax(0,1fr);
+  gap: .9rem;
+  align-items: center;
+}
+.card-example-top img {
+  width: 88px;
+  height: 88px;
+  padding: 4px;
+  object-fit: contain;
+  border-radius: 16px;
+  background: rgba(255,255,255,.94);
+}
+.mangrove-card-example .card-example-top img { border-radius: 18px; }
+.card-example-top div { display: grid; gap: .25rem; }
+.card-example-top span {
+  font-size: .75rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .72;
+}
+.card-example-top strong { font-size: clamp(1.25rem,3vw,1.85rem); }
+.card-example-board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  border: 2px solid currentColor;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.card-example-board span,
+.card-example-board b {
+  display: grid;
+  place-items: center;
+  min-height: 48px;
+  padding: .25rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  font-size: clamp(.52rem,1.2vw,.7rem);
+  letter-spacing: .04em;
+  opacity: .72;
+}
+.card-example-board span:nth-child(5n),
+.card-example-board b:nth-child(5n) { border-right: 0; }
+.card-example-board span:nth-last-child(-n+5),
+.card-example-board b:nth-last-child(-n+5) { border-bottom: 0; }
+.card-example-board b {
+  opacity: 1;
+  color: #06131d;
+  background: #f5cf54;
+}
+.mangrove-card-example .card-example-board b {
+  color: white;
+  background: #355f49;
+}
+.card-example-footer {
+  display: grid;
+  grid-template-columns: 104px minmax(0,1fr);
+  gap: .9rem;
+  align-items: center;
+}
+.card-example-footer img {
+  width: 104px;
+  height: 104px;
+  padding: 7px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: white;
+}
+.card-example-footer p { display: grid; gap: .3rem; margin: 0; }
+.card-example-footer span { line-height: 1.45; opacity: .75; }
+.card-system-steps {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: .8rem;
+  margin-top: 1rem;
+}
+.card-system-steps div {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: .7rem;
+  align-items: center;
+  padding: .85rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255,255,255,.035);
+}
+.card-system-steps strong {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #07111c;
+  background: var(--accent);
+}
+.card-system-steps span { color: var(--muted); line-height: 1.45; }
+
+@media (max-width: 900px) {
+  .venue-card { min-height: 520px; }
+  .card-example-grid { grid-template-columns: 1fr; }
+  .card-system-steps { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .venue-card-brand {
+    min-height: auto;
+    align-items: flex-start;
+  }
+  .venue-card .venue-brand-style { margin-left: 0; }
+  .venue-card h2,
+  .venue-card p,
+  .venue-card .venue-tagline { min-height: 0; }
+  .venue-brand.island.card { width: 150px; height: 150px; }
+  .venue-brand.mangrove.card { width: 150px; height: 165px; }
+}
+@media (max-width: 520px) {
+  .card-system-showcase { padding: 1rem; border-radius: 22px; }
+  .card-example { padding: .75rem; border-radius: 18px; }
+  .card-example-top { grid-template-columns: 68px minmax(0,1fr); }
+  .card-example-top img { width: 68px; height: 68px; }
+  .card-example-board span,
+  .card-example-board b { min-height: 38px; }
+  .card-example-footer { grid-template-columns: 82px minmax(0,1fr); }
+  .card-example-footer img { width: 82px; height: 82px; }
+}
+
+/* v8: fuller header logo + Island Vibes trivia placeholder */
+.brand-mark-image {
+  width: 116px;
+  height: 58px;
+  padding: 0;
+  border-radius: 10px;
+  background: #000;
+  box-shadow: none;
+}
+.brand-mark-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.trivia-teaser {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+  gap: 1.5rem;
+  align-items: center;
+  overflow: hidden;
+  padding: clamp(1.5rem, 4vw, 2.6rem);
+  border: 1px solid rgba(77, 231, 238, .2);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255, 203, 64, .18), transparent 25%),
+    linear-gradient(135deg, rgba(255, 74, 147, .14), transparent 42%),
+    linear-gradient(145deg, #0b2340, #151631 72%);
+  box-shadow: var(--shadow);
+}
+.trivia-teaser::after {
+  content: "TRIVIA • ISLAND VIBES • COMING NEXT";
+  position: absolute;
+  right: -118px;
+  bottom: 48px;
+  transform: rotate(-90deg);
+  color: rgba(255,255,255,.08);
+  font-size: .7rem;
+  font-weight: 1000;
+  letter-spacing: .18em;
+}
+.trivia-teaser-copy { position: relative; z-index: 2; }
+.trivia-teaser-copy h2 { max-width: 720px; margin-bottom: .8rem; }
+.trivia-teaser-copy > p:not(.eyebrow) { max-width: 720px; color: var(--muted); line-height: 1.65; }
+.trivia-feature-row { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1rem 0 1.25rem; }
+.trivia-feature-row span {
+  padding: .45rem .7rem;
+  border: 1px solid rgba(92, 238, 245, .2);
+  border-radius: 999px;
+  background: rgba(68, 218, 232, .08);
+  color: #c8fbff;
+  font-size: .8rem;
+  font-weight: 850;
+}
+.trivia-button {
+  color: #07111c;
+  background: linear-gradient(135deg, #52e4da, #ffe066);
+}
+.trivia-teaser-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+}
+.trivia-teaser-art strong {
+  display: grid;
+  place-items: center;
+  width: 156px;
+  height: 156px;
+  border: 2px solid rgba(255,255,255,.7);
+  border-radius: 50%;
+  color: white;
+  background: radial-gradient(circle at 35% 30%, #ff5b9f, #7a35d2 62%, #13345d);
+  box-shadow: 0 0 0 18px rgba(80,225,220,.07), 0 26px 45px rgba(0,0,0,.3);
+  font-size: 6rem;
+  line-height: 1;
+}
+.trivia-note {
+  position: absolute;
+  left: 10%;
+  top: 4%;
+  color: #ffe066;
+  font-size: 3.2rem;
+  transform: rotate(-12deg);
+}
+.trivia-bubble {
+  position: absolute;
+  right: 4%;
+  bottom: 5%;
+  padding: .5rem .8rem;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+  background: rgba(0,0,0,.28);
+  color: #bdfcff;
+  font-size: .76rem;
+  font-weight: 1000;
+  letter-spacing: .13em;
+}
+
+.trivia-placeholder-page { background: #06141f; }
+.trivia-placeholder-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(250px, .7fr);
+  gap: 1.5rem;
+  align-items: center;
+  padding: clamp(1.7rem, 5vw, 4rem);
+  overflow: hidden;
+  border: 1px solid rgba(72, 221, 235, .18);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 82% 12%, rgba(255,224,91,.2), transparent 26%),
+    radial-gradient(circle at 15% 90%, rgba(255,79,139,.18), transparent 34%),
+    linear-gradient(145deg, #0a2940, #16152f 74%);
+  box-shadow: var(--shadow);
+}
+.trivia-placeholder-hero .venue-brand.island.hero {
+  width: 128px;
+  height: 128px;
+}
+.trivia-placeholder-mark {
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  width: min(270px, 70vw);
+  aspect-ratio: 1;
+  border: 2px solid rgba(255,255,255,.7);
+  border-radius: 50%;
+  background: radial-gradient(circle at 33% 28%, #ff5a9f, #7534cd 60%, #0d3552);
+  box-shadow: 0 0 0 22px rgba(66,224,225,.07), 0 32px 60px rgba(0,0,0,.35);
+}
+.trivia-placeholder-mark span { font-size: clamp(7rem, 16vw, 11rem); font-weight: 950; line-height: .9; }
+.trivia-placeholder-mark small { margin-top: -1.2rem; color: #c5fbff; font-weight: 1000; letter-spacing: .16em; }
+.trivia-roadmap-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.trivia-roadmap-grid article {
+  min-height: 220px;
+  padding: 1.35rem;
+  border: 1px solid rgba(72,221,235,.15);
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(19,39,59,.95), rgba(11,25,39,.96));
+}
+.trivia-roadmap-grid article > span { color: var(--accent); font-size: .8rem; font-weight: 1000; letter-spacing: .15em; }
+.trivia-roadmap-grid h3 { margin: 1rem 0 .55rem; }
+.trivia-roadmap-grid p { color: var(--muted); line-height: 1.55; }
+
+@media (max-width: 900px) {
+  .trivia-teaser,
+  .trivia-placeholder-hero { grid-template-columns: 1fr; }
+  .trivia-teaser-art { min-height: 205px; }
+  .trivia-roadmap-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .brand-mark-image { width: 88px; height: 48px; }
+  .trivia-teaser { padding: 1.25rem; border-radius: 24px; }
+  .trivia-teaser-art strong { width: 132px; height: 132px; font-size: 5rem; }
+  .trivia-placeholder-hero { padding: 1.4rem; border-radius: 24px; }
+  .trivia-placeholder-hero .venue-brand.island.hero { width: 104px; height: 104px; }
+}
+
+/* v9: corrected header-logo crop and top-left alignment */
+.brand-mark-image {
+  flex: 0 0 auto;
+  width: 132px;
+  height: 66px;
+  overflow: hidden;
+  align-self: center;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 12px;
+  background: #000;
+}
+.brand-mark-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 50%;
+}
+@media (max-width: 520px) {
+  .brand-mark-image { width: 104px; height: 52px; }
+}

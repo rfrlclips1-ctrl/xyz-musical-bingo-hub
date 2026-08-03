@@ -1,0 +1,8 @@
+{
+  "version": "v9",
+  "change": "Corrected XY&Z header logo crop and top-left alignment",
+  "asset": "public/assets/xyz-productions-header-v9.png",
+  "desktop_slot": "132x66",
+  "mobile_slot": "104x52",
+  "object_fit": "contain"
+}
