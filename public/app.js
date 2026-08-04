@@ -75,7 +75,7 @@
 
         <section class="section" id="venues">
           <div class="section-heading">
-            <div><p class="eyebrow">CHOOSE YOUR VENUE</p><h2>Same platform. Completely different feel.</h2></div>
+            <div><p class="eyebrow">CHOOSE YOUR VENUE</p><h2>Weekly events by venue</h2></div>
           </div>
           <div class="venue-grid">
             ${venues.map((venue) => `
@@ -88,7 +88,7 @@
                   <h2>${escapeHtml(venue.name)}</h2>
                   <p>${escapeHtml(venue.description)}</p>
                   <span class="venue-tagline">${escapeHtml(venue.brandTagline)}</span>
-                  <span class="schedule">${escapeHtml(venue.schedule)}</span>${venue.slug === "island-vibes" ? '<span class="schedule trivia-schedule">Trivia · Thursdays at 8:00 PM</span>' : ''}
+                  <div class="venue-event-times"><span class="schedule"><small>${venue.slug === "island-vibes" ? "MUSICAL BINGO" : "MUSICAL BINGO"}</small>${escapeHtml(venue.schedule)}</span>${venue.slug === "island-vibes" ? '<span class="schedule trivia-schedule"><small>TRIVIA</small>Thursdays · 8:00 PM</span>' : ''}</div>
                 </div>
                 <span class="venue-enter">Enter ${escapeHtml(venue.shortName)} →</span>
               </a>`).join("")}
@@ -103,7 +103,7 @@
       <div class="trivia-teaser-copy">
         <p class="eyebrow">THURSDAYS · 8:00 PM · ISLAND VIBES</p>
         <h2 id="island-trivia-title">Island Vibes Trivia</h2>
-        <p>Island Vibes is home to two weekly game nights: Musical Bingo on Wednesdays and full-team Trivia on Thursdays at 8:00 PM. Enter Trivia Headquarters for standings, team pages, streaks, records, and every result.</p>
+        <p>Play team trivia every Thursday at 8:00 PM. Follow standings, team profiles, winning streaks, records, and every recorded result.</p>
         <div class="trivia-feature-row"><span>Thursdays at 8 PM</span><span>28 recorded nights</span><span>Team profile pages</span><span>Live sports-style records</span></div>
         <a class="button trivia-button" href="/island-vibes/trivia" data-link>View trivia statistics</a>
       </div>
@@ -125,7 +125,11 @@
             </div>
             <p class="eyebrow">${escapeHtml(venue.eyebrow)}</p>
             <h1>${escapeHtml(venue.shortName)}${venue.slug === "island-vibes" ? ' <span class="venue-title-extra">Musical Bingo + Trivia</span>' : ''}</h1>
-            <p class="lead">${escapeHtml(venue.description)}${venue.slug === "island-vibes" ? ' Thursdays at 8:00 PM feature a full trivia experience with standings, sports-style team pages, records, streaks, and a complete results archive.' : ''}</p>
+            <p class="lead">${escapeHtml(venue.description)}</p>
+            <div class="venue-weekly-schedule ${escapeHtml(venue.theme)}">
+              <article><span>MUSICAL BINGO</span><strong>${venue.slug === "island-vibes" ? "Wednesdays" : "Thursdays"}</strong><b>${venue.slug === "island-vibes" ? "7:30 PM" : "5:30–7:30 PM"}</b></article>
+              ${venue.slug === "island-vibes" ? '<article class="trivia-event"><span>TEAM TRIVIA</span><strong>Thursdays</strong><b>8:00 PM</b><a href="/island-vibes/trivia" data-link>Stats, teams & results →</a></article>' : '<article class="venue-link-event"><span>AT MANGROVE SANDS</span><strong>Golf Club & Restaurant</strong><b>Vero Beach</b><a href="https://mangrovesands.com/" target="_blank" rel="noreferrer">Venue website →</a></article>'}
+            </div>
             <div class="hero-actions">
               ${venue.slug === "island-vibes" ? '<a class="button primary" href="/island-vibes/trivia" data-link>Open Trivia Headquarters</a>' : ''}
               <a class="button ${venue.theme === "island" ? "primary" : "secondary"}" href="#venue-rounds">View playlists</a>
@@ -145,17 +149,13 @@
             <div class="round-grid">${rounds.map((round) => roundCard(venue, round)).join("")}</div>
           </section>
 
-          <section class="section">
-            <div class="round-layout">
-              <div class="round-main">
-                <p class="eyebrow">VENUE MESSAGE</p>
-                <h2>${escapeHtml(venue.announcement)}</h2>
-                <p class="lead">Each playlist page keeps this venue’s look, links, schedule, and live song history separate from every other venue.</p>
-              </div>
-              <div class="round-side">
-                <h3>Direct card links</h3>
-                <p class="help-text">Every new QR code should point to <strong>/${escapeHtml(venue.slug)}/round-name</strong>. The player never needs to choose a venue.</p>
-              </div>
+          <section class="section venue-quick-guide">
+            <div class="section-heading"><div><p class="eyebrow">${escapeHtml(venue.shortName)} QUICK LINKS</p><h2>Everything for this venue</h2></div></div>
+            <div class="venue-action-grid">
+              <a href="#venue-rounds"><span>♫</span><strong>Musical Bingo</strong><small>Choose tonight’s playlist</small></a>
+              ${venue.slug === "island-vibes" ? '<a href="/island-vibes/trivia" data-link><span>?</span><strong>Trivia Headquarters</strong><small>Teams, standings and results</small></a>' : '<a href="https://mangrovesands.com/" target="_blank" rel="noreferrer"><span>⌂</span><strong>Mangrove Sands</strong><small>Visit the venue website</small></a>'}
+              <a href="/playlists?venue=${encodeURIComponent(venue.slug)}" data-link><span>▦</span><strong>Playlist Library</strong><small>Browse all venue rounds</small></a>
+              <a href="/contact" data-link><span>✦</span><strong>Book XY&amp;Z</strong><small>Hosting and event inquiries</small></a>
             </div>
           </section>
         </div>
@@ -284,8 +284,8 @@
     const teamLink = (t) => `/island-vibes/trivia/team/${triviaTeamSlug(t.team)}`;
     return `<div class="venue-page island trivia-page"><div class="page-shell">
       <nav class="breadcrumbs"><a href="/" data-link>Home</a><span>›</span><a href="/island-vibes" data-link>Island Vibes</a><span>›</span><span>Trivia Headquarters</span></nav>
-      <section class="trivia-live-hero compact">
-        <div><p class="eyebrow">THURSDAYS · 8:00 PM · ISLAND VIBES</p><h1>Island Vibes Trivia Headquarters</h1><p class="lead">A sports-style home for the teams, standings, rivalries, records, streaks, and every final scoreboard.</p><div class="button-row"><button class="button primary trivia-tab-trigger" data-tab-target="teams">Team pages</button><button class="button secondary trivia-tab-trigger" data-tab-target="standings">Standings</button><button class="button secondary trivia-tab-trigger" data-tab-target="results">Latest results</button></div></div>
+      <section class="trivia-live-hero compact island-scoreboard-hero">
+        <div><p class="eyebrow">THURSDAYS · 8:00 PM · ISLAND VIBES</p><h1>Island Vibes Trivia Headquarters</h1><p class="lead">Team profiles, standings, records, streaks, and every Island Vibes final scoreboard.</p><div class="button-row"><button class="button primary trivia-tab-trigger" data-tab-target="teams">Team pages</button><button class="button secondary trivia-tab-trigger" data-tab-target="standings">Standings</button><button class="button secondary trivia-tab-trigger" data-tab-target="results">Latest results</button></div></div>
         <div class="trivia-champion-mark"><span>ALL-TIME LEADER</span><strong>${escapeHtml(stats.champion.team)}</strong><b>${stats.champion.wins} WINS</b><a href="${teamLink(stats.champion)}" data-link>View team profile →</a></div>
       </section>
       <section class="trivia-scoreboard-strip"><article><small>NIGHTS</small><b>${stats.source.nights.length}</b></article><article><small>TEAMS</small><b>${stats.uniqueTeams}</b></article><article><small>LONGEST STREAK</small><b>${stats.streaks[0].count}</b><span>${escapeHtml(stats.streaks[0].team)}</span></article><article><small>HIGH SCORE</small><b>${stats.highestScore}</b><span>${escapeHtml(stats.highest[0].team)}</span></article><article><small>AVG FIELD</small><b>${stats.avgTeams.toFixed(1)}</b></article><article><small>CLOSEST FINISH</small><b>${stats.closestMargin}</b><span>points</span></article></section>
@@ -293,7 +293,7 @@
 
       <div class="trivia-tab-panel active" data-trivia-panel="home">
         <section class="sports-home-grid">
-          <article class="sports-feature"><p class="eyebrow">THE LEAGUE STORY</p><h2>Two dynasties. One growing trivia community.</h2><p>Wise Ass Owls lead all-time with ${stats.champion.wins} wins and a nine-game streak. Seannah owns the scoring record at 420 and a seven-game winning run. Mr and Mrs Awesome posted a perfect recorded podium rate, while The Cluckaneers took over April.</p><button class="text-link trivia-tab-trigger" data-tab-target="records">Explore the record book →</button></article>
+          <article class="sports-feature"><p class="eyebrow">THE LEAGUE STORY</p><h2>Island Vibes all-time leaders</h2><p>Wise Ass Owls lead all-time with ${stats.champion.wins} wins and a nine-game streak. Seannah owns the scoring record at 420 and a seven-game winning run. Mr and Mrs Awesome posted a perfect recorded podium rate, while The Cluckaneers took over April.</p><button class="text-link trivia-tab-trigger" data-tab-target="records">Explore the record book →</button></article>
           <article class="sports-next"><span>EVERY THURSDAY</span><strong>8:00 PM</strong><p>Island Vibes Kava Bar<br>Vero Beach, Florida</p><a class="button primary" href="/island-vibes" data-link>Island Vibes home</a></article>
         </section>
         <section class="section"><div class="section-heading"><div><p class="eyebrow">POWER RANKINGS</p><h2>Featured teams</h2></div><button class="text-link trivia-tab-trigger" data-tab-target="teams">View all teams →</button></div><div class="sports-team-grid">${featuredTeams.map((t,i)=>`<a class="sports-team-card" href="${teamLink(t)}" data-link><span class="sports-rank">${i+1}</span><div class="mini-crest">${escapeHtml(t.team.split(/\s+/).map(w=>w[0]).slice(0,3).join(''))}</div><h3>${escapeHtml(t.team)}</h3><div><b>${t.wins}<small>WINS</small></b><b>${t.podiums}<small>PODIUMS</small></b><b>${t.best}<small>BEST</small></b></div><p>${t.played} played · ${t.winRate.toFixed(1)}% win rate</p></a>`).join('')}</div></section>
