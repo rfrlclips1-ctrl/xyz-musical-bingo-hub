@@ -151,3 +151,10 @@ A public phone number, business email, Facebook, TikTok, or other social links h
 - Added individual team profile routes at `/island-vibes/trivia/team/<team-slug>`.
 - Team pages include rank, recent form, wins, podiums, averages, records, and full game logs.
 - Tipping functionality is intentionally reserved for the next project phase.
+
+
+## v15 Live Board
+- Guest routes: `/island-vibes/live` and `/mangrove-sands/live`
+- Private host controls: `/host.html`
+- Host dashboard includes manual one-song publishing and a three-song demo, so the live system can be tested before connecting djay Pro.
+- Deploy the full project root to Netlify and configure Supabase plus the four required environment variables.

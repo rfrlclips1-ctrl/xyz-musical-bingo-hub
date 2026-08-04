@@ -1,0 +1,14 @@
+{
+  "build": "v15_live_board",
+  "checks": {
+    "index_exists": true,
+    "host_exists": true,
+    "live_routes_in_app": true,
+    "manual_publish": true,
+    "demo_sequence": true,
+    "supabase_sql": true,
+    "functions": true,
+    "bridge": true
+  },
+  "passed": true
+}

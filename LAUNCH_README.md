@@ -64,3 +64,10 @@ To activate the live host/Now Playing features:
 ## Important content check
 
 The Diner Music Spotify URL is still blank in `public/data.js`. Add it before printing a new Diner Music card pack.
+
+
+## v15 Live Board
+- Guest routes: `/island-vibes/live` and `/mangrove-sands/live`
+- Private host controls: `/host.html`
+- Host dashboard includes manual one-song publishing and a three-song demo, so the live system can be tested before connecting djay Pro.
+- Deploy the full project root to Netlify and configure Supabase plus the four required environment variables.
