@@ -5,6 +5,8 @@
   const app = document.getElementById("app");
   const menuButton = document.getElementById("menu-button");
   const nav = document.getElementById("main-nav");
+  const navDropdown = document.querySelector(".nav-dropdown");
+  const navDropdownToggle = document.querySelector(".nav-dropdown-toggle");
   let liveTimer = null;
   let publicBackend = null;
 
@@ -60,13 +62,13 @@
     return `
       <div class="page-shell">
         <section class="hero">
-          <p class="eyebrow">ONE APP · DISTINCT VENUES · DIRECT QR ROUTES</p>
-          <h1>Every musical bingo night, under one roof.</h1>
-          <p class="lead">Choose a venue to enter its own branded experience. Players scanning a card skip the menu and land directly on the correct venue and round.</p>
+          <p class="eyebrow">MUSICAL BINGO · ISLAND VIBES TRIVIA · LIVE ENTERTAINMENT</p>
+          <h1>Musical bingo and trivia, built around every venue.</h1>
+          <p class="lead">Choose a venue for its branded musical bingo experience, or jump directly into Island Vibes Trivia for standings, player profiles, records, streaks, and every final scoreboard.</p>
           <div class="hero-actions">
-            <a class="button primary" href="/playlists" data-link>Browse all playlists</a>
+            <a class="button primary" href="/island-vibes/trivia" data-link>Explore Island Vibes Trivia</a>
+            <a class="button secondary" href="/playlists" data-link>Browse bingo playlists</a>
             <a class="button secondary" href="#venues">Choose a venue</a>
-            <a class="button secondary" href="/contact" data-link>Book an event</a>
           </div>
 
         </section>
@@ -122,9 +124,10 @@
               </div>
             </div>
             <p class="eyebrow">${escapeHtml(venue.eyebrow)}</p>
-            <h1>${escapeHtml(venue.shortName)}</h1>
-            <p class="lead">${escapeHtml(venue.description)}</p>
+            <h1>${escapeHtml(venue.shortName)}${venue.slug === "island-vibes" ? ' <span class="venue-title-extra">Musical Bingo + Trivia</span>' : ''}</h1>
+            <p class="lead">${escapeHtml(venue.description)}${venue.slug === "island-vibes" ? ' Thursdays feature a full trivia experience with live standings, team profiles, records, and a complete results archive.' : ''}</p>
             <div class="hero-actions">
+              ${venue.slug === "island-vibes" ? '<a class="button primary" href="/island-vibes/trivia" data-link>Open Trivia Headquarters</a>' : ''}
               <a class="button ${venue.theme === "island" ? "primary" : "secondary"}" href="#venue-rounds">View playlists</a>
               <a class="button secondary" href="/playlists?venue=${encodeURIComponent(venue.slug)}" data-link>Open full catalog</a>
               <a class="button venue-external" href="${escapeHtml(venue.externalUrl)}" target="_blank" rel="noreferrer">${escapeHtml(venue.externalLabel)} ↗</a>
@@ -160,43 +163,148 @@
   };
 
   const triviaStats = () => {
-    const source = window.ISLAND_TRIVIA || { nights: [] };
+    const source = window.ISLAND_TRIVIA || { nights: [], noTrivia: [] };
     const teams = new Map();
     source.nights.forEach((night) => night.results.forEach((row) => {
-      const stat = teams.get(row.team) || { team: row.team, played: 0, wins: 0, podiums: 0, total: 0, best: -Infinity, finishes: 0 };
-      stat.played += 1; stat.total += row.score; stat.best = Math.max(stat.best, row.score); stat.finishes += row.place;
-      if (row.place === 1) stat.wins += 1; if (row.place <= 3) stat.podiums += 1; teams.set(row.team, stat);
+      const stat = teams.get(row.team) || { team: row.team, played: 0, wins: 0, podiums: 0, total: 0, best: -Infinity, finishes: 0, results: [] };
+      stat.played += 1;
+      stat.total += row.score;
+      stat.best = Math.max(stat.best, row.score);
+      stat.finishes += row.place;
+      stat.results.push({ date: night.date, place: row.place, score: row.score, field: night.results.length });
+      if (row.place === 1) stat.wins += 1;
+      if (row.place <= 3) stat.podiums += 1;
+      teams.set(row.team, stat);
     }));
-    const standings = [...teams.values()].map((x) => ({ ...x, avg: x.total / x.played, avgFinish: x.finishes / x.played }))
-      .sort((a,b) => b.wins-a.wins || b.podiums-a.podiums || a.avgFinish-b.avgFinish);
-    let bestStreak = { team: '', count: 0, start: '', end: '' }, current = null;
-    source.nights.forEach((night) => { const winner = night.results[0]?.team; if (!winner) return;
-      if (current && current.team === winner) { current.count++; current.end = night.date; } else current = { team:winner,count:1,start:night.date,end:night.date };
-      if (current.count > bestStreak.count) bestStreak = { ...current };
+    const standings = [...teams.values()].map((x) => ({
+      ...x,
+      avg: x.total / x.played,
+      avgFinish: x.finishes / x.played,
+      winRate: 100 * x.wins / x.played,
+      podiumRate: 100 * x.podiums / x.played,
+      latest: x.results[x.results.length - 1]
+    })).sort((a,b) => b.wins-a.wins || b.podiums-a.podiums || a.avgFinish-b.avgFinish || b.best-a.best);
+
+    const streaks = [];
+    let current = null;
+    source.nights.forEach((night) => {
+      const winner = night.results[0]?.team;
+      if (!winner) return;
+      if (current && current.team === winner) {
+        current.count += 1;
+        current.end = night.date;
+        current.nights.push(night);
+      } else {
+        if (current) streaks.push(current);
+        current = { team: winner, count: 1, start: night.date, end: night.date, nights: [night] };
+      }
     });
-    const scores = source.nights.flatMap(n=>n.results.map(r=>r.score));
-    const margins = source.nights.map(n=>n.results.length>1?n.results[0].score-n.results[1].score:null).filter(x=>x!==null);
-    return { source, standings, bestStreak, highest: Math.max(...scores), largestMargin: Math.max(...margins), closest: Math.min(...margins), avgTeams: source.nights.reduce((a,n)=>a+n.results.length,0)/source.nights.length };
+    if (current) streaks.push(current);
+    streaks.sort((a,b)=>b.count-a.count || a.start.localeCompare(b.start));
+
+    const allRows = source.nights.flatMap(n=>n.results.map(r=>({...r,date:n.date,field:n.results.length})));
+    const margins = source.nights.filter(n=>n.results.length>1).map(n=>({
+      date:n.date, winner:n.results[0].team, winnerScore:n.results[0].score,
+      runner:n.results[1].team, runnerScore:n.results[1].score,
+      margin:n.results[0].score-n.results[1].score
+    }));
+    const monthly = new Map();
+    source.nights.forEach(n=>{
+      const key=n.date.slice(0,7);
+      const m=monthly.get(key)||{key,nights:0,teams:0,winners:new Map(),high:-Infinity};
+      m.nights++; m.teams+=n.results.length; m.high=Math.max(m.high,...n.results.map(r=>r.score));
+      const w=n.results[0].team; m.winners.set(w,(m.winners.get(w)||0)+1); monthly.set(key,m);
+    });
+    const months=[...monthly.values()].map(m=>{
+      const leaders=[...m.winners.entries()].sort((a,b)=>b[1]-a[1]);
+      return {...m,avgTeams:m.teams/m.nights,leader:leaders[0]?.[0]||'',leaderWins:leaders[0]?.[1]||0};
+    });
+    const highest=[...allRows].sort((a,b)=>b.score-a.score).slice(0,10);
+    const lowest=[...allRows].sort((a,b)=>a.score-b.score).slice(0,8);
+    const closest=[...margins].sort((a,b)=>a.margin-b.margin).slice(0,8);
+    const largest=[...margins].sort((a,b)=>b.margin-a.margin).slice(0,8);
+    const totalEntries=source.nights.reduce((a,n)=>a+n.results.length,0);
+    const uniqueTeams=standings.length;
+    return {
+      source, standings, streaks, highest, lowest, closest, largest, months,
+      highestScore: highest[0]?.score ?? 0,
+      largestMargin: largest[0]?.margin ?? 0,
+      closestMargin: closest[0]?.margin ?? 0,
+      avgTeams: totalEntries/source.nights.length,
+      totalEntries, uniqueTeams,
+      champion: standings[0]
+    };
   };
 
   const triviaPage = (venue) => {
     const stats = triviaStats();
-    const fmtDate = (d) => new Date(d+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    const fmtDate = (d, year=true) => new Date(d+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',...(year?{year:'numeric'}:{})});
+    const teamId = (name) => `team-${name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}`;
+    const profileTeams = stats.standings.filter(t=>t.played>=3 || t.wins>0).slice(0,18);
+    const recordCard = (label,value,detail) => `<article class="record-card"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong><small>${escapeHtml(detail)}</small></article>`;
     return `
     <div class="venue-page island trivia-page"><div class="page-shell">
-      <nav class="breadcrumbs"><a href="/" data-link>Home</a><span>›</span><a href="/${escapeHtml(venue.slug)}" data-link>${escapeHtml(venue.shortName)}</a><span>›</span><span>Trivia</span></nav>
+      <nav class="breadcrumbs"><a href="/" data-link>Home</a><span>›</span><a href="/${escapeHtml(venue.slug)}" data-link>${escapeHtml(venue.shortName)}</a><span>›</span><span>Trivia Headquarters</span></nav>
+
       <section class="trivia-live-hero">
-        <div><p class="eyebrow">THURSDAYS · 7:30 PM · ISLAND VIBES</p><h1>Island Vibes Trivia</h1><p class="lead">The complete statistical history from December 18, 2025 through July 23, 2026—standings, streaks, records, and every final scoreboard.</p><div class="button-row"><a class="button primary" href="#standings">All-time standings</a><a class="button secondary" href="#archive">Results archive</a></div></div>
-        <div class="trivia-champion-mark"><span>ALL-TIME LEADER</span><strong>Wise Ass Owls</strong><b>12 WINS</b></div>
+        <div><p class="eyebrow">THURSDAYS · 7:30 PM · ISLAND VIBES</p><h1>Island Vibes Trivia Headquarters</h1><p class="lead">A dedicated home for the players, rivalries, records, streaks, and complete scoreboard history of Island Vibes Trivia.</p><div class="button-row"><a class="button primary" href="#teams">Meet the teams</a><a class="button secondary" href="#standings">All-time standings</a><a class="button secondary" href="#archive">Every result</a></div></div>
+        <div class="trivia-champion-mark"><span>ALL-TIME LEADER</span><strong>${escapeHtml(stats.champion.team)}</strong><b>${stats.champion.wins} WINS</b><small>${stats.champion.podiums} podiums · ${stats.champion.played} appearances</small></div>
       </section>
-      <section class="trivia-stat-grid">
-        <article><span>Trivia nights</span><strong>${stats.source.nights.length}</strong></article><article><span>Longest streak</span><strong>${stats.bestStreak.count}</strong><small>${escapeHtml(stats.bestStreak.team)}</small></article><article><span>Highest score</span><strong>${stats.highest}</strong><small>Seannah</small></article><article><span>Average field</span><strong>${stats.avgTeams.toFixed(1)}</strong><small>teams per night</small></article><article><span>Closest finish</span><strong>${stats.closest}</strong><small>points</small></article><article><span>Largest victory</span><strong>${stats.largestMargin}</strong><small>points</small></article>
+
+      <nav class="trivia-subnav" aria-label="Trivia page sections">
+        <a href="#overview">Overview</a><a href="#teams">Team profiles</a><a href="#standings">Standings</a><a href="#streaks">Streaks</a><a href="#records">Records</a><a href="#months">By month</a><a href="#archive">Results</a>
+      </nav>
+
+      <section id="overview" class="trivia-stat-grid">
+        <article><span>Trivia nights</span><strong>${stats.source.nights.length}</strong><small>all dates accounted for</small></article>
+        <article><span>Recorded teams</span><strong>${stats.uniqueTeams}</strong><small>distinct team identities</small></article>
+        <article><span>Longest streak</span><strong>${stats.streaks[0].count}</strong><small>${escapeHtml(stats.streaks[0].team)}</small></article>
+        <article><span>Highest score</span><strong>${stats.highestScore}</strong><small>${escapeHtml(stats.highest[0].team)}</small></article>
+        <article><span>Average field</span><strong>${stats.avgTeams.toFixed(1)}</strong><small>teams per night</small></article>
+        <article><span>Closest finish</span><strong>${stats.closestMargin}</strong><small>points</small></article>
+        <article><span>Largest victory</span><strong>${stats.largestMargin}</strong><small>points</small></article>
+        <article><span>Team entries</span><strong>${stats.totalEntries}</strong><small>across all scoreboards</small></article>
       </section>
-      <section class="section" id="standings"><div class="section-heading"><div><p class="eyebrow">ALL-TIME LEADERBOARD</p><h2>Team standings</h2></div></div>
-        <div class="trivia-table-wrap"><table class="trivia-table"><thead><tr><th>Rank</th><th>Team</th><th>Played</th><th>Wins</th><th>Podiums</th><th>Win %</th><th>Best</th><th>Avg finish</th></tr></thead><tbody>${stats.standings.map((t,i)=>`<tr><td>${i+1}</td><td><strong>${escapeHtml(t.team)}</strong></td><td>${t.played}</td><td>${t.wins}</td><td>${t.podiums}</td><td>${(100*t.wins/t.played).toFixed(1)}%</td><td>${t.best}</td><td>${t.avgFinish.toFixed(2)}</td></tr>`).join('')}</tbody></table></div>
+
+      <section class="section trivia-story-panel">
+        <div><p class="eyebrow">THE STORY SO FAR</p><h2>Two dynasties. One growing trivia community.</h2><p>Wise Ass Owls own the all-time lead and the longest streak at nine straight wins. Seannah delivered the highest-scoring peak with seven consecutive victories and a record 420-point night. Mr and Mrs Awesome never missed the podium in the recorded results, while The Cluckaneers controlled April with three wins.</p></div>
+        <div class="trivia-story-stats"><span><b>67.9%</b> of nights won by Wise Ass Owls or Seannah</span><span><b>89.3%</b> won by the top four teams</span><span><b>10</b> teams on the largest nights</span></div>
       </section>
-      <section class="section"><div class="section-heading"><div><p class="eyebrow">DYNASTIES</p><h2>Winning streaks</h2></div></div><div class="streak-grid"><article><b>1</b><h3>Wise Ass Owls</h3><strong>9 straight</strong><p>January 15–March 12, 2026</p></article><article><b>2</b><h3>Seannah</h3><strong>7 straight</strong><p>May 28–July 9, 2026</p></article><article><b>3</b><h3>The Cluckaneers</h3><strong>2 straight</strong><p>April 2–April 9, 2026</p></article></div></section>
-      <section class="section" id="archive"><div class="section-heading"><div><p class="eyebrow">COMPLETE HISTORY</p><h2>Results archive</h2></div><label class="trivia-search-label">Search team<input id="trivia-search" class="search-box" type="search" placeholder="Team name"></label></div><div id="trivia-archive" class="trivia-archive">${stats.source.nights.slice().reverse().map(n=>`<article class="trivia-night" data-teams="${escapeHtml(n.results.map(r=>r.team.toLowerCase()).join(' '))}"><header><div><span>${fmtDate(n.date)}</span><h3>${escapeHtml(n.results[0].team)} won</h3></div><strong>${n.results[0].score}</strong></header><ol>${n.results.map(r=>`<li><span class="place">${r.place}</span><span>${escapeHtml(r.team)}</span><b>${r.score}</b></li>`).join('')}</ol>${n.partial?'<p class="partial-note">Only the visible portion of this scoreboard was available.</p>':''}</article>`).join('')}</div></section>
+
+      <section class="section" id="teams">
+        <div class="section-heading"><div><p class="eyebrow">PLAYER &amp; TEAM PROFILES</p><h2>Meet the teams</h2></div><p>Choose a team to jump to its full profile.</p></div>
+        <div class="team-profile-grid">${profileTeams.map((t,i)=>`<a class="team-profile-card ${i<4?'featured':''}" href="#${teamId(t.team)}"><span class="team-rank">#${stats.standings.indexOf(t)+1}</span><h3>${escapeHtml(t.team)}</h3><div class="team-card-stats"><b>${t.wins}<small>wins</small></b><b>${t.podiums}<small>podiums</small></b><b>${t.best}<small>best</small></b></div><p>${t.winRate.toFixed(1)}% win rate · ${t.avgFinish.toFixed(2)} average finish</p></a>`).join('')}</div>
+      </section>
+
+      <section class="section" id="standings"><div class="section-heading"><div><p class="eyebrow">ALL-TIME LEADERBOARD</p><h2>Complete standings</h2></div><p>Every team, every appearance, all available statistics.</p></div>
+        <div class="trivia-table-wrap"><table class="trivia-table"><thead><tr><th>Rank</th><th>Team</th><th>Played</th><th>Wins</th><th>Podiums</th><th>Win %</th><th>Podium %</th><th>Avg score</th><th>Best</th><th>Avg finish</th></tr></thead><tbody>${stats.standings.map((t,i)=>`<tr><td>${i+1}</td><td><a href="#${teamId(t.team)}"><strong>${escapeHtml(t.team)}</strong></a></td><td>${t.played}</td><td>${t.wins}</td><td>${t.podiums}</td><td>${t.winRate.toFixed(1)}%</td><td>${t.podiumRate.toFixed(1)}%</td><td>${t.avg.toFixed(1)}</td><td>${t.best}</td><td>${t.avgFinish.toFixed(2)}</td></tr>`).join('')}</tbody></table></div>
+      </section>
+
+      <section class="section" id="streaks"><div class="section-heading"><div><p class="eyebrow">DYNASTIES</p><h2>Winning streaks</h2></div></div><div class="streak-grid">${stats.streaks.filter(s=>s.count>1).slice(0,6).map((s,i)=>`<article><b>${i+1}</b><h3>${escapeHtml(s.team)}</h3><strong>${s.count} straight</strong><p>${fmtDate(s.start,false)}–${fmtDate(s.end,true)}</p><div class="streak-night-list">${s.nights.map(n=>`<span>${fmtDate(n.date,false)} · ${n.results[0].score}</span>`).join('')}</div></article>`).join('')}</div></section>
+
+      <section class="section" id="records"><div class="section-heading"><div><p class="eyebrow">RECORD BOOK</p><h2>All-time records</h2></div></div>
+        <div class="record-grid">
+          ${recordCard('Most wins',`${stats.champion.wins}`,stats.champion.team)}
+          ${recordCard('Most podiums',`${[...stats.standings].sort((a,b)=>b.podiums-a.podiums)[0].podiums}`,[...stats.standings].sort((a,b)=>b.podiums-a.podiums)[0].team)}
+          ${recordCard('Highest score',`${stats.highest[0].score}`,`${stats.highest[0].team} · ${fmtDate(stats.highest[0].date)}`)}
+          ${recordCard('Highest losing score','371','TMobile · July 9, 2026')}
+          ${recordCard('Longest streak',`${stats.streaks[0].count} wins`,stats.streaks[0].team)}
+          ${recordCard('Closest finish',`${stats.closest[0].margin} points`,`${stats.closest[0].winner} over ${stats.closest[0].runner}`)}
+          ${recordCard('Largest victory',`${stats.largest[0].margin} points`,`${stats.largest[0].winner} · ${fmtDate(stats.largest[0].date)}`)}
+          ${recordCard('Largest field','10 teams','March 19 and April 2')}
+        </div>
+        <div class="records-columns">
+          <article><h3>Highest scores</h3><ol class="record-list">${stats.highest.map(r=>`<li><span>${escapeHtml(r.team)}<small>${fmtDate(r.date)}</small></span><b>${r.score}</b></li>`).join('')}</ol></article>
+          <article><h3>Closest finishes</h3><ol class="record-list">${stats.closest.map(r=>`<li><span>${escapeHtml(r.winner)} over ${escapeHtml(r.runner)}<small>${fmtDate(r.date)}</small></span><b>${r.margin}</b></li>`).join('')}</ol></article>
+          <article><h3>Largest victories</h3><ol class="record-list">${stats.largest.map(r=>`<li><span>${escapeHtml(r.winner)} over ${escapeHtml(r.runner)}<small>${fmtDate(r.date)}</small></span><b>${r.margin}</b></li>`).join('')}</ol></article>
+        </div>
+      </section>
+
+      <section class="section" id="months"><div class="section-heading"><div><p class="eyebrow">MONTH BY MONTH</p><h2>Monthly leaders</h2></div></div><div class="month-grid">${stats.months.map(m=>`<article><span>${new Date(m.key+'-15T12:00:00').toLocaleDateString('en-US',{month:'long',year:'numeric'})}</span><strong>${escapeHtml(m.leader)}</strong><b>${m.leaderWins} win${m.leaderWins===1?'':'s'}</b><small>${m.nights} nights · ${m.avgTeams.toFixed(1)} avg teams · high ${m.high}</small></article>`).join('')}</div></section>
+
+      <section class="section team-detail-section"><div class="section-heading"><div><p class="eyebrow">FULL TEAM HISTORIES</p><h2>Profiles and results</h2></div></div><div class="team-detail-grid">${profileTeams.map(t=>`<article class="team-detail" id="${teamId(t.team)}"><header><div><span>${t.wins?`${t.wins} WIN${t.wins===1?'':'S'}`:'CONTENDER'}</span><h3>${escapeHtml(t.team)}</h3></div><b>${t.best}</b></header><div class="team-detail-stats"><span><b>${t.played}</b> played</span><span><b>${t.podiums}</b> podiums</span><span><b>${t.avg.toFixed(1)}</b> avg score</span><span><b>${t.avgFinish.toFixed(2)}</b> avg finish</span></div><ol>${t.results.slice().reverse().map(r=>`<li><span>${fmtDate(r.date)}</span><strong>${r.place===1?'WIN':`#${r.place}`}</strong><b>${r.score}</b></li>`).join('')}</ol><a href="#teams">Back to teams ↑</a></article>`).join('')}</div></section>
+
+      <section class="section" id="archive"><div class="section-heading"><div><p class="eyebrow">COMPLETE HISTORY</p><h2>Results archive</h2></div><div class="trivia-filter-row"><label class="trivia-search-label">Search team<input id="trivia-search" class="search-box" type="search" placeholder="Team name"></label><label class="trivia-search-label">Month<select id="trivia-month" class="filter-select"><option value="">All months</option>${stats.months.map(m=>`<option value="${m.key}">${new Date(m.key+'-15T12:00:00').toLocaleDateString('en-US',{month:'long',year:'numeric'})}</option>`).join('')}</select></label></div></div><div id="trivia-archive" class="trivia-archive">${stats.source.nights.slice().reverse().map(n=>`<article class="trivia-night" data-date="${n.date}" data-teams="${escapeHtml(n.results.map(r=>r.team.toLowerCase()).join(' '))}"><header><div><span>${fmtDate(n.date)}</span><h3>${escapeHtml(n.results[0].team)} won</h3></div><strong>${n.results[0].score}</strong></header><ol>${n.results.map(r=>`<li><span class="place">${r.place}</span><a href="#${teamId(r.team)}">${escapeHtml(r.team)}</a><b>${r.score}</b></li>`).join('')}</ol>${n.partial?'<p class="partial-note">Only the visible portion of this scoreboard was available.</p>':''}</article>`).join('')}</div></section>
     </div></div>`;
   };
 
@@ -655,7 +763,17 @@
     bindLinks();
     if (path === "/playlists") renderLibrary();
     if (path === "/contact") bindContactForm();
-    if (path === "/island-vibes/trivia") { const q=document.getElementById("trivia-search"); if(q) q.addEventListener("input",()=>document.querySelectorAll(".trivia-night").forEach(card=>card.hidden=!card.dataset.teams.includes(q.value.trim().toLowerCase()))); }
+    if (path === "/island-vibes/trivia") {
+      const q=document.getElementById("trivia-search");
+      const m=document.getElementById("trivia-month");
+      const filterTrivia=()=>document.querySelectorAll(".trivia-night").forEach(card=>{
+        const matchesTeam=!q?.value.trim() || card.dataset.teams.includes(q.value.trim().toLowerCase());
+        const matchesMonth=!m?.value || card.dataset.date.startsWith(m.value);
+        card.hidden=!(matchesTeam&&matchesMonth);
+      });
+      q?.addEventListener("input",filterTrivia);
+      m?.addEventListener("change",filterTrivia);
+    }
     const live = document.querySelector("[data-live-venue][data-live-round]");
     if (live) startLivePolling(live.dataset.liveVenue, live.dataset.liveRound);
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -678,6 +796,8 @@
         if (url.origin !== location.origin) return;
         event.preventDefault();
         nav.classList.remove("open");
+        navDropdown?.classList.remove("open");
+        navDropdownToggle?.setAttribute("aria-expanded", "false");
         menuButton.setAttribute("aria-expanded", "false");
         navigate(url.href);
       });
@@ -707,6 +827,16 @@
   menuButton.addEventListener("click", () => {
     const open = nav.classList.toggle("open");
     menuButton.setAttribute("aria-expanded", String(open));
+  });
+  navDropdownToggle?.addEventListener("click", () => {
+    const open = navDropdown.classList.toggle("open");
+    navDropdownToggle.setAttribute("aria-expanded", String(open));
+  });
+  document.addEventListener("click", (event) => {
+    if (navDropdown && !navDropdown.contains(event.target)) {
+      navDropdown.classList.remove("open");
+      navDropdownToggle?.setAttribute("aria-expanded", "false");
+    }
   });
   window.addEventListener("popstate", render);
   handleLegacyQuery();

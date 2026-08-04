@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#08131f">
-  <meta name="description" content="XY&Z Productions Musical Bingo venue and playlist hub.">
-  <title>XY&Z Musical Bingo</title>
+  <meta name="description" content="XY&Z Productions musical bingo and Island Vibes trivia hub.">
+  <title>XY&Z Musical Bingo &amp; Trivia</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css?v=11">
+  <link rel="stylesheet" href="/styles.css?v=12">
 </head>
-<body data-build="v11">
+<body data-build="v12">
   <a class="skip-link" href="#app">Skip to content</a>
   <header class="site-header" id="site-header">
     <a class="brand" href="/" data-link aria-label="XY&Z Musical Bingo home">
@@ -19,7 +19,13 @@
     <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
     <nav class="main-nav" id="main-nav" aria-label="Main navigation">
       <a href="/" data-link>Home</a>
-      <a href="/island-vibes" data-link>Island Vibes</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Island Vibes <span aria-hidden="true">▾</span></button>
+        <div class="nav-dropdown-menu">
+          <a href="/island-vibes" data-link>Island Vibes Home</a>
+          <a href="/island-vibes/trivia" data-link>Trivia Stats &amp; Teams</a>
+        </div>
+      </div>
       <a href="/mangrove-sands" data-link>Mangrove Sands</a>
       <a href="/playlists" data-link>All Playlists</a>
       <a href="/contact" data-link>Contact</a>
@@ -53,6 +59,6 @@
   <noscript>This app needs JavaScript enabled to display venue and playlist pages.</noscript>
   <script src="/data.js"></script>
   <script src="/trivia-data.js"></script>
-  <script src="/app.js?v=11"></script>
+  <script src="/app.js?v=12"></script>
 </body>
 </html>
