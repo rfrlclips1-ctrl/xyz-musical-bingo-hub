@@ -1,7 +1,7 @@
 window.XYZ_BINGO = {
   site: {
-    name: "XY&Z Musical Bingo",
-    shortName: "XY&Z Bingo",
+    name: "XY&Z Productions",
+    shortName: "XY&Z Productions",
     baseUrl: "https://mellifluous-parfait-a01655.netlify.app",
     instagram: "https://www.instagram.com/xyandzproductions/",
     contactLabel: "@XYandZproductions",
@@ -16,7 +16,7 @@ window.XYZ_BINGO = {
       shortName: "Island Vibes",
       eyebrow: "WEDNESDAY NIGHT MUSICAL BINGO",
       schedule: "Wednesdays · 7:30 PM",
-      description: "Bright, energetic musical bingo with tropical-nightlife branding and a rotating catalog built specifically for Island Vibes.",
+      description: "Two weekly Island Vibes game nights: musical bingo on Wednesdays at 7:30 PM and team trivia on Thursdays at 8:00 PM, all with bright tropical-nightlife energy.",
       theme: "island",
       mark: "IV",
       logo: "/assets/island-vibes-logo.png",

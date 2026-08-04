@@ -142,3 +142,12 @@ The `/contact` page includes:
 The hidden static form in `public/index.html` allows Netlify to detect the form even though the visible page is rendered by JavaScript. Form submissions appear in the Netlify dashboard under **Forms**.
 
 A public phone number, business email, Facebook, TikTok, or other social links have not been invented. Add them to `public/data.js` and the contact template after the official details are supplied.
+
+## v13 Island Vibes Trivia Sports Update
+- Header brand changed to XY&Z Productions.
+- Island Vibes home tile now promotes Thursday trivia at 8:00 PM.
+- Island Vibes page features Musical Bingo and Trivia as equal weekly experiences.
+- Trivia Headquarters reorganized into tabbed, sports-style sections to reduce scrolling.
+- Added individual team profile routes at `/island-vibes/trivia/team/<team-slug>`.
+- Team pages include rank, recent form, wins, podiums, averages, records, and full game logs.
+- Tipping functionality is intentionally reserved for the next project phase.
