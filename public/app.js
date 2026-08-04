@@ -99,19 +99,13 @@
   const islandTriviaTeaser = (venue) => venue.slug === "island-vibes" ? `
     <section class="section trivia-teaser" aria-labelledby="island-trivia-title">
       <div class="trivia-teaser-copy">
-        <p class="eyebrow">NEXT BUILD · ISLAND VIBES</p>
-        <h2 id="island-trivia-title">Trivia is coming to the Island Vibes hub.</h2>
-        <p>Musical Bingo remains the main experience today. This reserved area will become the home for Island Vibes trivia nights, weekly categories, event details, and future host tools.</p>
-        <div class="trivia-feature-row" aria-label="Planned trivia features">
-          <span>Weekly trivia</span><span>Round categories</span><span>Venue updates</span>
-        </div>
-        <a class="button trivia-button" href="/island-vibes/trivia" data-link>Preview the trivia area</a>
+        <p class="eyebrow">THURSDAY NIGHT · ISLAND VIBES</p>
+        <h2 id="island-trivia-title">Island Vibes Trivia</h2>
+        <p>Explore the complete results archive, all-time standings, winning streaks, records, and team histories from Island Vibes Trivia.</p>
+        <div class="trivia-feature-row"><span>28 trivia nights</span><span>All-time standings</span><span>Weekly archive</span></div>
+        <a class="button trivia-button" href="/island-vibes/trivia" data-link>View trivia statistics</a>
       </div>
-      <div class="trivia-teaser-art" aria-hidden="true">
-        <span class="trivia-note">♪</span>
-        <strong>?</strong>
-        <span class="trivia-bubble">TRIVIA</span>
-      </div>
+      <div class="trivia-teaser-art" aria-hidden="true"><span class="trivia-note">★</span><strong>?</strong><span class="trivia-bubble">TRIVIA</span></div>
     </section>` : "";
 
   const venuePage = (venue) => {
@@ -165,46 +159,46 @@
       </div>`;
   };
 
-  const triviaPlaceholderPage = (venue) => `
-    <div class="venue-page island trivia-placeholder-page">
-      <div class="page-shell">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-          <a href="/" data-link>Home</a><span>›</span>
-          <a href="/${escapeHtml(venue.slug)}" data-link>${escapeHtml(venue.shortName)}</a><span>›</span>
-          <span>Trivia</span>
-        </nav>
+  const triviaStats = () => {
+    const source = window.ISLAND_TRIVIA || { nights: [] };
+    const teams = new Map();
+    source.nights.forEach((night) => night.results.forEach((row) => {
+      const stat = teams.get(row.team) || { team: row.team, played: 0, wins: 0, podiums: 0, total: 0, best: -Infinity, finishes: 0 };
+      stat.played += 1; stat.total += row.score; stat.best = Math.max(stat.best, row.score); stat.finishes += row.place;
+      if (row.place === 1) stat.wins += 1; if (row.place <= 3) stat.podiums += 1; teams.set(row.team, stat);
+    }));
+    const standings = [...teams.values()].map((x) => ({ ...x, avg: x.total / x.played, avgFinish: x.finishes / x.played }))
+      .sort((a,b) => b.wins-a.wins || b.podiums-a.podiums || a.avgFinish-b.avgFinish);
+    let bestStreak = { team: '', count: 0, start: '', end: '' }, current = null;
+    source.nights.forEach((night) => { const winner = night.results[0]?.team; if (!winner) return;
+      if (current && current.team === winner) { current.count++; current.end = night.date; } else current = { team:winner,count:1,start:night.date,end:night.date };
+      if (current.count > bestStreak.count) bestStreak = { ...current };
+    });
+    const scores = source.nights.flatMap(n=>n.results.map(r=>r.score));
+    const margins = source.nights.map(n=>n.results.length>1?n.results[0].score-n.results[1].score:null).filter(x=>x!==null);
+    return { source, standings, bestStreak, highest: Math.max(...scores), largestMargin: Math.max(...margins), closest: Math.min(...margins), avgTeams: source.nights.reduce((a,n)=>a+n.results.length,0)/source.nights.length };
+  };
 
-        <section class="trivia-placeholder-hero">
-          <div>
-            <div class="venue-hero-brand">
-              ${venueLogo(venue, "hero")}
-              <div class="venue-identity-copy">
-                <span class="venue-brand-style">Future Island Vibes experience</span>
-                <strong>Trivia is the next expansion.</strong>
-              </div>
-            </div>
-            <p class="eyebrow">COMING NEXT TO ISLAND VIBES</p>
-            <h1>Island Vibes Trivia</h1>
-            <p class="lead">This page is reserved for the upcoming trivia experience. The future build can add weekly categories, schedules, host controls, and game-night updates without changing the Musical Bingo system.</p>
-            <div class="button-row">
-              <a class="button primary" href="/island-vibes" data-link>Back to Musical Bingo</a>
-              <a class="button secondary" href="${escapeHtml(venue.externalUrl)}" target="_blank" rel="noreferrer">Visit Island Vibes on Instagram ↗</a>
-            </div>
-          </div>
-          <div class="trivia-placeholder-mark" aria-hidden="true"><span>?</span><small>COMING SOON</small></div>
-        </section>
-
-        <section class="section trivia-roadmap" aria-labelledby="trivia-roadmap-title">
-          <div class="section-heading"><div><p class="eyebrow">FUTURE BUILD SPACE</p><h2 id="trivia-roadmap-title">Ready for the next phase.</h2></div></div>
-          <div class="trivia-roadmap-grid">
-            <article><span>01</span><h3>Weekly trivia schedule</h3><p>Show the next event, start time, theme, and venue details.</p></article>
-            <article><span>02</span><h3>Categories and rounds</h3><p>Preview the night’s topics without revealing questions or answers.</p></article>
-            <article><span>03</span><h3>Host and player tools</h3><p>Add future score, announcements, and game-night features when ready.</p></article>
-          </div>
-          <div class="notice">This is an intentional placeholder. Musical Bingo is complete and remains fully active while the trivia side is developed next.</div>
-        </section>
-      </div>
-    </div>`;
+  const triviaPage = (venue) => {
+    const stats = triviaStats();
+    const fmtDate = (d) => new Date(d+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    return `
+    <div class="venue-page island trivia-page"><div class="page-shell">
+      <nav class="breadcrumbs"><a href="/" data-link>Home</a><span>›</span><a href="/${escapeHtml(venue.slug)}" data-link>${escapeHtml(venue.shortName)}</a><span>›</span><span>Trivia</span></nav>
+      <section class="trivia-live-hero">
+        <div><p class="eyebrow">THURSDAYS · 7:30 PM · ISLAND VIBES</p><h1>Island Vibes Trivia</h1><p class="lead">The complete statistical history from December 18, 2025 through July 23, 2026—standings, streaks, records, and every final scoreboard.</p><div class="button-row"><a class="button primary" href="#standings">All-time standings</a><a class="button secondary" href="#archive">Results archive</a></div></div>
+        <div class="trivia-champion-mark"><span>ALL-TIME LEADER</span><strong>Wise Ass Owls</strong><b>12 WINS</b></div>
+      </section>
+      <section class="trivia-stat-grid">
+        <article><span>Trivia nights</span><strong>${stats.source.nights.length}</strong></article><article><span>Longest streak</span><strong>${stats.bestStreak.count}</strong><small>${escapeHtml(stats.bestStreak.team)}</small></article><article><span>Highest score</span><strong>${stats.highest}</strong><small>Seannah</small></article><article><span>Average field</span><strong>${stats.avgTeams.toFixed(1)}</strong><small>teams per night</small></article><article><span>Closest finish</span><strong>${stats.closest}</strong><small>points</small></article><article><span>Largest victory</span><strong>${stats.largestMargin}</strong><small>points</small></article>
+      </section>
+      <section class="section" id="standings"><div class="section-heading"><div><p class="eyebrow">ALL-TIME LEADERBOARD</p><h2>Team standings</h2></div></div>
+        <div class="trivia-table-wrap"><table class="trivia-table"><thead><tr><th>Rank</th><th>Team</th><th>Played</th><th>Wins</th><th>Podiums</th><th>Win %</th><th>Best</th><th>Avg finish</th></tr></thead><tbody>${stats.standings.map((t,i)=>`<tr><td>${i+1}</td><td><strong>${escapeHtml(t.team)}</strong></td><td>${t.played}</td><td>${t.wins}</td><td>${t.podiums}</td><td>${(100*t.wins/t.played).toFixed(1)}%</td><td>${t.best}</td><td>${t.avgFinish.toFixed(2)}</td></tr>`).join('')}</tbody></table></div>
+      </section>
+      <section class="section"><div class="section-heading"><div><p class="eyebrow">DYNASTIES</p><h2>Winning streaks</h2></div></div><div class="streak-grid"><article><b>1</b><h3>Wise Ass Owls</h3><strong>9 straight</strong><p>January 15–March 12, 2026</p></article><article><b>2</b><h3>Seannah</h3><strong>7 straight</strong><p>May 28–July 9, 2026</p></article><article><b>3</b><h3>The Cluckaneers</h3><strong>2 straight</strong><p>April 2–April 9, 2026</p></article></div></section>
+      <section class="section" id="archive"><div class="section-heading"><div><p class="eyebrow">COMPLETE HISTORY</p><h2>Results archive</h2></div><label class="trivia-search-label">Search team<input id="trivia-search" class="search-box" type="search" placeholder="Team name"></label></div><div id="trivia-archive" class="trivia-archive">${stats.source.nights.slice().reverse().map(n=>`<article class="trivia-night" data-teams="${escapeHtml(n.results.map(r=>r.team.toLowerCase()).join(' '))}"><header><div><span>${fmtDate(n.date)}</span><h3>${escapeHtml(n.results[0].team)} won</h3></div><strong>${n.results[0].score}</strong></header><ol>${n.results.map(r=>`<li><span class="place">${r.place}</span><span>${escapeHtml(r.team)}</span><b>${r.score}</b></li>`).join('')}</ol>${n.partial?'<p class="partial-note">Only the visible portion of this scoreboard was available.</p>':''}</article>`).join('')}</div></section>
+    </div></div>`;
+  };
 
   const playlistLibrary = () => {
     const params = new URLSearchParams(location.search);
@@ -640,8 +634,8 @@
       document.title = `${venue.shortName} Musical Bingo · XY&Z`;
     } else if (path === "/island-vibes/trivia") {
       const venue = DATA.venues["island-vibes"];
-      app.innerHTML = triviaPlaceholderPage(venue);
-      document.title = `Island Vibes Trivia · Coming Soon · XY&Z`;
+      app.innerHTML = triviaPage(venue);
+      document.title = `Island Vibes Trivia Stats · XY&Z`;
     } else if (parts.length === 2 && DATA.venues[parts[0]]) {
       const venue = DATA.venues[parts[0]];
       const round = roundForVenue(parts[0], parts[1]);
@@ -661,6 +655,7 @@
     bindLinks();
     if (path === "/playlists") renderLibrary();
     if (path === "/contact") bindContactForm();
+    if (path === "/island-vibes/trivia") { const q=document.getElementById("trivia-search"); if(q) q.addEventListener("input",()=>document.querySelectorAll(".trivia-night").forEach(card=>card.hidden=!card.dataset.teams.includes(q.value.trim().toLowerCase()))); }
     const live = document.querySelector("[data-live-venue][data-live-round]");
     if (live) startLivePolling(live.dataset.liveVenue, live.dataset.liveRound);
     window.scrollTo({ top: 0, behavior: "instant" });
