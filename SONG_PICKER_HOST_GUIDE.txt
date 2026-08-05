@@ -1,0 +1,19 @@
+XY&Z SONG PICKER HOST MODE
+
+1. Open /host.html
+2. Choose the venue and round.
+3. Press GO LIVE.
+4. Search for the song currently playing.
+5. Click the song title once.
+
+The guest live board updates immediately. The current song is highlighted green and played songs are dimmed.
+Use UNDO LAST after an accidental click, then select the correct song.
+Manual backup input remains available below the song list.
+
+Included song catalogs in this release:
+- Vibes Bingo
+- Beach Bingo
+- The Download Years
+- Starter lists for Northeaster and Yallternative
+
+Rounds without a loaded catalog still work through Manual backup input.

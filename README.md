@@ -1,3 +1,7 @@
+# Version 17: Song Picker Host Mode
+
+The recommended host workflow is now manual paste-and-publish: choose the event, press GO LIVE, paste `Song Title — Artist`, and press Enter. This removes Spotify, djay Pro, What’s Now Playing, and desktop bridge dependencies from normal hosting.
+
 # XY&Z Combined Musical Bingo Hub
 
 One deployable app with separate Island Vibes and Mangrove Sands experiences.
@@ -158,3 +162,8 @@ A public phone number, business email, Facebook, TikTok, or other social links h
 - Private host controls: `/host.html`
 - Host dashboard includes manual one-song publishing and a three-song demo, so the live system can be tested before connecting djay Pro.
 - Deploy the full project root to Netlify and configure Supabase plus the four required environment variables.
+
+
+## v19 — Full Song Picker Catalogs
+
+Every round listed in `public/data.js` now has a clickable song catalog in `public/song-catalog.js`. The host picker contains 59–72 titles per round, search, played-state marking, undo, and manual fallback. Catalogs were reconstructed from the existing card pools and playlist material available in the project. Before a live event, compare the selected round against the latest Spotify playlist if that playlist has been edited since the cards were produced.

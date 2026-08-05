@@ -1,0 +1,24 @@
+XY&Z QUICK MANUAL HOST MODE
+===========================
+
+ONE-TIME SETUP
+1. Open /host.html
+2. Open "Host key settings"
+3. Paste the private HOST_BRIDGE_KEY
+4. Click "Save on this device"
+
+EACH EVENT
+1. Choose the venue and round
+2. Click GO LIVE
+3. Copy/paste: Song Title — Artist
+4. Press Enter
+5. Repeat for each song
+6. Click END SESSION when finished
+
+Accepted paste formats:
+Song Title — Artist
+Song Title | Artist
+Song Title - Artist
+Song Title on line 1, Artist on line 2
+
+No Spotify login, djay integration, desktop bridge, or extra software is required.

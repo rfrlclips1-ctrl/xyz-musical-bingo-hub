@@ -5,94 +5,120 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#08131f">
   <meta name="robots" content="noindex,nofollow">
-  <title>Live Board Host Dashboard · XY&Z Productions</title>
+  <title>Song Picker · XY&Z Productions</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css?v=15">
+  <link rel="stylesheet" href="/styles.css?v=20">
   <style>
-    .host-shell{width:min(920px,calc(100% - 2rem));margin:0 auto;padding:2rem 0 5rem}.host-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.host-card{padding:1.25rem;border:1px solid var(--line);border-radius:22px;background:var(--panel)}.host-card.full{grid-column:1/-1}.host-card label{display:grid;gap:.45rem;margin-bottom:1rem;font-weight:800}.host-card input,.host-card select{width:100%;min-height:48px;padding:.75rem .85rem;border:1px solid var(--line);border-radius:14px;background:#091521;color:var(--text)}.host-actions{display:flex;flex-wrap:wrap;gap:.65rem}.host-test-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.host-test-grid label{margin-bottom:.35rem}.host-log{min-height:110px;padding:1rem;border-radius:16px;background:#07111c;color:var(--muted);white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.88rem}.status-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .7rem;border-radius:999px;background:rgba(255,255,255,.06);font-weight:800}.status-chip.active{color:#83f3a8;background:rgba(30,215,96,.1)}@media(max-width:700px){.host-grid,.host-test-grid{grid-template-columns:1fr}.host-card.full{grid-column:auto}}
+    .song-tools{display:grid;grid-template-columns:1fr auto;gap:.65rem;align-items:end}.song-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin-top:1rem}.song-button{min-height:72px;text-align:left;padding:.8rem;border:1px solid var(--line);border-radius:15px;background:#091521;color:var(--text);font:inherit;font-weight:850;cursor:pointer;transition:.12s ease}.song-button:hover,.song-button:focus-visible{border-color:#1ed760;transform:translateY(-1px)}.song-button.current{background:rgba(30,215,96,.16);border-color:#1ed760;color:#a8f7bf}.song-button.played:not(.current){opacity:.48}.song-button small{display:block;color:var(--muted);font-weight:700;margin-top:.25rem}.picker-empty{padding:1rem;border:1px dashed var(--line);border-radius:14px;color:var(--muted);margin-top:1rem}.count-line{color:var(--muted);font-weight:750;margin:.65rem 0 0}.manual-details{margin-top:1rem;border-top:1px solid var(--line);padding-top:1rem}.catalog-editor{margin-top:1rem;padding:1rem;border:1px solid var(--line);border-radius:16px;background:#07111c}.catalog-editor[hidden]{display:none}.editor-row{display:grid;grid-template-columns:1fr auto;gap:.65rem;align-items:end}.edit-mode-note{color:#ffd280;font-weight:800;margin:.65rem 0 0}.song-button.editing{border-color:#ffb35c}.song-button.editing::after{content:"Click to remove";display:block;color:#ffcf9b;font-size:.78rem;margin-top:.3rem}.manual-details{margin-top:1rem;border-top:1px solid var(--line);padding-top:1rem}.manual-details summary{cursor:pointer;font-weight:850}@media(max-width:760px){.song-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.song-tools,.editor-row{grid-template-columns:1fr}}@media(max-width:430px){.song-grid{grid-template-columns:1fr}.song-button{min-height:62px}}
+    .host-shell{width:min(880px,calc(100% - 1.25rem));margin:0 auto;padding:1.25rem 0 4rem}.host-card{padding:1.2rem;border:1px solid var(--line);border-radius:22px;background:var(--panel);margin-top:1rem}.host-card label{display:grid;gap:.45rem;margin-bottom:.8rem;font-weight:800}.host-card input,.host-card select{width:100%;min-height:50px;padding:.8rem .9rem;border:1px solid var(--line);border-radius:14px;background:#091521;color:var(--text)}.host-actions{display:flex;flex-wrap:wrap;gap:.65rem}.quick-input{font-size:1.25rem!important;min-height:66px!important;border-width:2px!important}.quick-input:focus{outline:3px solid rgba(30,215,96,.25);border-color:#1ed760}.quick-submit{width:100%;min-height:58px;font-size:1.1rem}.status-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}.status-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .7rem;border-radius:999px;background:rgba(255,255,255,.06);font-weight:800}.status-chip.active{color:#83f3a8;background:rgba(30,215,96,.1)}.host-log{min-height:88px;padding:1rem;border-radius:16px;background:#07111c;color:var(--muted);white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.88rem}.setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}.small-copy{color:var(--muted);margin:.3rem 0 0}.current-song{font-size:1.15rem;font-weight:900;margin:.5rem 0 0}.hidden-setup{display:none}.hidden-setup.open{display:block}@media(max-width:700px){.setup-grid{grid-template-columns:1fr}.host-actions .button{flex:1 1 auto}.quick-input{font-size:1.08rem!important}}
   </style>
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="/">
       <span class="brand-mark" aria-hidden="true">XY<span>&amp;</span>Z</span>
-      <span class="brand-copy"><strong>Host Dashboard</strong><small>Private event controls</small></span>
+      <span class="brand-copy"><strong>Song Picker</strong><small>One-click live-board updates</small></span>
     </a>
-    <a class="button secondary small" href="/">Guest site</a>
+    <a class="button secondary small" id="header-guest-link" href="/island-vibes/live" target="_blank" rel="noreferrer">Guest board</a>
   </header>
 
   <main class="host-shell">
     <section class="hero">
-      <p class="eyebrow">PRIVATE HOST CONTROL</p>
-      <h1>Island Vibes Host Mode</h1>
-      <p class="lead">Choose tonight’s round and press Go Live. The saved host key and Windows launcher handle the rest.</p>
+      <p class="eyebrow">FASTEST RELIABLE HOST MODE</p>
+      <h1>Find the song. Click it. Done.</h1>
+      <p class="lead">Choose tonight’s round, search the list, and tap the song that is playing. No Spotify connection or extra software.</p>
     </section>
 
-    <section class="section host-grid">
-      <div class="host-card">
-        <h2>One-time host key</h2>
-        <label>Private host key
-          <input id="host-key" type="password" autocomplete="current-password" placeholder="Paste HOST_BRIDGE_KEY">
+    <section class="host-card">
+      <div class="status-row">
+        <div>
+          <p class="eyebrow">TONIGHT</p>
+          <h2 style="margin:.15rem 0">Live session</h2>
+        </div>
+        <span class="status-chip" id="session-status">Not live</span>
+      </div>
+      <div class="setup-grid">
+        <label>Venue<select id="venue-select"></select></label>
+        <label>Round<select id="round-select"></select></label>
+      </div>
+      <div class="host-actions">
+        <button class="button primary" id="start-session" type="button">GO LIVE</button>
+        <button class="button secondary" id="end-session" type="button">END SESSION</button>
+        <a class="button spotify" id="guest-link" href="/island-vibes/live" target="_blank" rel="noreferrer">OPEN GUEST BOARD</a>
+      </div>
+    </section>
+
+    <section class="host-card">
+      <p class="eyebrow">TONIGHT'S SONGS</p>
+      <div class="status-row">
+        <div>
+          <h2 style="margin:.15rem 0">Click the song that is playing</h2>
+          <p class="small-copy">The current song turns green. Previously selected songs stay dimmed so you can avoid repeats.</p>
+        </div>
+        <button class="button secondary small" id="undo-song" type="button">UNDO LAST</button>
+      </div>
+      <div class="song-tools">
+        <label style="margin:0">Search songs
+          <input id="song-search" type="search" autocomplete="off" placeholder="Type part of a title…">
         </label>
         <div class="host-actions">
-          <button class="button secondary" id="save-key" type="button">Save on this laptop</button>
+          <button class="button secondary" id="show-unplayed" type="button">Show unplayed only</button>
+          <button class="button secondary" id="toggle-catalog-editor" type="button">EDIT SONG LIST</button>
+        </div>
+      </div>
+      <div class="catalog-editor" id="catalog-editor" hidden>
+        <h3 style="margin:.1rem 0 .35rem">Adjust this round on this device</h3>
+        <p class="small-copy">Add a song below. Turn on remove mode, then click any song button to remove it. Changes save automatically for this browser.</p>
+        <div class="editor-row" style="margin-top:.8rem">
+          <label style="margin:0">Add song as Title — Artist
+            <input id="catalog-add-song" type="text" autocomplete="off" placeholder="September — Earth, Wind & Fire">
+          </label>
+          <button class="button primary" id="catalog-add-button" type="button">ADD SONG</button>
+        </div>
+        <div class="host-actions" style="margin-top:.8rem">
+          <button class="button secondary" id="catalog-remove-mode" type="button">TURN ON REMOVE MODE</button>
+          <button class="button secondary" id="catalog-reset" type="button">RESET TO ORIGINAL LIST</button>
+        </div>
+        <p class="edit-mode-note" id="edit-mode-note" hidden>Remove mode is ON. Click a song below to remove it from this round.</p>
+      </div>
+      <p class="count-line" id="song-count">Loading songs…</p>
+      <div class="song-grid" id="song-grid" aria-live="polite"></div>
+      <div class="picker-empty" id="picker-empty" hidden>No saved song list is loaded for this round yet. Use the manual backup below.</div>
+      <p class="current-song" id="current-song" aria-live="polite">No song selected yet.</p>
+
+      <details class="manual-details">
+        <summary>Manual backup input</summary>
+        <label for="quick-song" style="margin-top:1rem">Song title and artist</label>
+        <input id="quick-song" class="quick-input" type="text" maxlength="650" autocomplete="off" autocapitalize="words" placeholder="September — Earth, Wind & Fire">
+        <p class="small-copy">Paste as <strong>Title — Artist</strong> and press Enter.</p>
+        <button class="button primary quick-submit" id="publish-song" type="button">UPDATE LIVE BOARD</button>
+      </details>
+    </section>
+
+    <section class="host-card">
+      <div class="host-actions">
+        <button class="button secondary" id="clear-history" type="button">Clear song history</button>
+        <button class="button secondary" id="toggle-setup" type="button">Host key settings</button>
+      </div>
+      <div class="hidden-setup" id="setup-panel">
+        <label style="margin-top:1rem">Private host key
+          <input id="host-key" type="password" autocomplete="current-password" placeholder="Paste HOST_BRIDGE_KEY once">
+        </label>
+        <div class="host-actions">
+          <button class="button secondary" id="save-key" type="button">Save on this device</button>
           <button class="button secondary" id="forget-key" type="button">Forget key</button>
         </div>
       </div>
+    </section>
 
-      <div class="host-card">
-        <h2>Tonight’s event</h2>
-        <label>Venue
-          <select id="venue-select"></select>
-        </label>
-        <label>Round
-          <select id="round-select"></select>
-        </label>
-      </div>
-
-      <div class="host-card full">
-        <div class="section-heading">
-          <div><p class="eyebrow">SESSION CONTROLS</p><h2>Live musical bingo</h2></div>
-          <span class="status-chip" id="session-status">No session checked</span>
-        </div>
-        <div class="host-actions">
-          <button class="button primary" id="start-session" type="button">GO LIVE</button>
-          <button class="button secondary" id="end-session" type="button">END NIGHT</button>
-          <button class="button secondary" id="clear-history" type="button">Clear song history</button>
-          <a class="button spotify" id="guest-link" href="/" target="_blank" rel="noreferrer">Open guest page</a>
-        </div>
-      </div>
-
-
-      <div class="host-card full">
-        <div class="section-heading">
-          <div><p class="eyebrow">MANUAL TEST MODE</p><h2>Publish a test song</h2></div>
-          <span class="status-chip">No DJ software needed</span>
-        </div>
-        <div class="host-test-grid">
-          <label>Song title
-            <input id="test-title" type="text" maxlength="300" placeholder="Example: Sweet Caroline">
-          </label>
-          <label>Artist
-            <input id="test-artist" type="text" maxlength="300" placeholder="Example: Neil Diamond">
-          </label>
-        </div>
-        <div class="host-actions">
-          <button class="button primary" id="publish-test" type="button">Publish test song</button>
-          <button class="button secondary" id="demo-sequence" type="button">Run 3-song demo</button>
-          <button class="button secondary" id="check-session" type="button">Check session</button>
-        </div>
-        <p class="help-text">Start a session first. Open the guest live board on a phone, then use these controls to confirm real-time updates before connecting djay Pro.</p>
-      </div>
-
-      <div class="host-card full">
-        <h2>Activity</h2>
-        <div class="host-log" id="host-log" aria-live="polite">Ready.</div>
-      </div>
+    <section class="host-card">
+      <h2>Activity</h2>
+      <div class="host-log" id="host-log" aria-live="polite">Ready. Select tonight’s round and press GO LIVE.</div>
     </section>
   </main>
 
   <script src="/data.js"></script>
-  <script src="/host.js"></script>
+  <script src="/song-catalog.js?v=20"></script>
+  <script src="/host.js?v=20"></script>
 </body>
 </html>
