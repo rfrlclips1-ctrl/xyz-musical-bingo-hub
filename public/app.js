@@ -132,6 +132,7 @@
             </div>
             <div class="hero-actions">
               ${venue.slug === "island-vibes" ? '<a class="button primary" href="/island-vibes/trivia" data-link>Open Trivia Headquarters</a>' : ''}
+              <a class="button secondary" href="/${escapeHtml(venue.slug)}/live" data-link>Open Live Board</a>
               <a class="button ${venue.theme === "island" ? "primary" : "secondary"}" href="#venue-rounds">View playlists</a>
               <a class="button secondary" href="/playlists?venue=${encodeURIComponent(venue.slug)}" data-link>Open full catalog</a>
               <a class="button venue-external" href="${escapeHtml(venue.externalUrl)}" target="_blank" rel="noreferrer">${escapeHtml(venue.externalLabel)} ↗</a>
@@ -154,6 +155,7 @@
             <div class="venue-action-grid">
               <a href="#venue-rounds"><span>♫</span><strong>Musical Bingo</strong><small>Choose tonight’s playlist</small></a>
               ${venue.slug === "island-vibes" ? '<a href="/island-vibes/trivia" data-link><span>?</span><strong>Trivia Headquarters</strong><small>Teams, standings and results</small></a>' : '<a href="https://mangrovesands.com/" target="_blank" rel="noreferrer"><span>⌂</span><strong>Mangrove Sands</strong><small>Visit the venue website</small></a>'}
+              <a href="/${escapeHtml(venue.slug)}/live" data-link><span>●</span><strong>Live Board</strong><small>Now playing and song history</small></a>
               <a href="/playlists?venue=${encodeURIComponent(venue.slug)}" data-link><span>▦</span><strong>Playlist Library</strong><small>Browse all venue rounds</small></a>
               <a href="/contact" data-link><span>✦</span><strong>Book XY&amp;Z</strong><small>Hosting and event inquiries</small></a>
             </div>
@@ -564,6 +566,36 @@
       </div>
     </div>`;
 
+  const liveBoardPage = (venue) => `
+    <div class="live-board-page ${escapeHtml(venue.theme)}">
+      <div class="page-shell">
+        <section class="live-board-hero">
+          <div>
+            <p class="eyebrow">${escapeHtml(venue.shortName)} · LIVE EVENT</p>
+            <h1>Now Playing</h1>
+            <p class="lead">Follow the current song and everything played tonight. This board updates automatically while the host session is active.</p>
+            <div class="live-status" id="live-status"><span class="live-dot"></span><span>Checking live event</span></div>
+          </div>
+          ${venueLogo(venue, "hero")}
+        </section>
+        <section class="live-board-layout" data-live-venue="${escapeHtml(venue.slug)}" data-live-round="*">
+          <article class="now-playing live-now-feature" id="now-playing">
+            <span class="label">Now Playing</span>
+            <h3>Waiting for the host</h3>
+            <p>The live board appears automatically when the event begins.</p>
+          </article>
+          <article class="live-history-panel">
+            <header><div><p class="eyebrow">TONIGHT'S MUSIC</p><h2>Played tonight</h2></div><span id="live-count">0 songs</span></header>
+            <div class="history" id="history"><p class="help-text">No songs have been published yet.</p></div>
+          </article>
+        </section>
+        <div class="live-board-actions">
+          <a class="button secondary" href="/${escapeHtml(venue.slug)}" data-link>Back to ${escapeHtml(venue.shortName)}</a>
+          ${venue.slug === "island-vibes" ? '<a class="button secondary" href="/island-vibes/trivia" data-link>Trivia Headquarters</a>' : ''}
+        </div>
+      </div>
+    </div>`;
+
   const errorPage = (title, message) => `
     <section class="error-card">
       <p class="eyebrow">PAGE NOT FOUND</p>
@@ -630,6 +662,7 @@
     const status = document.getElementById("live-status");
     const now = document.getElementById("now-playing");
     const history = document.getElementById("history");
+    const count = document.getElementById("live-count");
     if (!status || !now || !history) return;
 
     const config = await backendConfig();
@@ -640,7 +673,9 @@
 
     try {
       const sessions = await supabaseGet(
-        `sessions?select=id,venue_slug,round_slug,started_at&venue_slug=eq.${encodeURIComponent(venueSlug)}&round_slug=eq.${encodeURIComponent(roundSlug)}&status=eq.active&order=started_at.desc&limit=1`,
+        roundSlug === "*"
+          ? `sessions?select=id,venue_slug,round_slug,started_at&venue_slug=eq.${encodeURIComponent(venueSlug)}&status=eq.active&order=started_at.desc&limit=1`
+          : `sessions?select=id,venue_slug,round_slug,started_at&venue_slug=eq.${encodeURIComponent(venueSlug)}&round_slug=eq.${encodeURIComponent(roundSlug)}&status=eq.active&order=started_at.desc&limit=1`,
         config
       );
       if (!sessions.length) {
@@ -648,6 +683,7 @@
         status.innerHTML = `<span class="live-dot"></span><span>No active session</span>`;
         now.innerHTML = `<span class="label">Now Playing</span><h3>Waiting for the host</h3><p>The live board appears when this round starts.</p>`;
         history.innerHTML = `<p class="help-text">No active song history.</p>`;
+        if (count) count.textContent = "0 songs";
         return;
       }
 
@@ -661,10 +697,12 @@
       if (!tracks.length) {
         now.innerHTML = `<span class="label">Now Playing</span><h3>Session started</h3><p>Waiting for the first song.</p>`;
         history.innerHTML = `<p class="help-text">Songs will appear here automatically.</p>`;
+        if (count) count.textContent = "0 songs";
         return;
       }
       const latest = tracks[0];
       now.innerHTML = `<span class="label">Now Playing · Song ${escapeHtml(latest.position)}</span><h3>${escapeHtml(latest.title)}</h3><p>${escapeHtml(latest.artist || "Artist unavailable")}</p>`;
+      if (count) count.textContent = `${tracks.length} song${tracks.length === 1 ? "" : "s"}`;
       history.innerHTML = tracks.map((track) => `
         <div class="history-item">
           <b>${escapeHtml(track.position)}</b>
@@ -752,6 +790,10 @@
       const venue = DATA.venues["island-vibes"];
       app.innerHTML = triviaPage(venue);
       document.title = `Island Vibes Trivia Headquarters · XY&Z`;
+    } else if (parts.length === 2 && DATA.venues[parts[0]] && parts[1] === "live") {
+      const venue = DATA.venues[parts[0]];
+      app.innerHTML = liveBoardPage(venue);
+      document.title = `Live Board · ${venue.shortName} · XY&Z`;
     } else if (parts.length === 2 && DATA.venues[parts[0]]) {
       const venue = DATA.venues[parts[0]];
       const round = roundForVenue(parts[0], parts[1]);

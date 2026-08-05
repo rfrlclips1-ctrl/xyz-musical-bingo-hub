@@ -54,6 +54,10 @@ export default async (request) => {
     const active = await supabase(`sessions?select=id,round_slug&venue_slug=eq.${encodeURIComponent(venueSlug)}&round_slug=eq.${encodeURIComponent(roundSlug)}&status=eq.active&order=started_at.desc&limit=1`, { method: "GET" });
     const session = active?.[0];
 
+    if (action === "status") {
+      return json(200, { active: Boolean(session), session: session || null, message: session ? `Active session: ${session.round_slug}.` : "No matching active session." });
+    }
+
     if (action === "end") {
       if (!session) return json(200, { active: false, message: "No matching active session was found." });
       await supabase(`sessions?id=eq.${encodeURIComponent(session.id)}`, {

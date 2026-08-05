@@ -7,6 +7,8 @@
   const guestLink = document.getElementById("guest-link");
   const log = document.getElementById("host-log");
   const status = document.getElementById("session-status");
+  const testTitle = document.getElementById("test-title");
+  const testArtist = document.getElementById("test-artist");
 
   const writeLog = (message) => {
     const timestamp = new Date().toLocaleTimeString();
@@ -32,7 +34,7 @@
   };
 
   const updateGuestLink = () => {
-    guestLink.href = `/${venueSelect.value}/${roundSelect.value}`;
+    guestLink.href = `/${venueSelect.value}/live`;
   };
 
   const request = async (action) => {
@@ -52,6 +54,19 @@
     });
     const body = await response.json().catch(() => ({}));
     if (!response.ok) throw new Error(body.error || `Request failed (${response.status})`);
+    return body;
+  };
+
+  const publishTrack = async (title, artist = "") => {
+    const hostKey = keyInput.value.trim();
+    if (!hostKey) throw new Error("Enter the private host key first.");
+    const response = await fetch("/.netlify/functions/bridge-track", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-host-key": hostKey },
+      body: JSON.stringify({ venueSlug: venueSelect.value, title, artist, detectedAt: new Date().toISOString() })
+    });
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(body.error || `Publish failed (${response.status})`);
     return body;
   };
 
@@ -87,6 +102,33 @@
   document.getElementById("start-session").addEventListener("click", (event) => run("start", event.currentTarget, "Session started."));
   document.getElementById("end-session").addEventListener("click", (event) => run("end", event.currentTarget, "Session ended."));
   document.getElementById("clear-history").addEventListener("click", (event) => run("clear", event.currentTarget, "History cleared."));
+  document.getElementById("check-session").addEventListener("click", (event) => run("status", event.currentTarget, "Session checked."));
+  document.getElementById("publish-test").addEventListener("click", async (event) => {
+    const button = event.currentTarget;
+    const title = testTitle.value.trim();
+    if (!title) return writeLog("Enter a song title first.");
+    button.disabled = true;
+    try {
+      const result = await publishTrack(title, testArtist.value.trim());
+      writeLog(result.waiting ? "No active session. Start one first." : result.duplicate ? "That song is already the latest track." : `Published song #${result.position}: ${title}.`);
+    } catch (error) { writeLog(`ERROR: ${error.message}`); }
+    finally { button.disabled = false; }
+  });
+  document.getElementById("demo-sequence").addEventListener("click", async (event) => {
+    const button = event.currentTarget;
+    const demo = [["September","Earth, Wind & Fire"],["I Wanna Dance with Somebody","Whitney Houston"],["Don't Stop Believin'","Journey"]];
+    button.disabled = true;
+    try {
+      for (const [title, artist] of demo) {
+        const result = await publishTrack(title, artist);
+        if (result.waiting) throw new Error("No active session. Start one first.");
+        writeLog(`Demo published: ${artist} — ${title}.`);
+        await new Promise(resolve => setTimeout(resolve, 1800));
+      }
+      writeLog("Three-song demo complete. Check the guest live board.");
+    } catch (error) { writeLog(`ERROR: ${error.message}`); }
+    finally { button.disabled = false; }
+  });
   venueSelect.addEventListener("change", updateRounds);
   roundSelect.addEventListener("change", updateGuestLink);
   updateRounds();

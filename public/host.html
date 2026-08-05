@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#08131f">
   <meta name="robots" content="noindex,nofollow">
-  <title>Host Dashboard · XY&Z Musical Bingo</title>
+  <title>Live Board Host Dashboard · XY&Z Productions</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css?v=15">
   <style>
-    .host-shell{width:min(920px,calc(100% - 2rem));margin:0 auto;padding:2rem 0 5rem}.host-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.host-card{padding:1.25rem;border:1px solid var(--line);border-radius:22px;background:var(--panel)}.host-card.full{grid-column:1/-1}.host-card label{display:grid;gap:.45rem;margin-bottom:1rem;font-weight:800}.host-card input,.host-card select{width:100%;min-height:48px;padding:.75rem .85rem;border:1px solid var(--line);border-radius:14px;background:#091521;color:var(--text)}.host-actions{display:flex;flex-wrap:wrap;gap:.65rem}.host-log{min-height:110px;padding:1rem;border-radius:16px;background:#07111c;color:var(--muted);white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.88rem}.status-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .7rem;border-radius:999px;background:rgba(255,255,255,.06);font-weight:800}.status-chip.active{color:#83f3a8;background:rgba(30,215,96,.1)}@media(max-width:700px){.host-grid{grid-template-columns:1fr}.host-card.full{grid-column:auto}}
+    .host-shell{width:min(920px,calc(100% - 2rem));margin:0 auto;padding:2rem 0 5rem}.host-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.host-card{padding:1.25rem;border:1px solid var(--line);border-radius:22px;background:var(--panel)}.host-card.full{grid-column:1/-1}.host-card label{display:grid;gap:.45rem;margin-bottom:1rem;font-weight:800}.host-card input,.host-card select{width:100%;min-height:48px;padding:.75rem .85rem;border:1px solid var(--line);border-radius:14px;background:#091521;color:var(--text)}.host-actions{display:flex;flex-wrap:wrap;gap:.65rem}.host-test-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.host-test-grid label{margin-bottom:.35rem}.host-log{min-height:110px;padding:1rem;border-radius:16px;background:#07111c;color:var(--muted);white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.88rem}.status-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .7rem;border-radius:999px;background:rgba(255,255,255,.06);font-weight:800}.status-chip.active{color:#83f3a8;background:rgba(30,215,96,.1)}@media(max-width:700px){.host-grid,.host-test-grid{grid-template-columns:1fr}.host-card.full{grid-column:auto}}
   </style>
 </head>
 <body>
@@ -61,6 +61,28 @@
           <button class="button secondary" id="clear-history" type="button">Clear song history</button>
           <a class="button spotify" id="guest-link" href="/" target="_blank" rel="noreferrer">Open guest page</a>
         </div>
+      </div>
+
+
+      <div class="host-card full">
+        <div class="section-heading">
+          <div><p class="eyebrow">MANUAL TEST MODE</p><h2>Publish a test song</h2></div>
+          <span class="status-chip">No DJ software needed</span>
+        </div>
+        <div class="host-test-grid">
+          <label>Song title
+            <input id="test-title" type="text" maxlength="300" placeholder="Example: Sweet Caroline">
+          </label>
+          <label>Artist
+            <input id="test-artist" type="text" maxlength="300" placeholder="Example: Neil Diamond">
+          </label>
+        </div>
+        <div class="host-actions">
+          <button class="button primary" id="publish-test" type="button">Publish test song</button>
+          <button class="button secondary" id="demo-sequence" type="button">Run 3-song demo</button>
+          <button class="button secondary" id="check-session" type="button">Check session</button>
+        </div>
+        <p class="help-text">Start a session first. Open the guest live board on a phone, then use these controls to confirm real-time updates before connecting djay Pro.</p>
       </div>
 
       <div class="host-card full">
