@@ -26,3 +26,13 @@
 
 ## djay Pro connection
 After manual testing works, use the files in `bridge/` on the Windows laptop running djay Pro and What's Now Playing.
+
+## Simplest host workflow (v16)
+
+The `bridge` folder now contains three host shortcuts:
+
+1. `SETUP HOST - RUN ONCE.bat` — saves the website and private host key on the host laptop.
+2. `GO LIVE - ISLAND VIBES.bat` — asks for tonight's round, starts the website session, launches the bridge, and opens the host and guest pages.
+3. `END NIGHT.bat` — ends the live session and closes the bridge.
+
+After the one-time setup, the weekly workflow is: open djay Pro, double-click Go Live, choose the round, and play normally.
