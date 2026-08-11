@@ -1,0 +1,13 @@
+UPLOAD INSTRUCTIONS
+
+1. Open your GitHub repository.
+2. Go to: public / island-vibes
+3. Upload the folder named: disco-fever
+4. Commit the change.
+5. Let Netlify deploy.
+
+The route will be:
+/island-vibes/disco-fever
+
+The page links to this Spotify playlist:
+https://open.spotify.com/playlist/3t5nv03xVftPOf7NmvbCAd
