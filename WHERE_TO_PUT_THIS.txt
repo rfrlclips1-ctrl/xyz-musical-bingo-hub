@@ -1,13 +1,7 @@
-UPLOAD INSTRUCTIONS
+Put the outlaw-country folder inside your existing public/island-vibes/ folder.
 
-1. Open your GitHub repository.
-2. Go to: public / island-vibes
-3. Upload the folder named: disco-fever
-4. Commit the change.
-5. Let Netlify deploy.
+Final route:
+https://mellifluous-parfait-a01655.netlify.app/island-vibes/outlaw-country
 
-The route will be:
-/island-vibes/disco-fever
-
-The page links to this Spotify playlist:
-https://open.spotify.com/playlist/3t5nv03xVftPOf7NmvbCAd
+Spotify playlist:
+https://open.spotify.com/playlist/4HIhLsm7t4lQHrlPZP7ySi
