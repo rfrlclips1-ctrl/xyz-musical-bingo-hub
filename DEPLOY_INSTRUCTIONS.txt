@@ -1,0 +1,30 @@
+ISLAND VIBES TRIVIA — CORRECTED GITHUB DROP-IN
+
+This version uses the correct publish structure for the combined Netlify project.
+
+COPY INTO YOUR REPO:
+public/
+  island-vibes/
+    trivia/
+      index.html
+      styles.css
+      trivia-data.js
+      app.js
+
+IMPORTANT:
+- Keep the files inside public/island-vibes/trivia/
+- Do NOT put island-vibes/trivia at the repository root.
+- Do NOT replace your existing public/index.html.
+- Commit/push these four files, then let Netlify deploy.
+
+LIVE ROUTE AFTER DEPLOY:
+https://mellifluous-parfait-a01655.netlify.app/island-vibes/trivia/
+
+Included data:
+- 31 official trivia nights
+- Wise Ass Owls: 12 wins
+- Seannah: 10 wins
+- Seannah active 3-game streak
+- August 13, 2026 game recap
+- TMobile Love 7 straight podiums before first non-podium
+- Team aliases normalized

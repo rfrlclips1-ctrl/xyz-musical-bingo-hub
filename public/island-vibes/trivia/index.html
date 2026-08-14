@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#091b24">
+  <meta name="description" content="Island Vibes Trivia 2026 season standings, records, streaks and latest game recap.">
+  <title>Island Vibes Trivia | 2026 Season</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/island-vibes/" aria-label="Back to Island Vibes">
+      <span class="brand-mark">IV</span>
+      <span>
+        <strong>ISLAND VIBES</strong>
+        <small>TRIVIA • THURSDAYS AT 8 PM</small>
+      </span>
+    </a>
+    <nav>
+      <a href="/island-vibes/">Island Vibes</a>
+      <a href="/">Just XYZ Productions</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">2026 TRIVIA SEASON</div>
+      <h1>The race is getting tight.</h1>
+      <p class="hero-copy">Standings, streaks, records and the story from the latest Thursday night at Island Vibes.</p>
+      <div class="hero-meta" id="updated"></div>
+    </section>
+
+    <section class="stat-grid" id="headline-stats" aria-label="Season headline statistics"></section>
+
+    <section class="panel latest-panel">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">LATEST GAME</div>
+          <h2 id="latest-headline"></h2>
+        </div>
+        <span class="date-chip" id="latest-date"></span>
+      </div>
+
+      <p class="recap" id="latest-summary"></p>
+
+      <div class="latest-layout">
+        <div>
+          <h3>Final Podium</h3>
+          <div class="podium" id="latest-podium"></div>
+        </div>
+        <aside class="story-card">
+          <span class="story-kicker">WHAT IT MEANT</span>
+          <ul id="latest-notes"></ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <div class="panel">
+        <div class="section-heading compact">
+          <div>
+            <div class="eyebrow">CHAMPIONSHIP RACE</div>
+            <h2>2026 Win Standings</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Rank</th><th>Team</th><th>Wins</th></tr>
+            </thead>
+            <tbody id="standings"></tbody>
+          </table>
+        </div>
+        <div class="race-note" id="race-note"></div>
+      </div>
+
+      <div class="panel">
+        <div class="section-heading compact">
+          <div>
+            <div class="eyebrow">SEASON MARKS</div>
+            <h2>Records & Streaks</h2>
+          </div>
+        </div>
+        <div class="record-grid" id="records"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">LAST THREE WEEKS</div>
+          <h2>Recent Results</h2>
+        </div>
+        <span class="date-chip">Seannah: 3 straight wins</span>
+      </div>
+      <div class="recent-grid" id="recent-games"></div>
+    </section>
+
+    <section class="two-col">
+      <div class="panel">
+        <div class="section-heading compact">
+          <div>
+            <div class="eyebrow">HOT STREAKS</div>
+            <h2>Win Streak Leaderboard</h2>
+          </div>
+        </div>
+        <div id="streaks" class="streak-list"></div>
+      </div>
+
+      <div class="panel tmobile-panel">
+        <div class="eyebrow">CONSISTENCY WATCH</div>
+        <h2>TMobile's podium run ends at seven</h2>
+        <p>TMobile Love entered August 13 having finished on the podium in seven consecutive appearances. A 4th-place finish with 266 points ended the run — their first non-podium result of the season.</p>
+        <div class="big-inline">
+          <strong>7</strong>
+          <span>consecutive podiums<br>before August 13</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel aliases-panel">
+      <details>
+        <summary>Team-name normalization used in these stats</summary>
+        <div id="aliases" class="alias-list"></div>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Island Vibes Trivia</strong>
+    <span>Hosted by Just XYZ Productions</span>
+  </footer>
+
+  <script src="./trivia-data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
