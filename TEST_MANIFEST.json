@@ -1,0 +1,22 @@
+{
+  "ADD_ONLY_README.txt": {
+    "bytes": 1396,
+    "sha256": "53e57e1755b90d9ee8e74527d8f4070f4e3fa53e1ee26edaf13cf5fdb19e377a"
+  },
+  "trivia/app.js": {
+    "bytes": 3564,
+    "sha256": "0c7b43030280e8e3b6b84eede559edc88fd7ee5a591c739ef90e5423c564dd1e"
+  },
+  "trivia/index.html": {
+    "bytes": 4308,
+    "sha256": "dc3ec0257de11cd8a46ee217dd092521435946c9ac831dd96c38becd86c6b5ae"
+  },
+  "trivia/styles.css": {
+    "bytes": 10080,
+    "sha256": "5cc8a2f0f00ab097a52fe58da45d9df182901606ae0df52e32f1bb2ba2bf9fc0"
+  },
+  "trivia/trivia-data.js": {
+    "bytes": 4742,
+    "sha256": "cf3f9dc51e3a41a554ce80e7ffccbe51d1b06c7b12a9a0801ce112fe302aedea"
+  }
+}
