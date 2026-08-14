@@ -1,138 +1,173 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#091b24">
-  <meta name="description" content="Island Vibes Trivia 2026 season standings, records, streaks and latest game recap.">
-  <title>Island Vibes Trivia | 2026 Season</title>
-  <link rel="stylesheet" href="./styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071b20">
+<title>Island Vibes Trivia | 2026 Season</title>
+<style>
+:root{
+  --bg:#06171c;--panel:#0d2a31;--panel2:#10333a;--text:#f5fbf8;
+  --muted:#a9c7c1;--aqua:#6ee7d6;--lime:#c6f56a;--gold:#ffd36e;
+  --line:rgba(255,255,255,.11);--shadow:0 18px 55px rgba(0,0,0,.28)
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);
+background:
+radial-gradient(circle at 15% -10%,rgba(110,231,214,.18),transparent 32%),
+radial-gradient(circle at 90% 0,rgba(198,245,106,.11),transparent 26%),
+linear-gradient(180deg,#071b20 0%,#06171c 55%,#041015 100%);min-height:100vh}
+a{color:inherit}
+.wrap{width:min(1120px,calc(100% - 28px));margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-weight:950;color:#05221e;background:linear-gradient(135deg,var(--lime),var(--aqua))}
+.brand b{display:block;letter-spacing:.11em}
+.brand small{color:var(--muted)}
+.back{font-size:13px;text-decoration:none;color:var(--muted);border:1px solid var(--line);padding:9px 12px;border-radius:999px}
+.hero{padding:46px 0 28px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.17em;color:var(--aqua);text-transform:uppercase}
+h1{font-size:clamp(42px,7vw,78px);line-height:.95;letter-spacing:-.055em;margin:10px 0 16px}
+.hero p{max-width:760px;color:var(--muted);font-size:19px;line-height:1.6;margin:0}
+.updated{margin-top:14px;color:#769993;font-size:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 18px}
+.stat,.panel{border:1px solid var(--line);background:linear-gradient(145deg,rgba(15,49,57,.95),rgba(8,31,38,.96));box-shadow:var(--shadow)}
+.stat{padding:18px;border-radius:19px}
+.label{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:850}
+.value{display:block;font-size:36px;font-weight:950;letter-spacing:-.04em;margin:8px 0 4px}
+.detail{color:var(--muted);font-size:12px;line-height:1.4}
+.panel{border-radius:24px;padding:26px;margin-bottom:18px}
+.head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}
+h2{margin:5px 0 0;font-size:clamp(26px,4vw,40px);letter-spacing:-.04em}
+.chip{border:1px solid var(--line);border-radius:999px;padding:8px 11px;color:#d7e9e5;font-size:12px;white-space:nowrap}
+.recap{font-size:20px;line-height:1.63;color:#d9ebe7;max-width:980px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.podium{display:grid;gap:9px;margin-top:17px}
+.row{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;padding:13px 14px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.035);border-radius:15px}
+.place{width:29px;height:29px;border-radius:50%;display:grid;place-items:center;font-weight:950;color:#082018;background:var(--gold)}
+.row:nth-child(2) .place{background:#d8e0e1}.row:nth-child(3) .place{background:#dda86a}
+.team{font-weight:850}.score{font-size:22px;font-weight:950;color:var(--lime)}
+.story{border:1px solid rgba(198,245,106,.2);background:rgba(198,245,106,.05);border-radius:18px;padding:18px}
+.story ul{color:#cbe0db;line-height:1.55;padding-left:18px;margin-bottom:0}
+.story li+li{margin-top:9px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:12px 9px;border-bottom:1px solid rgba(255,255,255,.07);text-align:left}
+th{font-size:11px;color:#80aaa3;text-transform:uppercase;letter-spacing:.1em}
+td:last-child,th:last-child{text-align:right}
+.wins{font-size:20px;font-weight:950;color:var(--lime)}
+.records{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{padding:15px;border:1px solid rgba(255,255,255,.07);border-radius:15px;background:rgba(255,255,255,.03)}
+.card strong{display:block;font-size:27px;margin-top:5px}
+.recent{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.game{padding:15px;border:1px solid rgba(255,255,255,.07);border-radius:16px;background:rgba(255,255,255,.03)}
+.game h3{margin:0 0 10px;color:var(--aqua);font-size:13px}
+.game div{display:grid;grid-template-columns:22px 1fr auto;gap:8px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
+.game div:last-child{border-bottom:0}
+.note{border-left:3px solid var(--aqua);padding-left:13px;color:var(--muted);line-height:1.55;margin-top:16px}
+footer{padding:18px 0 38px;color:#72938e;font-size:12px;border-top:1px solid var(--line);margin-top:26px;display:flex;justify-content:space-between;gap:16px}
+@media(max-width:850px){.grid4,.two,.recent{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}}
+@media(max-width:600px){.grid4,.recent{grid-template-columns:1fr 1fr}.panel{padding:18px}.head{flex-direction:column}.records{grid-template-columns:1fr}.brand small{display:none}.hero{padding-top:28px}}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="/island-vibes/" aria-label="Back to Island Vibes">
-      <span class="brand-mark">IV</span>
-      <span>
-        <strong>ISLAND VIBES</strong>
-        <small>TRIVIA • THURSDAYS AT 8 PM</small>
-      </span>
-    </a>
-    <nav>
-      <a href="/island-vibes/">Island Vibes</a>
-      <a href="/">Just XYZ Productions</a>
-    </nav>
-  </header>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="/island-vibes/"><span class="logo">IV</span><span><b>ISLAND VIBES</b><small>Trivia • Thursdays at 8 PM</small></span></a>
+  <a class="back" href="/island-vibes/">← Island Vibes</a>
+</header>
 
-  <main>
-    <section class="hero">
-      <div class="eyebrow">2026 TRIVIA SEASON</div>
-      <h1>The race is getting tight.</h1>
-      <p class="hero-copy">Standings, streaks, records and the story from the latest Thursday night at Island Vibes.</p>
-      <div class="hero-meta" id="updated"></div>
-    </section>
+<section class="hero">
+  <div class="eyebrow">2026 Trivia Season</div>
+  <h1>The race is getting tight.</h1>
+  <p>Standings, streaks, records and the story from the latest Thursday night at Island Vibes.</p>
+  <div class="updated">Updated August 14, 2026 • 31 official nights • Build IV-TRIVIA-0814</div>
+</section>
 
-    <section class="stat-grid" id="headline-stats" aria-label="Season headline statistics"></section>
+<section class="grid4">
+  <div class="stat"><span class="label">Season leader</span><span class="value">12</span><span class="detail">Wise Ass Owls wins</span></div>
+  <div class="stat"><span class="label">Closing in</span><span class="value">10</span><span class="detail">Seannah wins</span></div>
+  <div class="stat"><span class="label">Current streak</span><span class="value">3</span><span class="detail">Seannah • ACTIVE</span></div>
+  <div class="stat"><span class="label">Two-team control</span><span class="value">71%</span><span class="detail">22 of 31 nights won by Wise Ass Owls + Seannah</span></div>
+</section>
 
-    <section class="panel latest-panel">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow">LATEST GAME</div>
-          <h2 id="latest-headline"></h2>
-        </div>
-        <span class="date-chip" id="latest-date"></span>
+<section class="panel">
+  <div class="head">
+    <div><div class="eyebrow">Latest Game</div><h2>Seannah delivers late on a glitchy night</h2></div>
+    <span class="chip">August 13, 2026</span>
+  </div>
+  <p class="recap">Software issues affected every team throughout the night, but everyone stuck it out until the finish. Three teams still had a chance entering the final round. Seannah came through with two huge late answers, then hit the final 40-point answer to seal another victory with 396 points.</p>
+  <div class="two">
+    <div>
+      <div class="eyebrow">Final Podium</div>
+      <div class="podium">
+        <div class="row"><span class="place">1</span><span class="team">Seannah</span><span class="score">396</span></div>
+        <div class="row"><span class="place">2</span><span class="team">Wise Ass Owls</span><span class="score">316</span></div>
+        <div class="row"><span class="place">3</span><span class="team">Champs/Victorz</span><span class="score">306</span></div>
       </div>
+    </div>
+    <aside class="story">
+      <div class="eyebrow">What It Meant</div>
+      <ul>
+        <li>Seannah extended its active winning streak to 3 games.</li>
+        <li>Wise Ass Owls finished runner-up for the third consecutive week.</li>
+        <li>TMobile Love finished 4th with 266, ending a run of 7 consecutive podium appearances.</li>
+        <li>The win race tightened to Wise Ass Owls 12, Seannah 10.</li>
+      </ul>
+    </aside>
+  </div>
+</section>
 
-      <p class="recap" id="latest-summary"></p>
+<div class="two">
+<section class="panel">
+  <div class="eyebrow">Championship Race</div><h2>2026 Win Standings</h2>
+  <table>
+    <thead><tr><th>Rank</th><th>Team</th><th>Wins</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="team">Wise Ass Owls</td><td class="wins">12</td></tr>
+      <tr><td>2</td><td class="team">Seannah</td><td class="wins">10</td></tr>
+      <tr><td>T-3</td><td class="team">Mr and Mrs Awesome</td><td class="wins">3</td></tr>
+      <tr><td>T-3</td><td class="team">The Cluckaneers</td><td class="wins">3</td></tr>
+      <tr><td>T-5</td><td class="team">Champs/Victorz</td><td class="wins">1</td></tr>
+      <tr><td>T-5</td><td class="team">Frogger</td><td class="wins">1</td></tr>
+      <tr><td>T-5</td><td class="team">yeehaw</td><td class="wins">1</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><b>Two-win gap:</b> Wise Ass Owls still leads the season, but Seannah has won 10 of the last 12 games.</div>
+</section>
 
-      <div class="latest-layout">
-        <div>
-          <h3>Final Podium</h3>
-          <div class="podium" id="latest-podium"></div>
-        </div>
-        <aside class="story-card">
-          <span class="story-kicker">WHAT IT MEANT</span>
-          <ul id="latest-notes"></ul>
-        </aside>
-      </div>
-    </section>
+<section class="panel">
+  <div class="eyebrow">Season Marks</div><h2>Records & Streaks</h2>
+  <div class="records">
+    <div class="card"><span class="label">Highest winning score</span><strong>423</strong><span class="detail">Seannah • July 30</span></div>
+    <div class="card"><span class="label">Longest win streak</span><strong>9</strong><span class="detail">Wise Ass Owls</span></div>
+    <div class="card"><span class="label">Seannah best streak</span><strong>7</strong><span class="detail">Earlier this season</span></div>
+    <div class="card"><span class="label">Current win streak</span><strong>3</strong><span class="detail">Seannah • Active</span></div>
+    <div class="card"><span class="label">TMobile podium streak</span><strong>7</strong><span class="detail">Ended August 13</span></div>
+    <div class="card"><span class="label">Seannah recent run</span><strong>10 of 12</strong><span class="detail">Wins since May 28</span></div>
+  </div>
+</section>
+</div>
 
-    <section class="two-col">
-      <div class="panel">
-        <div class="section-heading compact">
-          <div>
-            <div class="eyebrow">CHAMPIONSHIP RACE</div>
-            <h2>2026 Win Standings</h2>
-          </div>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Rank</th><th>Team</th><th>Wins</th></tr>
-            </thead>
-            <tbody id="standings"></tbody>
-          </table>
-        </div>
-        <div class="race-note" id="race-note"></div>
-      </div>
+<section class="panel">
+  <div class="head"><div><div class="eyebrow">Last Three Weeks</div><h2>Recent Results</h2></div><span class="chip">Seannah: 3 straight wins</span></div>
+  <div class="recent">
+    <div class="game"><h3>July 30</h3><div><span>1</span><b>Seannah</b><b>423</b></div><div><span>2</span><b>Wise Ass Owls</b><b>396</b></div><div><span>3</span><b>TMobile Love</b><b>387</b></div></div>
+    <div class="game"><h3>August 6</h3><div><span>1</span><b>Seannah</b><b>400</b></div><div><span>2</span><b>Wise Ass Owls</b><b>268</b></div><div><span>3</span><b>TMobile Love</b><b>217</b></div></div>
+    <div class="game"><h3>August 13</h3><div><span>1</span><b>Seannah</b><b>396</b></div><div><span>2</span><b>Wise Ass Owls</b><b>316</b></div><div><span>3</span><b>Champs/Victorz</b><b>306</b></div><div><span>4</span><b>TMobile Love</b><b>266</b></div></div>
+  </div>
+</section>
 
-      <div class="panel">
-        <div class="section-heading compact">
-          <div>
-            <div class="eyebrow">SEASON MARKS</div>
-            <h2>Records & Streaks</h2>
-          </div>
-        </div>
-        <div class="record-grid" id="records"></div>
-      </div>
-    </section>
+<section class="panel">
+  <div class="eyebrow">Normalized Team Names</div><h2>One record per team</h2>
+  <p class="recap" style="font-size:16px">
+    <b>TMobile Love</b> includes TMobile Love Empire + TMobile Love Collective. 
+    <b>Champs/Victorz</b> combines Champs + Victorz. 
+    <b>Yetty</b> combines yettyttyyyy + yeetty tty. 
+    All Wise Ass Owls naming variants are treated as the same team.
+  </p>
+</section>
 
-    <section class="panel">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow">LAST THREE WEEKS</div>
-          <h2>Recent Results</h2>
-        </div>
-        <span class="date-chip">Seannah: 3 straight wins</span>
-      </div>
-      <div class="recent-grid" id="recent-games"></div>
-    </section>
-
-    <section class="two-col">
-      <div class="panel">
-        <div class="section-heading compact">
-          <div>
-            <div class="eyebrow">HOT STREAKS</div>
-            <h2>Win Streak Leaderboard</h2>
-          </div>
-        </div>
-        <div id="streaks" class="streak-list"></div>
-      </div>
-
-      <div class="panel tmobile-panel">
-        <div class="eyebrow">CONSISTENCY WATCH</div>
-        <h2>TMobile's podium run ends at seven</h2>
-        <p>TMobile Love entered August 13 having finished on the podium in seven consecutive appearances. A 4th-place finish with 266 points ended the run — their first non-podium result of the season.</p>
-        <div class="big-inline">
-          <strong>7</strong>
-          <span>consecutive podiums<br>before August 13</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel aliases-panel">
-      <details>
-        <summary>Team-name normalization used in these stats</summary>
-        <div id="aliases" class="alias-list"></div>
-      </details>
-    </section>
-  </main>
-
-  <footer>
-    <strong>Island Vibes Trivia</strong>
-    <span>Hosted by Just XYZ Productions</span>
-  </footer>
-
-  <script src="./trivia-data.js"></script>
-  <script src="./app.js"></script>
+<footer><span>Island Vibes Trivia</span><span>Hosted by Just XYZ Productions</span></footer>
+</div>
 </body>
 </html>

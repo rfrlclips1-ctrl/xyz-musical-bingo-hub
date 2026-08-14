@@ -1,0 +1,14 @@
+DROP THIS ZIP INTO THE ROOT OF YOUR EXISTING GITHUB REPO AND MERGE.
+
+It ADDS only:
+public/island-vibes/trivia/index.html
+public/island-vibes/trivia.html
+
+Do not delete or replace any other existing files.
+
+After Netlify deploy, test:
+https://mellifluous-parfait-a01655.netlify.app/island-vibes/trivia
+https://mellifluous-parfait-a01655.netlify.app/island-vibes/trivia/
+
+Build marker on page:
+IV-TRIVIA-0814
