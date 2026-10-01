@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Mangrove Sands Musical Bingo — Redirecting</title>
+  <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#081426;color:#fff;display:grid;place-items:center;min-height:100vh;margin:0}.card{max-width:620px;padding:32px;text-align:center}.small{opacity:.72;font-size:.95rem}a{color:#7ee7ff}</style>
+</head>
+<body>
+  <main class="card">
+    <h1>Mangrove Sands Musical Bingo</h1>
+    <p>Taking you to the current XYZ Productions site…</p>
+    <p class="small">If you are not redirected automatically, <a id="manual" href="https://xyandzpro.netlify.app/mangrove-sands">continue here</a>.</p>
+  </main>
+<script>
+(() => {
+  const BASE = 'https://xyandzpro.netlify.app';
+  const aliases = {
+    '80s':'80s-night','80s-bingo':'80s-night','80s-night':'80s-night',
+    '70s':'70s-summer','70s-bingo':'70s-summer','70s-summer':'70s-summer',
+    'then-now':'then-and-now','then-and-now':'then-and-now',
+    'outlaw':'outlaw-country','outlaw-country':'outlaw-country',
+    'disco':'disco-fever','disco-fever':'disco-fever',
+    'diner':'diner-music','diner-music':'diner-music',
+    'easy-livin':'easy-livin','easy-living':'easy-livin','yacht-rock':'easy-livin',
+    '60s':'1960s','1960s':'1960s',
+    'turn-that-down-rock':'turn-that-down','turn-that-down':'turn-that-down',
+    'beach':'beach-bingo','beach-bingo':'beach-bingo',
+    'northeaster':'northeaster'
+  };
+  const p = new URLSearchParams(location.search);
+  let round = (p.get('round') || p.get('r') || '').trim().toLowerCase();
+  if (!round) {
+    const parts = location.pathname.split('/').filter(Boolean);
+    if (parts.length) round = parts[parts.length - 1].toLowerCase();
+  }
+  round = aliases[round] || round;
+  const valid = new Set(['beach-bingo','turn-that-down','70s-summer','then-and-now','80s-night','northeaster','outlaw-country','diner-music','disco-fever','easy-livin','1960s']);
+  const target = valid.has(round) ? `${BASE}/mangrove-sands/${round}` : `${BASE}/mangrove-sands`;
+  document.getElementById('manual').href = target;
+  location.replace(target + location.hash);
+})();
+</script>
+</body>
+</html>
