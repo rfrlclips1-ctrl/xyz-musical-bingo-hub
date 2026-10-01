@@ -75,3 +75,8 @@ The recovered live-board system still expects the environment variables document
 
 ## Host song picker note
 The restored website routes and Spotify links for the new post-v21 rounds are active in `data.js`. The original v21 song-picker catalog predates several of those rounds. Those new rounds therefore show in the Host round selector, but their local song-picker catalog is marked pending unless songs are added through the Host editor or incorporated in a future catalog pass.
+
+## v22.1 production URL correction
+- Live site: https://xyandzpro.netlify.app
+- Top-left header now displays **XYZ Productions**.
+- Main website QR added at `public/assets/qr-xyandzpro-home.png`.

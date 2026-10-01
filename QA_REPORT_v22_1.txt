@@ -1,0 +1,19 @@
+XYZ PRODUCTIONS — REVIVAL V22.1 URL/HEADER CORRECTION QA
+
+Production base URL:
+https://xyandzpro.netlify.app
+
+Changes:
+- Top-left header label changed from "Just XYZ Productions" to "XYZ Productions".
+- Production baseUrl updated to https://xyandzpro.netlify.app.
+- Legacy Island Vibes redirect updated.
+- Legacy Mangrove Sands redirect updated.
+- QR_ROUTES.csv updated to the correct production domain.
+- Host setup default site updated.
+- Launch/setup documentation updated.
+- Existing Northeaster QR image assets regenerated against the correct domain.
+- Added public/assets/qr-xyandzpro-home.png for the main website.
+
+Intentional:
+- "Just XYZ Productions" wording elsewhere in contact/marketing copy was not globally removed;
+  the user specifically requested removing "Just" from the top-left corner.

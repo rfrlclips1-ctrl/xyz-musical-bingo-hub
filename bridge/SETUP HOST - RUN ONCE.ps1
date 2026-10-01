@@ -6,7 +6,7 @@ Write-Host 'XY&Z HOST SETUP' -ForegroundColor Cyan
 Write-Host 'You only need to do this once on this laptop.' -ForegroundColor DarkGray
 Write-Host ''
 
-$defaultSite = 'https://mellifluous-parfait-a01655.netlify.app'
+$defaultSite = 'https://xyandzpro.netlify.app'
 $site = Read-Host "Website [$defaultSite]"
 if ([string]::IsNullOrWhiteSpace($site)) { $site = $defaultSite }
 $site = $site.TrimEnd('/')
