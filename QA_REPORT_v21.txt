@@ -1,0 +1,6 @@
+XY&Z v21 pre-launch hardening
+- Backend public Undo: added
+- Picker title/artist parsing: added
+- Destructive-action confirmations: added
+- Device-only edit notice: added
+- Manual fallback retained: yes

@@ -121,7 +121,11 @@
       button.textContent = song;
       if (removeMode) button.classList.add("editing");
       button.setAttribute("aria-label", removeMode ? `Remove ${song}` : `Publish ${song}`);
-      button.addEventListener("click", () => removeMode ? removeCatalogSong(song) : publishSong(song, ""));
+      button.addEventListener("click", () => {
+        if (removeMode) return removeCatalogSong(song);
+        const parsed = parseSong(song);
+        return publishSong(parsed.title, parsed.artist, song);
+      });
       songGrid.appendChild(button);
     });
   };
@@ -163,7 +167,7 @@
     }
   };
 
-  const publishSong = async (title, artist) => {
+  const publishSong = async (title, artist, displayLabel = "") => {
     if (!title) return;
     try {
       const result = await postJson("/.netlify/functions/bridge-track", {
@@ -177,10 +181,11 @@
         writeLog("That is already the current song.");
         return;
       }
+      const label = displayLabel || (artist ? `${title} — ${artist}` : title);
       if (activeSong && !played.includes(activeSong)) played.push(activeSong);
-      activeSong = title;
-      if (!played.includes(title)) played.push(title);
-      currentSong.textContent = `Now showing: ${artist ? `${title} — ${artist}` : title}`;
+      activeSong = label;
+      if (!played.includes(label)) played.push(label);
+      currentSong.textContent = `Now showing: ${label}`;
       writeLog(`Published song #${result.position}: ${title}${artist ? ` — ${artist}` : ""}`);
       renderSongs();
     } catch (error) {
@@ -232,7 +237,7 @@
     const parsed = parseSong(quickSong.value);
     if (!parsed.title) return writeLog("Paste a song title first.");
     publishButton.disabled = true;
-    await publishSong(parsed.title, parsed.artist);
+    await publishSong(parsed.title, parsed.artist, parsed.artist ? `${parsed.title} — ${parsed.artist}` : parsed.title);
     quickSong.value = "";
     publishButton.disabled = false;
     quickSong.focus();
@@ -253,15 +258,37 @@
     editModeNote.hidden = !removeMode;
     renderSongs();
   });
-  $("catalog-reset").addEventListener("click", resetCatalog);
+  $("catalog-reset").addEventListener("click", () => {
+    if (window.confirm("Restore the original song list for this round? Your edits on this device will be removed.")) resetCatalog();
+  });
 
-  $("undo-song").addEventListener("click", () => {
-    if (!played.length) return writeLog("Nothing to undo yet.");
-    const removed = played.pop();
-    activeSong = played[played.length - 1] || "";
-    currentSong.textContent = activeSong ? `Previous selection restored locally: ${activeSong}` : "No song selected yet.";
-    writeLog(`Undid ${removed}. Select the correct song to update the guest board.`);
-    renderSongs();
+  $("undo-song").addEventListener("click", async (event) => {
+    const button = event.currentTarget;
+    button.disabled = true;
+    try {
+      const result = await postJson("/.netlify/functions/bridge-track", {
+        action: "undo",
+        venueSlug: venueSelect.value
+      });
+      if (result.waiting) throw new Error("No active session. Press GO LIVE first.");
+      if (!result.removed) return writeLog("Nothing to undo yet.");
+      const removedLabel = result.removed.artist ? `${result.removed.title} — ${result.removed.artist}` : result.removed.title;
+      played = played.filter((item) => item !== removedLabel);
+      if (result.current) {
+        activeSong = result.current.artist ? `${result.current.title} — ${result.current.artist}` : result.current.title;
+        if (!played.includes(activeSong)) played.push(activeSong);
+        currentSong.textContent = `Now showing: ${activeSong}`;
+      } else {
+        activeSong = "";
+        currentSong.textContent = "No song selected yet.";
+      }
+      writeLog(`Undid ${removedLabel}. Guest board restored immediately.`);
+      renderSongs();
+    } catch (error) {
+      writeLog(`ERROR: ${error.message}`);
+    } finally {
+      button.disabled = false;
+    }
   });
   songSearch.addEventListener("input", renderSongs);
   unplayedButton.addEventListener("click", () => {
@@ -288,8 +315,12 @@
     if ($("setup-panel").classList.contains("open")) keyInput.focus();
   });
   $("start-session").addEventListener("click", (event) => runSessionAction("start", event.currentTarget));
-  $("end-session").addEventListener("click", (event) => runSessionAction("end", event.currentTarget));
-  $("clear-history").addEventListener("click", (event) => runSessionAction("clear", event.currentTarget));
+  $("end-session").addEventListener("click", (event) => {
+    if (window.confirm("End tonight’s live session? The guest board will stop updating.")) runSessionAction("end", event.currentTarget);
+  });
+  $("clear-history").addEventListener("click", (event) => {
+    if (window.confirm("Clear every song from tonight’s public history?")) runSessionAction("clear", event.currentTarget);
+  });
   publishButton.addEventListener("click", publishManual);
   quickSong.addEventListener("keydown", (event) => {
     if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); publishManual(); }

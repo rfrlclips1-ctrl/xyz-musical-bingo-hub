@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#08131f">
   <meta name="robots" content="noindex,nofollow">
-  <title>Song Picker · XY&Z Productions</title>
+  <title>Song Picker · Just XYZ Productions</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css?v=20">
+  <link rel="stylesheet" href="/styles.css?v=22">
   <style>
     .song-tools{display:grid;grid-template-columns:1fr auto;gap:.65rem;align-items:end}.song-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin-top:1rem}.song-button{min-height:72px;text-align:left;padding:.8rem;border:1px solid var(--line);border-radius:15px;background:#091521;color:var(--text);font:inherit;font-weight:850;cursor:pointer;transition:.12s ease}.song-button:hover,.song-button:focus-visible{border-color:#1ed760;transform:translateY(-1px)}.song-button.current{background:rgba(30,215,96,.16);border-color:#1ed760;color:#a8f7bf}.song-button.played:not(.current){opacity:.48}.song-button small{display:block;color:var(--muted);font-weight:700;margin-top:.25rem}.picker-empty{padding:1rem;border:1px dashed var(--line);border-radius:14px;color:var(--muted);margin-top:1rem}.count-line{color:var(--muted);font-weight:750;margin:.65rem 0 0}.manual-details{margin-top:1rem;border-top:1px solid var(--line);padding-top:1rem}.catalog-editor{margin-top:1rem;padding:1rem;border:1px solid var(--line);border-radius:16px;background:#07111c}.catalog-editor[hidden]{display:none}.editor-row{display:grid;grid-template-columns:1fr auto;gap:.65rem;align-items:end}.edit-mode-note{color:#ffd280;font-weight:800;margin:.65rem 0 0}.song-button.editing{border-color:#ffb35c}.song-button.editing::after{content:"Click to remove";display:block;color:#ffcf9b;font-size:.78rem;margin-top:.3rem}.manual-details{margin-top:1rem;border-top:1px solid var(--line);padding-top:1rem}.manual-details summary{cursor:pointer;font-weight:850}@media(max-width:760px){.song-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.song-tools,.editor-row{grid-template-columns:1fr}}@media(max-width:430px){.song-grid{grid-template-columns:1fr}.song-button{min-height:62px}}
     .host-shell{width:min(880px,calc(100% - 1.25rem));margin:0 auto;padding:1.25rem 0 4rem}.host-card{padding:1.2rem;border:1px solid var(--line);border-radius:22px;background:var(--panel);margin-top:1rem}.host-card label{display:grid;gap:.45rem;margin-bottom:.8rem;font-weight:800}.host-card input,.host-card select{width:100%;min-height:50px;padding:.8rem .9rem;border:1px solid var(--line);border-radius:14px;background:#091521;color:var(--text)}.host-actions{display:flex;flex-wrap:wrap;gap:.65rem}.quick-input{font-size:1.25rem!important;min-height:66px!important;border-width:2px!important}.quick-input:focus{outline:3px solid rgba(30,215,96,.25);border-color:#1ed760}.quick-submit{width:100%;min-height:58px;font-size:1.1rem}.status-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}.status-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .7rem;border-radius:999px;background:rgba(255,255,255,.06);font-weight:800}.status-chip.active{color:#83f3a8;background:rgba(30,215,96,.1)}.host-log{min-height:88px;padding:1rem;border-radius:16px;background:#07111c;color:var(--muted);white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.88rem}.setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}.small-copy{color:var(--muted);margin:.3rem 0 0}.current-song{font-size:1.15rem;font-weight:900;margin:.5rem 0 0}.hidden-setup{display:none}.hidden-setup.open{display:block}@media(max-width:700px){.setup-grid{grid-template-columns:1fr}.host-actions .button{flex:1 1 auto}.quick-input{font-size:1.08rem!important}}
@@ -68,7 +68,7 @@
       </div>
       <div class="catalog-editor" id="catalog-editor" hidden>
         <h3 style="margin:.1rem 0 .35rem">Adjust this round on this device</h3>
-        <p class="small-copy">Add a song below. Turn on remove mode, then click any song button to remove it. Changes save automatically for this browser.</p>
+        <p class="small-copy">Add a song below. Turn on remove mode, then click any song button to remove it. Changes save automatically on this browser and device only.</p>
         <div class="editor-row" style="margin-top:.8rem">
           <label style="margin:0">Add song as Title — Artist
             <input id="catalog-add-song" type="text" autocomplete="off" placeholder="September — Earth, Wind & Fire">
@@ -118,7 +118,7 @@
   </main>
 
   <script src="/data.js"></script>
-  <script src="/song-catalog.js?v=20"></script>
-  <script src="/host.js?v=20"></script>
+  <script src="/song-catalog.js?v=22"></script>
+  <script src="/host.js?v=22"></script>
 </body>
 </html>

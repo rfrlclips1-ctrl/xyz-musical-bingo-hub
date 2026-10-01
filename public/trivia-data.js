@@ -3,7 +3,9 @@ window.ISLAND_TRIVIA = {
     "2025-12-25",
     "2026-01-01",
     "2026-01-08",
-    "2026-05-14"
+    "2026-05-14",
+    "2026-09-10",
+    "2026-09-17"
   ],
   "nights": [
     {
@@ -1033,6 +1035,286 @@ window.ISLAND_TRIVIA = {
           "score": 66
         }
       ]
+    },
+    {
+      "date": "2026-07-30",
+      "partial": true,
+      "photoBacked": true,
+      "photo": null,
+      "photoStatus": "Original scoreboard photo was referenced in the earlier trivia archive but is not bundled in this export.",
+      "recap": "Seannah opened the late-summer run with 423 points, finishing 27 ahead of Wise Ass Owls. TMobile Love Empire rounded out a high-scoring podium at 387. Only the visible podium from the earlier scoreboard photo is available in this archive.",
+      "results": [
+        {
+          "place": 1,
+          "team": "Seannah",
+          "score": 423
+        },
+        {
+          "place": 2,
+          "team": "Wise Ass Owls",
+          "score": 396
+        },
+        {
+          "place": 3,
+          "team": "TMobile Love Empire",
+          "score": 387
+        }
+      ]
+    },
+    {
+      "date": "2026-08-06",
+      "partial": true,
+      "photoBacked": true,
+      "photo": null,
+      "photoStatus": "Original scoreboard photo was referenced in the earlier trivia archive but is not bundled in this export.",
+      "recap": "Seannah made it two straight wins with an even 400 points and a 132-point margin over Wise Ass Owls. TMobile Love Empire took third at 217. Only the visible podium from the earlier scoreboard photo is available in this archive.",
+      "results": [
+        {
+          "place": 1,
+          "team": "Seannah",
+          "score": 400
+        },
+        {
+          "place": 2,
+          "team": "Wise Ass Owls",
+          "score": 268
+        },
+        {
+          "place": 3,
+          "team": "TMobile Love Collective",
+          "score": 217
+        }
+      ]
+    },
+    {
+      "date": "2026-08-13",
+      "partial": true,
+      "photoBacked": true,
+      "photo": null,
+      "photoStatus": "Original scoreboard photo was referenced in the earlier trivia archive but is not bundled in this export.",
+      "recap": "A glitchy night affected every team, but everyone stayed through the finish. Three teams were still alive entering the final round before Seannah hit two big answers late, including the final 40-point answer, to win with 396. Wise Ass Owls finished second at 316, Big Champs third at 306, and TMobile Love Empire placed fourth with 266 — ending a seven-game podium streak.",
+      "results": [
+        {
+          "place": 1,
+          "team": "Seannah",
+          "score": 396
+        },
+        {
+          "place": 2,
+          "team": "Wise Ass Owls",
+          "score": 316
+        },
+        {
+          "place": 3,
+          "team": "Champs",
+          "score": 306
+        },
+        {
+          "place": 4,
+          "team": "TMobile Love Empire",
+          "score": 266
+        }
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "partial": false,
+      "photoBacked": true,
+      "photo": "/assets/trivia/2026-08-20-scoreboard.jpg",
+      "photoAlt": "Island Vibes trivia final scoreboard for August 20, 2026",
+      "recap": "Seannah stretched the winning streak to four played nights and set a new season high with 452 points. Married Couple finished second with 360, while peyt claimed third at 235. yeetty tty and Wise Ass Owls completed the five-team field.",
+      "results": [
+        {
+          "place": 1,
+          "team": "Seannah",
+          "score": 452
+        },
+        {
+          "place": 2,
+          "team": "Married Couple",
+          "score": 360
+        },
+        {
+          "place": 3,
+          "team": "peyt n ty",
+          "score": 235
+        },
+        {
+          "place": 4,
+          "team": "yeetty tty",
+          "score": 116
+        },
+        {
+          "place": 5,
+          "team": "owl ass",
+          "score": 106
+        }
+      ]
+    },
+    {
+      "date": "2026-08-27",
+      "partial": false,
+      "photoBacked": true,
+      "photo": "/assets/trivia/2026-08-27-scoreboard.jpg",
+      "photoAlt": "Island Vibes trivia final scoreboard for August 27, 2026",
+      "recap": "Seannah raised the bar again, scoring 467 for a fifth consecutive played-night win and a new all-time high. Big Champs took second with 309, peyt finished third with 168, and TMobile Love Empire finished fourth.",
+      "results": [
+        {
+          "place": 1,
+          "team": "Seannah",
+          "score": 467
+        },
+        {
+          "place": 2,
+          "team": "Big Champs",
+          "score": 309
+        },
+        {
+          "place": 3,
+          "team": "peyt",
+          "score": 168
+        },
+        {
+          "place": 4,
+          "team": "TMobile Love Empire",
+          "score": 90
+        }
+      ]
+    },
+    {
+      "date": "2026-09-03",
+      "partial": false,
+      "photoBacked": true,
+      "photo": "/assets/trivia/2026-09-03-scoreboard.jpg",
+      "photoAlt": "Island Vibes trivia final scoreboard for September 3, 2026",
+      "recap": "The Immortal Seannah made it six straight played-night victories with 410 points. Wise Ass Owls returned to the runner-up spot at 319, Big Champs followed at 306, and peyt and yeetty tty rounded out the field.",
+      "results": [
+        {
+          "place": 1,
+          "team": "The Immortal Seannah",
+          "score": 410
+        },
+        {
+          "place": 2,
+          "team": "Wise Ass Owls",
+          "score": 319
+        },
+        {
+          "place": 3,
+          "team": "Big Champs",
+          "score": 306
+        },
+        {
+          "place": 4,
+          "team": "peyt",
+          "score": 234
+        },
+        {
+          "place": 5,
+          "team": "yeetty tty",
+          "score": 168
+        }
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "partial": false,
+      "photoBacked": true,
+      "photo": "/assets/trivia/2026-09-24-scoreboard.jpg",
+      "photoAlt": "Island Vibes trivia final scoreboard for September 24, 2026",
+      "recap": "Trivia returned after two no-game Thursdays, and Seannah picked up exactly where the streak left off. A 424-point win made it seven consecutive played nights. TMobile Love Empire finished second with 316, Wise Ass Owls took third at 235, and the field expanded to eight teams.",
+      "results": [
+        {
+          "place": 1,
+          "team": "The Immortal Seannah",
+          "score": 424
+        },
+        {
+          "place": 2,
+          "team": "TMobile Love Empire",
+          "score": 316
+        },
+        {
+          "place": 3,
+          "team": "Wise Ass Owl",
+          "score": 235
+        },
+        {
+          "place": 4,
+          "team": "too stupid to function",
+          "score": 203
+        },
+        {
+          "place": 5,
+          "team": "peyt",
+          "score": 197
+        },
+        {
+          "place": 6,
+          "team": "Bad News Bears",
+          "score": 180
+        },
+        {
+          "place": 7,
+          "team": "Caw",
+          "score": 57
+        },
+        {
+          "place": 8,
+          "team": "yooo team",
+          "score": 0
+        }
+      ]
     }
-  ]
+  ],
+  "aliases": {
+    "Big Champs": [
+      "Big Champs",
+      "Champs",
+      "Champz",
+      "Victorz",
+      "Champs/Victorz"
+    ],
+    "peyt": [
+      "peyt",
+      "peyt n ty"
+    ],
+    "Wise Ass Owls": [
+      "Wise Ass Owls",
+      "Wise Ass Owl",
+      "owl ass"
+    ],
+    "TMobile Love Empire": [
+      "TMobile",
+      "TMobile Love",
+      "TMobile Love Empire",
+      "TMobile Love Collective"
+    ],
+    "yeetty tty": [
+      "yettytty",
+      "yettyttyyyy",
+      "yeetty tty",
+      "yetty tty",
+      "yeettytty",
+      "yetty"
+    ],
+    "Seannah": [
+      "Seannah",
+      "The Immortal Seannah"
+    ],
+    "deltrice": [
+      "del",
+      "deltrice",
+      "kaitrice"
+    ],
+    "Califloridians": [
+      "Califloridian",
+      "Califloridians"
+    ],
+    "yeehaw": [
+      "yeehaw",
+      "yeehaws",
+      "da yeehaws"
+    ]
+  }
 };

@@ -33,17 +33,32 @@ export default async (request) => {
 
   try {
     const body = await request.json();
+    const action = String(body.action || "publish");
     const venueSlug = cleanSlug(body.venueSlug);
     const title = textValue(body.title);
     const artist = textValue(body.artist);
     const album = textValue(body.album);
     const artworkUrl = textValue(body.artworkUrl, 1000);
     const detectedAt = body.detectedAt && !Number.isNaN(Date.parse(body.detectedAt)) ? new Date(body.detectedAt).toISOString() : new Date().toISOString();
-    if (!venueSlug || !title) return json(400, { error: "venueSlug and title are required." });
+    if (!venueSlug) return json(400, { error: "venueSlug is required." });
 
     const sessions = await supabase(`sessions?select=id,round_slug&venue_slug=eq.${encodeURIComponent(venueSlug)}&status=eq.active&order=started_at.desc&limit=1`, { method: "GET" });
     const session = sessions?.[0];
     if (!session) return json(202, { published: false, waiting: true, message: "No active session for this venue." });
+
+    if (action === "undo") {
+      const rows = await supabase(`tracks?select=id,position,title,artist&session_id=eq.${encodeURIComponent(session.id)}&order=position.desc&limit=2`, { method: "GET" });
+      const removed = rows?.[0];
+      const current = rows?.[1] || null;
+      if (!removed) return json(200, { undone: false, removed: null, current });
+      await supabase(`tracks?id=eq.${encodeURIComponent(removed.id)}`, {
+        method: "DELETE",
+        headers: { Prefer: "return=minimal" }
+      });
+      return json(200, { undone: true, removed, current });
+    }
+
+    if (!title) return json(400, { error: "title is required." });
 
     const lastRows = await supabase(`tracks?select=position,title,artist&session_id=eq.${encodeURIComponent(session.id)}&order=position.desc&limit=1`, { method: "GET" });
     const last = lastRows?.[0];

@@ -1,0 +1,36 @@
+JUST XYZ PRODUCTIONS — REVIVAL V22 QA
+Date: 2026-10-01
+
+PASS — Built from v21 PRELAUNCH HARDENED base
+PASS — JavaScript syntax: app.js
+PASS — JavaScript syntax: data.js
+PASS — JavaScript syntax: trivia-data.js
+PASS — Trivia archive contains 35 played nights
+PASS — Sep 10 and Sep 17 stored as no-game dates
+PASS — Four current scoreboard photos bundled in public/assets/trivia
+PASS — July 30 / Aug 6 / Aug 13 recovered photo-backed results added
+PASS — Alias normalization added to standings, records, streaks and team pages
+PASS — Big Champs combines Champs / Champz / Victorz
+PASS — peyt combines peyt n ty
+PASS — TMobile variants combined
+PASS — Wise Ass Owls variants combined
+PASS — Seannah / The Immortal Seannah combined
+PASS — Yetty variants combined
+PASS — Latest Game Recap added
+PASS — Results archive includes recap text and no-game cards
+PASS — Full-size scoreboard photo links added
+PASS — Later Island Vibes rounds restored
+PASS — Later Mangrove Sands rounds restored
+PASS — QR_ROUTES.csv regenerated: 27 venue/round routes
+PASS — Cache query versions bumped to v22
+
+CALCULATED TRIVIA SNAPSHOT
+Played nights: 35
+All-time wins leader: Seannah — 14
+Second: Wise Ass Owls — 12
+High score: Seannah — 467 (2026-08-27)
+Longest win streak: Wise Ass Owls — 9
+Current Seannah streak: 7 played nights (2026-07-30 through 2026-09-24)
+
+KNOWN SOURCE LIMITATION
+The original image files used for the July 30, Aug 6 and Aug 13 photo-backed recoveries were not exportable from the earlier project archive in the current session. The results and recap information recovered from those prior chats are included, and the UI marks those entries as photo-backed. The four newly supplied photos are bundled normally.

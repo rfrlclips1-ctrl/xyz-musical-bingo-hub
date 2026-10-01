@@ -50,5 +50,29 @@
   "diner-music": {
     "count": 60,
     "source": "existing card pool / project playlist reconstruction"
+  },
+  "disco-fever": {
+    "count": 0,
+    "source": "route restored in v22; song picker catalog can be added/edited from Host"
+  },
+  "soundtrack": {
+    "count": 0,
+    "source": "route restored in v22; song picker catalog can be added/edited from Host"
+  },
+  "cali-vibes": {
+    "count": 0,
+    "source": "route restored in v22; song picker catalog can be added/edited from Host"
+  },
+  "madden": {
+    "count": 0,
+    "source": "route restored in v22; song picker catalog can be added/edited from Host"
+  },
+  "easy-livin": {
+    "count": 0,
+    "source": "route restored in v22; song picker catalog can be added/edited from Host"
+  },
+  "1960s": {
+    "count": 0,
+    "source": "route restored in v22; song picker catalog can be added/edited from Host"
   }
 }
