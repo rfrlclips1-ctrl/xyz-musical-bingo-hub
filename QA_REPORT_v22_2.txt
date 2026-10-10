@@ -1,0 +1,65 @@
+XY&Z Musical Bingo + Trivia Revival v22.2 QA
+Generated: 2026-10-10
+
+PRODUCTION
+- Live base URL: https://xyandzpro.netlify.app
+- Top-left visible brand: XYZ Productions
+- Old mellifluous-parfait base URL references in deployable project: 0
+- Netlify publish directory: public
+- Netlify functions directory: netlify/functions
+
+TRIVIA CURRENT THROUGH
+- Latest played game: 2026-10-08
+- Recorded played nights: 37
+- Recorded result entries: 215
+- Canonical teams: 59
+- No-game Thursdays retained for 2026 season: 2026-09-10, 2026-09-17
+- Historical false no-game markers removed: 2026-01-08, 2026-05-14
+
+LATEST GAME
+- 1st Seannah 353
+- 2nd peyt 328
+- 3rd 1998 Chicago Bulls / Ty (scoreboard name: owl ass) 314
+- 4th Big Champs 294
+- 5th yeehaw 243
+- 6th yeetty tty 209
+- Scoreboard photo bundled: yes
+
+CURRENT RECORDS
+- All-time wins leader: Seannah — 16 wins
+- Wise Ass Owls wins: 12
+- Current winning streak: Seannah — 9 straight (2026-07-30 through 2026-10-08)
+- Longest winning streak: 9 — Seannah / Wise Ass Owls
+- High score: 467 — Seannah on 2026-08-27
+
+ALIAS CORRECTIONS
+- 1998 Chicago Bulls = Ty = owl ass
+- owl ass removed from Wise Ass Owls
+- Wise Ass Owl / Wise Ass Owls remain one team
+- Big Champs / Champs / Champz / Victorz remain one team
+- peyt / peyt n ty remain one team
+- TMobile / TMobile Love Empire / TMobile Love Collective remain one team
+- Seannah / The Immortal Seannah remain one team
+- yeetty tty spelling variants remain one team
+
+PHOTOS
+- 2026-08-20 scoreboard bundled
+- 2026-08-27 scoreboard bundled
+- 2026-09-03 scoreboard bundled
+- 2026-09-24 scoreboard bundled
+- 2026-10-01 scoreboard bundled
+- 2026-10-08 scoreboard bundled
+
+QR / ROUTING
+- QR route catalog base updated to https://xyandzpro.netlify.app
+- Island Vibes Northeaster example QR regenerated and decoded successfully
+- Mangrove Sands Northeaster example QR regenerated and decoded successfully
+- Legacy Island Vibes redirect page target updated to current domain
+- Legacy Mangrove Sands redirect page target updated to current domain
+
+CODE CHECKS
+- public/app.js syntax: pass
+- public/data.js syntax: pass
+- public/trivia-data.js syntax: pass
+- public/host.js syntax: pass
+- netlify/functions/*.mjs syntax: pass

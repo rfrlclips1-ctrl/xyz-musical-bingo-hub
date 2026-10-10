@@ -2,8 +2,6 @@ window.ISLAND_TRIVIA = {
   "noTrivia": [
     "2025-12-25",
     "2026-01-01",
-    "2026-01-08",
-    "2026-05-14",
     "2026-09-10",
     "2026-09-17"
   ],
@@ -1122,7 +1120,7 @@ window.ISLAND_TRIVIA = {
       "photoBacked": true,
       "photo": "/assets/trivia/2026-08-20-scoreboard.jpg",
       "photoAlt": "Island Vibes trivia final scoreboard for August 20, 2026",
-      "recap": "Seannah stretched the winning streak to four played nights and set a new season high with 452 points. Married Couple finished second with 360, while peyt claimed third at 235. yeetty tty and Wise Ass Owls completed the five-team field.",
+      "recap": "Seannah stretched the winning streak to four played nights and set a new season high with 452 points. Married Couple finished second with 360, while peyt claimed third at 235. yeetty tty finished fourth, and Ty — playing that night as “owl ass” — completed the five-team field.",
       "results": [
         {
           "place": 1,
@@ -1265,6 +1263,81 @@ window.ISLAND_TRIVIA = {
           "score": 0
         }
       ]
+    },
+    {
+      "date": "2026-10-01",
+      "partial": false,
+      "photoBacked": true,
+      "photo": "/assets/trivia/2026-10-01-scoreboard.jpg",
+      "photoAlt": "Island Vibes trivia final scoreboard for October 1, 2026",
+      "recap": "Seannah kept the streak alive with 399 points, winning by 120 over TMobile Love Empire. peyt took third at 165, followed by yeetty tty and yooo team.",
+      "results": [
+        {
+          "place": 1,
+          "team": "The Immortal Seannah",
+          "score": 399
+        },
+        {
+          "place": 2,
+          "team": "TMOBILE LOVE EMPIRE",
+          "score": 279
+        },
+        {
+          "place": 3,
+          "team": "peyt",
+          "score": 165
+        },
+        {
+          "place": 4,
+          "team": "yeetty tty",
+          "score": 48
+        },
+        {
+          "place": 5,
+          "team": "yooo team",
+          "score": -6
+        }
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "partial": false,
+      "photoBacked": true,
+      "photo": "/assets/trivia/2026-10-08-scoreboard.jpg",
+      "photoAlt": "Island Vibes trivia final scoreboard for October 8, 2026",
+      "recap": "Seannah’s winning streak survived its closest scare in weeks. peyt finished only 25 points back at 328, while Ty — playing as “owl ass” and credited to 1998 Chicago Bulls — took third with 314. Big Champs finished fourth at 294, leaving the top four separated by just 59 points.",
+      "results": [
+        {
+          "place": 1,
+          "team": "The Immortal Seannah",
+          "score": 353
+        },
+        {
+          "place": 2,
+          "team": "peyt",
+          "score": 328
+        },
+        {
+          "place": 3,
+          "team": "owl ass",
+          "score": 314
+        },
+        {
+          "place": 4,
+          "team": "Big Champs",
+          "score": 294
+        },
+        {
+          "place": 5,
+          "team": "yeehaw",
+          "score": 243
+        },
+        {
+          "place": 6,
+          "team": "yeetty tty",
+          "score": 209
+        }
+      ]
     }
   ],
   "aliases": {
@@ -1281,8 +1354,7 @@ window.ISLAND_TRIVIA = {
     ],
     "Wise Ass Owls": [
       "Wise Ass Owls",
-      "Wise Ass Owl",
-      "owl ass"
+      "Wise Ass Owl"
     ],
     "TMobile Love Empire": [
       "TMobile",
@@ -1315,6 +1387,11 @@ window.ISLAND_TRIVIA = {
       "yeehaw",
       "yeehaws",
       "da yeehaws"
+    ],
+    "1998 Chicago Bulls": [
+      "1998 Chicago Bulls",
+      "Ty",
+      "owl ass"
     ]
   }
 };
