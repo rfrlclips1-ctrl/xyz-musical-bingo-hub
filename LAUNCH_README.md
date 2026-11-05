@@ -34,7 +34,7 @@ The included `netlify.toml` already declares the publish directory, functions di
 
 Before printing or redirecting cards, confirm the final site address. The current code assumes:
 
-`https://xyandzpro.netlify.app`
+`https://mellifluous-parfait-a01655.netlify.app`
 
 If the final address differs, replace it in:
 

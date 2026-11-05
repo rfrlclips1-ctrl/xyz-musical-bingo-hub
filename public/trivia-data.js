@@ -2,6 +2,8 @@ window.ISLAND_TRIVIA = {
   "noTrivia": [
     "2025-12-25",
     "2026-01-01",
+    "2026-01-08",
+    "2026-05-14",
     "2026-09-10",
     "2026-09-17"
   ],
@@ -1037,10 +1039,7 @@ window.ISLAND_TRIVIA = {
     {
       "date": "2026-07-30",
       "partial": true,
-      "photoBacked": true,
-      "photo": null,
-      "photoStatus": "Original scoreboard photo was referenced in the earlier trivia archive but is not bundled in this export.",
-      "recap": "Seannah opened the late-summer run with 423 points, finishing 27 ahead of Wise Ass Owls. TMobile Love Empire rounded out a high-scoring podium at 387. Only the visible podium from the earlier scoreboard photo is available in this archive.",
+      "recap": "Seannah opened the late-summer run with a 423-point victory. Wise Ass Owls finished second at 396 and TMobile Love took third with 387.",
       "results": [
         {
           "place": 1,
@@ -1054,7 +1053,7 @@ window.ISLAND_TRIVIA = {
         },
         {
           "place": 3,
-          "team": "TMobile Love Empire",
+          "team": "TMobile Love",
           "score": 387
         }
       ]
@@ -1062,10 +1061,7 @@ window.ISLAND_TRIVIA = {
     {
       "date": "2026-08-06",
       "partial": true,
-      "photoBacked": true,
-      "photo": null,
-      "photoStatus": "Original scoreboard photo was referenced in the earlier trivia archive but is not bundled in this export.",
-      "recap": "Seannah made it two straight wins with an even 400 points and a 132-point margin over Wise Ass Owls. TMobile Love Empire took third at 217. Only the visible podium from the earlier scoreboard photo is available in this archive.",
+      "recap": "Seannah made it back-to-back wins with 400 points. Wise Ass Owls placed second and TMobile Love completed the podium.",
       "results": [
         {
           "place": 1,
@@ -1079,7 +1075,7 @@ window.ISLAND_TRIVIA = {
         },
         {
           "place": 3,
-          "team": "TMobile Love Collective",
+          "team": "TMobile Love",
           "score": 217
         }
       ]
@@ -1087,10 +1083,7 @@ window.ISLAND_TRIVIA = {
     {
       "date": "2026-08-13",
       "partial": true,
-      "photoBacked": true,
-      "photo": null,
-      "photoStatus": "Original scoreboard photo was referenced in the earlier trivia archive but is not bundled in this export.",
-      "recap": "A glitchy night affected every team, but everyone stayed through the finish. Three teams were still alive entering the final round before Seannah hit two big answers late, including the final 40-point answer, to win with 396. Wise Ass Owls finished second at 316, Big Champs third at 306, and TMobile Love Empire placed fourth with 266 — ending a seven-game podium streak.",
+      "recap": "A glitchy software night stayed tight into the final round. Seannah hit two huge late answers, including the final 40-point response, to win. TMobile Love finished fourth at 266, ending a seven-appearance podium run.",
       "results": [
         {
           "place": 1,
@@ -1104,23 +1097,20 @@ window.ISLAND_TRIVIA = {
         },
         {
           "place": 3,
-          "team": "Champs",
+          "team": "Big Champs",
           "score": 306
         },
         {
           "place": 4,
-          "team": "TMobile Love Empire",
+          "team": "TMobile Love",
           "score": 266
         }
       ]
     },
     {
       "date": "2026-08-20",
-      "partial": false,
-      "photoBacked": true,
-      "photo": "/assets/trivia/2026-08-20-scoreboard.jpg",
-      "photoAlt": "Island Vibes trivia final scoreboard for August 20, 2026",
-      "recap": "Seannah stretched the winning streak to four played nights and set a new season high with 452 points. Married Couple finished second with 360, while peyt claimed third at 235. yeetty tty finished fourth, and Ty — playing that night as “owl ass” — completed the five-team field.",
+      "partial": true,
+      "recap": "Seannah stayed on top with 452 points. Married Couple took second at 360 and peyt finished third at 235.",
       "results": [
         {
           "place": 1,
@@ -1134,28 +1124,15 @@ window.ISLAND_TRIVIA = {
         },
         {
           "place": 3,
-          "team": "peyt n ty",
+          "team": "peyt",
           "score": 235
-        },
-        {
-          "place": 4,
-          "team": "yeetty tty",
-          "score": 116
-        },
-        {
-          "place": 5,
-          "team": "owl ass",
-          "score": 106
         }
       ]
     },
     {
       "date": "2026-08-27",
-      "partial": false,
-      "photoBacked": true,
-      "photo": "/assets/trivia/2026-08-27-scoreboard.jpg",
-      "photoAlt": "Island Vibes trivia final scoreboard for August 27, 2026",
-      "recap": "Seannah raised the bar again, scoring 467 for a fifth consecutive played-night win and a new all-time high. Big Champs took second with 309, peyt finished third with 168, and TMobile Love Empire finished fourth.",
+      "partial": true,
+      "recap": "Seannah pushed the streak forward with a 467-point night, the highest recorded score in the archive. Big Champs finished second and peyt third.",
       "results": [
         {
           "place": 1,
@@ -1171,25 +1148,17 @@ window.ISLAND_TRIVIA = {
           "place": 3,
           "team": "peyt",
           "score": 168
-        },
-        {
-          "place": 4,
-          "team": "TMobile Love Empire",
-          "score": 90
         }
       ]
     },
     {
       "date": "2026-09-03",
-      "partial": false,
-      "photoBacked": true,
-      "photo": "/assets/trivia/2026-09-03-scoreboard.jpg",
-      "photoAlt": "Island Vibes trivia final scoreboard for September 3, 2026",
-      "recap": "The Immortal Seannah made it six straight played-night victories with 410 points. Wise Ass Owls returned to the runner-up spot at 319, Big Champs followed at 306, and peyt and yeetty tty rounded out the field.",
+      "partial": true,
+      "recap": "The Immortal Seannah won again with 410 points. Wise Ass Owls scored 319 for second and Big Champs posted 306 for third.",
       "results": [
         {
           "place": 1,
-          "team": "The Immortal Seannah",
+          "team": "Seannah",
           "score": 410
         },
         {
@@ -1201,115 +1170,57 @@ window.ISLAND_TRIVIA = {
           "place": 3,
           "team": "Big Champs",
           "score": 306
-        },
-        {
-          "place": 4,
-          "team": "peyt",
-          "score": 234
-        },
-        {
-          "place": 5,
-          "team": "yeetty tty",
-          "score": 168
         }
       ]
     },
     {
       "date": "2026-09-24",
-      "partial": false,
-      "photoBacked": true,
-      "photo": "/assets/trivia/2026-09-24-scoreboard.jpg",
-      "photoAlt": "Island Vibes trivia final scoreboard for September 24, 2026",
-      "recap": "Trivia returned after two no-game Thursdays, and Seannah picked up exactly where the streak left off. A 424-point win made it seven consecutive played nights. TMobile Love Empire finished second with 316, Wise Ass Owls took third at 235, and the field expanded to eight teams.",
+      "partial": true,
+      "recap": "After two no-game Thursdays, Seannah returned with a 424-point victory. TMobile Love took second and Wise Ass Owls third.",
       "results": [
         {
           "place": 1,
-          "team": "The Immortal Seannah",
+          "team": "Seannah",
           "score": 424
         },
         {
           "place": 2,
-          "team": "TMobile Love Empire",
+          "team": "TMobile Love",
           "score": 316
         },
         {
           "place": 3,
-          "team": "Wise Ass Owl",
+          "team": "Wise Ass Owls",
           "score": 235
-        },
-        {
-          "place": 4,
-          "team": "too stupid to function",
-          "score": 203
-        },
-        {
-          "place": 5,
-          "team": "peyt",
-          "score": 197
-        },
-        {
-          "place": 6,
-          "team": "Bad News Bears",
-          "score": 180
-        },
-        {
-          "place": 7,
-          "team": "Caw",
-          "score": 57
-        },
-        {
-          "place": 8,
-          "team": "yooo team",
-          "score": 0
-        }
-      ]
-    },
-    {
-      "date": "2026-10-01",
-      "partial": false,
-      "photoBacked": true,
-      "photo": "/assets/trivia/2026-10-01-scoreboard.jpg",
-      "photoAlt": "Island Vibes trivia final scoreboard for October 1, 2026",
-      "recap": "Seannah kept the streak alive with 399 points, winning by 120 over TMobile Love Empire. peyt took third at 165, followed by yeetty tty and yooo team.",
-      "results": [
-        {
-          "place": 1,
-          "team": "The Immortal Seannah",
-          "score": 399
-        },
-        {
-          "place": 2,
-          "team": "TMOBILE LOVE EMPIRE",
-          "score": 279
-        },
-        {
-          "place": 3,
-          "team": "peyt",
-          "score": 165
-        },
-        {
-          "place": 4,
-          "team": "yeetty tty",
-          "score": 48
-        },
-        {
-          "place": 5,
-          "team": "yooo team",
-          "score": -6
         }
       ]
     },
     {
       "date": "2026-10-08",
       "partial": false,
-      "photoBacked": true,
-      "photo": "/assets/trivia/2026-10-08-scoreboard.jpg",
-      "photoAlt": "Island Vibes trivia final scoreboard for October 8, 2026",
-      "recap": "Seannah’s winning streak survived its closest scare in weeks. peyt finished only 25 points back at 328, while Ty — playing as “owl ass” and credited to 1998 Chicago Bulls — took third with 314. Big Champs finished fourth at 294, leaving the top four separated by just 59 points.",
+      "recap": "The Immortal Seannah won a six-team night with 353 points. peyt finished second at 328 and Ty took third with 314.",
+      "photos": [
+        {
+          "src": "/assets/trivia/2026-10-08-winner.jpg",
+          "alt": "October 8 trivia winner beside the final scoreboard"
+        },
+        {
+          "src": "/assets/trivia/2026-10-08-scoreboard.jpg",
+          "alt": "October 8 final trivia scoreboard"
+        },
+        {
+          "src": "/assets/trivia/2026-10-08-night.jpg",
+          "alt": "Island Vibes trivia night photo from October 8"
+        },
+        {
+          "src": "/assets/trivia/2026-10-08-xyz.jpg",
+          "alt": "XY&Z Productions display at Island Vibes on October 8"
+        }
+      ],
       "results": [
         {
           "place": 1,
-          "team": "The Immortal Seannah",
+          "team": "Seannah",
           "score": 353
         },
         {
@@ -1319,7 +1230,7 @@ window.ISLAND_TRIVIA = {
         },
         {
           "place": 3,
-          "team": "owl ass",
+          "team": "Ty",
           "score": 314
         },
         {
@@ -1338,60 +1249,146 @@ window.ISLAND_TRIVIA = {
           "score": 209
         }
       ]
+    },
+    {
+      "date": "2026-10-15",
+      "partial": false,
+      "recap": "TMobile Love broke through for its first recorded win with 426 points, snapping Seannah's winning streak. Seannah finished second at 377 and peyt placed third.",
+      "photos": [
+        {
+          "src": "/assets/trivia/2026-10-15-winners.jpg",
+          "alt": "October 15 trivia winners at Island Vibes"
+        },
+        {
+          "src": "/assets/trivia/2026-10-15-scoreboard.jpg",
+          "alt": "October 15 final trivia scoreboard"
+        }
+      ],
+      "results": [
+        {
+          "place": 1,
+          "team": "TMobile Love",
+          "score": 426
+        },
+        {
+          "place": 2,
+          "team": "Seannah",
+          "score": 377
+        },
+        {
+          "place": 3,
+          "team": "peyt",
+          "score": 228
+        },
+        {
+          "place": 4,
+          "team": "Im tired",
+          "score": 134
+        },
+        {
+          "place": 5,
+          "team": "ohana",
+          "score": 133
+        }
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "partial": false,
+      "recap": "Seannah bounced straight back into the win column with 410 points. ohana earned second with 286 and Danu edged yeehaw by one point for third.",
+      "photos": [
+        {
+          "src": "/assets/trivia/2026-10-22-scoreboard-1.jpg",
+          "alt": "October 22 final trivia scoreboard"
+        },
+        {
+          "src": "/assets/trivia/2026-10-22-scoreboard-2.jpg",
+          "alt": "October 22 final trivia results at Island Vibes"
+        }
+      ],
+      "results": [
+        {
+          "place": 1,
+          "team": "Seannah",
+          "score": 410
+        },
+        {
+          "place": 2,
+          "team": "ohana",
+          "score": 286
+        },
+        {
+          "place": 3,
+          "team": "Danu",
+          "score": 242
+        },
+        {
+          "place": 4,
+          "team": "yeehaw",
+          "score": 241
+        },
+        {
+          "place": 5,
+          "team": "The",
+          "score": 111
+        },
+        {
+          "place": 6,
+          "team": "TMobile Love",
+          "score": 29
+        },
+        {
+          "place": 7,
+          "team": "yeetty tty",
+          "score": 6
+        }
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "partial": false,
+      "theme": "Spooky Season",
+      "recap": "Spooky Season closed October with pumpkins for the winners. Seannah scored 445 for a second straight win, peyt continued the podium run in second, and yeehaw finished third.",
+      "photos": [
+        {
+          "src": "/assets/trivia/2026-10-29-pumpkin-winners.jpg",
+          "alt": "Spooky Season trivia winners with a pumpkin prize"
+        },
+        {
+          "src": "/assets/trivia/2026-10-29-pumpkin-prize.jpg",
+          "alt": "Spooky Season trivia participant holding a pumpkin prize"
+        },
+        {
+          "src": "/assets/trivia/2026-10-29-scoreboard.jpg",
+          "alt": "October 29 Spooky Season final trivia scoreboard"
+        },
+        {
+          "src": "/assets/trivia/2026-10-29-winner.jpg",
+          "alt": "Spooky Season trivia winner holding a pumpkin"
+        }
+      ],
+      "results": [
+        {
+          "place": 1,
+          "team": "Seannah",
+          "score": 445
+        },
+        {
+          "place": 2,
+          "team": "peyt",
+          "score": 281
+        },
+        {
+          "place": 3,
+          "team": "yeehaw",
+          "score": 256
+        },
+        {
+          "place": 4,
+          "team": "Wise Ass Owls",
+          "score": 178
+        }
+      ]
     }
-  ],
-  "aliases": {
-    "Big Champs": [
-      "Big Champs",
-      "Champs",
-      "Champz",
-      "Victorz",
-      "Champs/Victorz"
-    ],
-    "peyt": [
-      "peyt",
-      "peyt n ty"
-    ],
-    "Wise Ass Owls": [
-      "Wise Ass Owls",
-      "Wise Ass Owl"
-    ],
-    "TMobile Love Empire": [
-      "TMobile",
-      "TMobile Love",
-      "TMobile Love Empire",
-      "TMobile Love Collective"
-    ],
-    "yeetty tty": [
-      "yettytty",
-      "yettyttyyyy",
-      "yeetty tty",
-      "yetty tty",
-      "yeettytty",
-      "yetty"
-    ],
-    "Seannah": [
-      "Seannah",
-      "The Immortal Seannah"
-    ],
-    "deltrice": [
-      "del",
-      "deltrice",
-      "kaitrice"
-    ],
-    "Califloridians": [
-      "Califloridian",
-      "Califloridians"
-    ],
-    "yeehaw": [
-      "yeehaw",
-      "yeehaws",
-      "da yeehaws"
-    ],
-    "1998 Chicago Bulls": [
-      "1998 Chicago Bulls",
-      "Ty",
-      "owl ass"
-    ]
-  }
+  ]
 };

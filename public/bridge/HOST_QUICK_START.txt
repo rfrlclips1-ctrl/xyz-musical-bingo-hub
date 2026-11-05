@@ -1,0 +1,17 @@
+XY&Z HOST QUICK START
+
+ONE-TIME SETUP
+1. Install and configure What's Now Playing for djay Pro.
+2. Double-click: SETUP HOST - RUN ONCE.bat
+3. Paste your HOST_BRIDGE_KEY when asked.
+
+EVERY ISLAND VIBES BINGO NIGHT
+1. Open djay Pro.
+2. Double-click: GO LIVE - ISLAND VIBES.bat
+3. Type the number for tonight's round.
+4. Play music normally.
+
+WHEN FINISHED
+Double-click: END NIGHT.bat
+
+The launcher starts the website session, starts the bridge, and opens the guest board and host controls automatically.
