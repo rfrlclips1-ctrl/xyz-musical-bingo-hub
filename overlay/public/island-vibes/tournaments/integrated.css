@@ -1,0 +1,7 @@
+
+.xyz-bridge{display:flex;align-items:center;justify-content:space-between;gap:14px;
+background:#061827;color:#b9e7db;padding:10px max(17px,calc((100vw - 1380px)/2));
+font:800 11px/1.35 Inter,system-ui,Arial,sans-serif;letter-spacing:.10em}
+.xyz-bridge a{color:#ffdc8e;text-decoration:none;border-bottom:1px solid #ffdc8e7d;padding-bottom:2px}
+.xyz-bridge a:hover{text-decoration:underline}
+@media(max-width:650px){.xyz-bridge{font-size:9px;padding:9px 13px}.xyz-bridge span{max-width:43%;text-align:right}}

@@ -1,0 +1,11 @@
+ISLAND VIBES × XY&Z PRODUCTIONS — INTEGRATION TEST RESULTS
+Date: 2026-11-12
+Total automated checks passed: 33
+Backend (Postgres simulation using real PostgreSQL engine): 23
+Public interface and two-browser signup flow: 10
+Build: Netlify Function ESM bundled successfully with esbuild.
+Safety: Patcher tested twice, no duplicate tournament tab; existing Bingo host function and page sources remained intact.
+No private rewards data was returned to public roster APIs.
+No Vercel Blob or Firebase dependencies in new runtime.
+LIMITATION: Production Netlify deployment and real phone/device tests cannot occur until changes are merged to the existing XY&Z source and its Netlify database provisioned.
+One further backend anti-spam test passed.
