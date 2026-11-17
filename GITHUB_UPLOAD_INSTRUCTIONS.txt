@@ -1,0 +1,58 @@
+XY&Z PRODUCTIONS — TOURNAMENT TUESDAYS
+READY TO ADD TO YOUR EXISTING GITHUB REPOSITORY
+
+Target site: https://xyandzpro.netlify.app/
+Existing GitHub repo: rfrlclips1-ctrl/xyz-musical-bingo-hub
+Branch: main
+Tournament page after deploy: https://xyandzpro.netlify.app/island-vibes/tournaments/
+
+IMPORTANT: DO NOT UPLOAD THIS ZIP AS A SINGLE FILE INTO GITHUB.
+EXTRACT IT FIRST. COPY ITS CONTENTS INTO THE EXISTING REPOSITORY,
+KEEPING THE FOLDER PATHS INTACT, and COMMIT the changed files.
+
+GitHub Desktop (easiest):
+1. Open the EXISTING xyz-musical-bingo-hub repository on your computer.
+2. Extract the ZIP. Copy everything from the extracted folder
+   into the root of the EXISTING repository. Choose Merge and Replace
+   when prompted for the same file names.
+3. In GitHub Desktop, review changes, Commit to main, Push origin.
+4. Netlify should rebuild the existing xyandzpro website automatically.
+
+GitHub website:
+1. Open rfrlclips1-ctrl/xyz-musical-bingo-hub on branch main.
+2. Add file -> Upload files.
+3. Extract this ZIP on your computer and drag the EXTRACTED
+   folders/files (public, netlify, package.json, package-lock.json).
+   Make sure GitHub preserves the folders as in the archive.
+4. Commit the changes. Do not delete any existing files.
+
+Included:
+  public/index.html (UPDATED with Tournament Tuesdays tab)
+  public/island-vibes/tournaments/ (new tournament site)
+  netlify/functions/iv-tournaments.mjs (new)
+  netlify/functions/iv-tournament-rewards.mjs (new)
+  netlify/tournaments/ (new database backend)
+  netlify/database/migrations/ (new SQL tables)
+  package.json and package-lock.json (Netlify Database dependency)
+
+The archive ONLY replaces public/index.html and adds new tournament
+files and root npm package manifests. Existing bingo, trivia,
+Mangrove Sands and other files are NOT removed.
+
+On deployment Netlify Database should provision and run the migration.
+Set TOURNAMENT_HOST_CODE in the Netlify site Environment Variables
+(Functions scope, production and deploy previews). For testing use
+your original host code KavaHost1; change to a unique private code
+before real use.
+
+The following URL must return JSON with ok:true and database:connected:
+https://xyandzpro.netlify.app/.netlify/functions/iv-tournaments?health=1
+
+Then register a player on the tournament page and confirm the name
+appears in the roster from another computer/phone.
+
+Netlify Database uses plan credits. Review your Free usage allowance.
+Old suspended Vercel Blob records are not copied by this update.
+
+Verified via local Netlify HTTP API tests (18 passed) and simulated
+browser signup; production activation still must be checked.
