@@ -183,15 +183,6 @@
     return aliases[key] || String(name || "").trim();
   };
 
-  const triviaTeamMedia = {
-    "Seannah": [
-      { src: "/assets/trivia/2026-10-08-winner.jpg", alt: "Seannah team winner photo from the October 8 trivia night", caption: "Oct. 8, 2026 · Ninth straight win" }
-    ],
-    "TMobile Love": [
-      { src: "/assets/trivia/2026-10-15-winners.jpg", alt: "TMobile Love team photo from its first recorded trivia win", caption: "Oct. 15, 2026 · First recorded win" }
-    ]
-  };
-
   const triviaStats = () => {
     const rawSource = window.ISLAND_TRIVIA || { nights: [], noTrivia: [] };
     const source = { ...rawSource, nights: rawSource.nights.map(n => ({ ...n, results: n.results.map(r => ({ ...r, team: triviaCanonicalTeam(r.team) })) })) };
@@ -288,12 +279,10 @@
     const form = lastFive.map(r=>`<span class="form-badge ${r.place===1?'win':r.place<=3?'podium':''}">${r.place===1?'W':r.place}</span>`).join('');
     const teamStreaks = stats.streaks.filter(x=>x.team===team.team).sort((a,b)=>b.count-a.count);
     const bestStreak = teamStreaks[0]?.count || (team.wins ? 1 : 0);
-    const teamMedia = triviaTeamMedia[team.team] || [];
-    const heroMedia = teamMedia[0];
     return `<div class="venue-page island trivia-page team-page"><div class="page-shell">
       <nav class="breadcrumbs"><a href="/" data-link>Home</a><span>›</span><a href="/island-vibes" data-link>Island Vibes</a><span>›</span><a href="/island-vibes/trivia" data-link>Trivia</a><span>›</span><span>${escapeHtml(team.team)}</span></nav>
       <section class="sports-team-hero">
-        ${heroMedia?`<figure class="team-profile-photo"><img src="${escapeHtml(heroMedia.src)}" alt="${escapeHtml(heroMedia.alt)}" loading="eager"><figcaption>${escapeHtml(heroMedia.caption)}</figcaption></figure>`:`<div class="team-crest">${escapeHtml(team.team.split(/\s+/).map(w=>w[0]).slice(0,3).join(''))}</div>`}
+        <div class="team-crest">${escapeHtml(team.team.split(/\s+/).map(w=>w[0]).slice(0,3).join(''))}</div>
         <div class="sports-team-copy"><p class="eyebrow">ISLAND VIBES TRIVIA · TEAM PROFILE</p><h1>${escapeHtml(team.team)}</h1><p class="lead">Official results, season history, records, form, and every recorded appearance.</p><div class="team-form"><span>Recent form</span>${form || '<em>No results</em>'}</div></div>
         <div class="team-rank-panel"><small>ALL-TIME RANK</small><strong>#${rank}</strong><span>${team.wins} wins · ${team.podiums} podiums</span></div>
       </section>
@@ -306,7 +295,6 @@
           <section class="sports-panel" id="game-log"><header><div><p class="eyebrow">COMPLETE HISTORY</p><h2>Game log</h2></div><span>${team.played} appearances</span></header><div class="game-log-table"><div class="game-log-head"><span>Date</span><span>Finish</span><span>Score</span><span>Field</span></div>${recent.map(r=>`<div class="game-log-row"><span>${triviaFmtDate(r.date)}</span><b class="finish-${Math.min(r.place,4)}">${r.place===1?'WIN':`#${r.place}`}</b><strong>${r.score}</strong><span>${r.field} teams</span></div>`).join('')}</div></section>
         </main>
         <aside>
-          ${teamMedia.length?`<section class="sports-panel team-photo-panel"><header><div><p class="eyebrow">TEAM PHOTOS</p><h2>From the archive</h2></div></header><div class="team-photo-gallery">${teamMedia.map(photo=>`<figure><img src="${escapeHtml(photo.src)}" alt="${escapeHtml(photo.alt)}" loading="lazy"><figcaption>${escapeHtml(photo.caption)}</figcaption></figure>`).join('')}</div></section>`:''}
           <section class="sports-panel" id="records"><header><div><p class="eyebrow">TEAM RECORDS</p><h2>At a glance</h2></div></header><dl class="team-record-list"><div><dt>Highest score</dt><dd>${team.best}</dd></div><div><dt>Best finish</dt><dd>${bestFinish===1?'Winner':`#${bestFinish}`}</dd></div><div><dt>Total wins</dt><dd>${wins.length}</dd></div><div><dt>Total podiums</dt><dd>${podiums.length}</dd></div><div><dt>Longest win streak</dt><dd>${bestStreak}</dd></div><div><dt>Latest appearance</dt><dd>${triviaFmtDate(team.latest.date)}</dd></div></dl></section>
           <section class="sports-panel"><header><div><p class="eyebrow">NEXT GAME</p><h2>Thursday at 8 PM</h2></div></header><p>Island Vibes Trivia is held Thursdays at 8:00 PM in Vero Beach.</p><a class="button primary" href="/island-vibes/trivia" data-link>Back to Trivia Headquarters</a></section>
         </aside>
