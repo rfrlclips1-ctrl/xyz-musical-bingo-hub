@@ -7,9 +7,9 @@
   <meta name="description" content="XY&Z Productions musical bingo and Island Vibes trivia hub.">
   <title>XY&Z Musical Bingo &amp; Trivia</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css?v=26">
+  <link rel="stylesheet" href="/styles.css?v=27">
 </head>
-<body data-build="v26">
+<body data-build="v27">
   <a class="skip-link" href="#app">Skip to content</a>
   <header class="site-header" id="site-header">
     <a class="brand" href="/" data-link aria-label="XY&Z Productions home">
@@ -23,6 +23,7 @@
         <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Island Vibes <span aria-hidden="true">▾</span></button>
         <div class="nav-dropdown-menu">
           <a href="/island-vibes" data-link>Island Vibes Home</a>
+          <a href="/island-vibes/tournaments/" data-link>Tournament Tuesdays</a>
           <a href="/island-vibes/trivia" data-link>Trivia Stats &amp; Teams</a>
           <a href="/island-vibes/live" data-link>Live Board</a>
         </div>
@@ -46,6 +47,16 @@
     </div>
   </footer>
 
+  <form name="tournament-registration" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="tournament-registration">
+    <input name="bot-field">
+    <input name="event">
+    <input name="player-name">
+    <input name="rewards-name">
+    <input name="phone-last4">
+    <input name="purchase-acknowledgement">
+  </form>
+
   <form name="business-inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
     <input type="hidden" name="form-name" value="business-inquiry">
     <input name="bot-field">
@@ -60,6 +71,6 @@
   <noscript>This app needs JavaScript enabled to display venue and playlist pages.</noscript>
   <script src="/data.js"></script>
   <script src="/trivia-data.js"></script>
-  <script src="/app.js?v=26"></script>
+  <script src="/app.js?v=27"></script>
 </body>
 </html>

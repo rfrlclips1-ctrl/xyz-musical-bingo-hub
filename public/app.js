@@ -66,6 +66,7 @@
           <h1>Musical bingo and trivia, built around every venue.</h1>
           <p class="lead">Choose a venue for its branded musical bingo experience, or jump directly into Island Vibes Trivia for standings, player profiles, records, streaks, and every final scoreboard.</p>
           <div class="hero-actions">
+            <a class="button tournament-home-cta" href="/island-vibes/tournaments/" data-link>Tournament Tuesdays</a>
             <a class="button primary" href="/island-vibes/trivia" data-link>Explore Island Vibes Trivia</a>
             <a class="button secondary" href="/playlists" data-link>Browse bingo playlists</a>
             <a class="button secondary" href="#venues">Choose a venue</a>
@@ -88,7 +89,7 @@
                   <h2>${escapeHtml(venue.name)}</h2>
                   <p>${escapeHtml(venue.description)}</p>
                   <span class="venue-tagline">${escapeHtml(venue.brandTagline)}</span>
-                  <div class="venue-event-times ${venue.slug === "island-vibes" ? "island-three-events" : ""}">${venue.slug === "island-vibes" ? '<span class="schedule tournament-schedule"><small>TOURNAMENT TUESDAYS</small>Tuesdays · Purchase required</span>' : ''}<span class="schedule"><small>MUSICAL BINGO</small>${escapeHtml(venue.schedule)}</span>${venue.slug === "island-vibes" ? '<span class="schedule trivia-schedule"><small>TRIVIA</small>Thursdays · 8:00 PM</span>' : ''}</div>
+                  <div class="venue-event-times ${venue.slug === "island-vibes" ? "island-three-events" : ""}">${venue.slug === "island-vibes" ? '<span class="schedule tournament-schedule"><small>TOURNAMENT TUESDAYS</small>Tuesdays · Tournament Hub</span>' : ''}<span class="schedule"><small>MUSICAL BINGO</small>${escapeHtml(venue.schedule)}</span>${venue.slug === "island-vibes" ? '<span class="schedule trivia-schedule"><small>TRIVIA</small>Thursdays · 8:00 PM</span>' : ''}</div>
                 </div>
                 <span class="venue-enter">Enter ${escapeHtml(venue.shortName)} →</span>
               </a>`).join("")}
@@ -97,6 +98,86 @@
 
       </div>`;
   };
+
+  const tournamentPage = () => `
+    <div class="tournament-page island">
+      <div class="page-shell">
+        <section class="tournament-hero">
+          <div class="tournament-hero-copy">
+            <p class="eyebrow">ISLAND VIBES · TUESDAY GAME NIGHT</p>
+            <span class="tournament-kicker">TOURNAMENT TUESDAYS</span>
+            <h1>Compete. Check in. Play for the win.</h1>
+            <p class="lead">Tournament Tuesdays is the dedicated Island Vibes tournament hub for upcoming game nights, player registration, host check-in, brackets, and results.</p>
+            <div class="tournament-hero-badges">
+              <span>Tuesdays</span><span>Island Vibes Kava Bar</span><span>Vero Beach, Florida</span>
+            </div>
+            <div class="hero-actions">
+              <a class="button tournament-register-button" href="#register">Register for Madden</a>
+              <a class="button secondary" href="/island-vibes" data-link>Island Vibes Home</a>
+            </div>
+          </div>
+          <figure class="tournament-poster-card">
+            <img src="/assets/tournament-tuesdays-madden-nov24.png" alt="Tournament Tuesdays Madden NFL event flyer for November 24 at Island Vibes">
+          </figure>
+        </section>
+
+        <section class="section tournament-current-event" aria-labelledby="tournament-current-title">
+          <div class="section-heading">
+            <div><p class="eyebrow">NEXT TOURNAMENT</p><h2 id="tournament-current-title">Madden NFL</h2></div>
+            <span class="tournament-date-chip">NOV 24 · 8:00 PM</span>
+          </div>
+          <div class="tournament-event-grid">
+            <article class="tournament-event-main">
+              <span class="event-label">VIDEO GAME TOURNAMENT NIGHT</span>
+              <h3>Madden NFL</h3>
+              <p>Tuesday, November 24, 2026 at 8:00 PM at Island Vibes Kava Bar.</p>
+              <div class="tournament-detail-row">
+                <span><strong>Prize</strong> Bar tabs</span>
+                <span><strong>Entry</strong> Purchase required to play</span>
+                <span><strong>Check-in</strong> With the host before play</span>
+              </div>
+            </article>
+            <article class="tournament-how-it-works">
+              <span class="event-label">HOW IT WORKS</span>
+              <ol>
+                <li>Register your player name or gamer tag.</li>
+                <li>Check in with the host at Island Vibes.</li>
+                <li>The host verifies entry and builds the bracket.</li>
+                <li>Play through the bracket and compete for bar tabs.</li>
+              </ol>
+            </article>
+          </div>
+        </section>
+
+        <section class="section tournament-register" id="register" aria-labelledby="tournament-register-title">
+          <div class="tournament-register-copy">
+            <p class="eyebrow">PLAYER REGISTRATION</p>
+            <h2 id="tournament-register-title">Register for November 24</h2>
+            <p>Use your player name or gamer tag. Rewards information is optional and is only for the host; it is not shown on a public roster.</p>
+          </div>
+          <form class="tournament-registration-form" name="tournament-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="tournament-registration">
+            <input type="hidden" name="event" value="Madden NFL - November 24, 2026">
+            <p class="form-hidden"><label>Do not fill this out <input name="bot-field"></label></p>
+            <label><span>Player name / gamer tag</span><input name="player-name" required autocomplete="nickname" placeholder="Your player name"></label>
+            <label><span>Rewards name <small>(optional)</small></span><input name="rewards-name" autocomplete="name" placeholder="Name on rewards account"></label>
+            <label><span>Last 4 of phone <small>(optional)</small></span><input name="phone-last4" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="1234"></label>
+            <label class="tournament-confirm"><input type="checkbox" name="purchase-acknowledgement" value="acknowledged" required><span>I understand a purchase is required to play and I will check in with the host.</span></label>
+            <button class="button tournament-register-button" type="submit">Register for Madden</button>
+            <p class="form-note">Never enter a full phone number here. Only the last four digits are requested when using rewards lookup.</p>
+          </form>
+        </section>
+
+        <section class="section tournament-hub-features">
+          <div class="section-heading"><div><p class="eyebrow">TOURNAMENT HUB</p><h2>One home for Tuesday competition</h2></div></div>
+          <div class="tournament-feature-grid">
+            <article><span>01</span><strong>Registration</strong><p>Players can sign up before the event from the Tournament Tuesdays page.</p></article>
+            <article><span>02</span><strong>Host check-in</strong><p>Registered players check in with the host before the bracket begins.</p></article>
+            <article><span>03</span><strong>Brackets & scores</strong><p>The tournament environment is built around bracket play, scores, and completed results.</p></article>
+          </div>
+        </section>
+      </div>
+    </div>`;
 
   const islandTriviaTeaser = (venue) => venue.slug === "island-vibes" ? `
     <section class="section trivia-teaser" aria-labelledby="island-trivia-title">
@@ -127,12 +208,12 @@
             <h1>${escapeHtml(venue.shortName)}${venue.slug === "island-vibes" ? ' <span class="venue-title-extra">Musical Bingo + Trivia</span>' : ''}</h1>
             <p class="lead">${escapeHtml(venue.description)}</p>
             <div class="venue-weekly-schedule ${escapeHtml(venue.theme)} ${venue.slug === "island-vibes" ? "island-three-events" : ""}">
-              ${venue.slug === "island-vibes" ? '<article class="tournament-event" id="tournament-tuesdays"><span>TOURNAMENT TUESDAYS</span><strong>Tuesdays</strong><b>Game Night</b><small>Purchase required to play</small></article>' : ''}
+              ${venue.slug === "island-vibes" ? '<article class="tournament-event" id="tournament-tuesdays"><span>TOURNAMENT TUESDAYS</span><strong>Tuesdays</strong><b>Game Night</b><small>Purchase required to play</small><a href="/island-vibes/tournaments/" data-link>Open Tournament Hub →</a></article>' : ''}
               <article><span>MUSICAL BINGO</span><strong>${venue.slug === "island-vibes" ? "Wednesdays" : "Thursdays"}</strong><b>${venue.slug === "island-vibes" ? "7:30 PM" : "5:30–7:30 PM"}</b></article>
               ${venue.slug === "island-vibes" ? '<article class="trivia-event"><span>TEAM TRIVIA</span><strong>Thursdays</strong><b>8:00 PM</b><a href="/island-vibes/trivia" data-link>Stats, teams & results →</a></article>' : '<article class="venue-link-event"><span>AT MANGROVE SANDS</span><strong>Golf Club & Restaurant</strong><b>Vero Beach</b><a href="https://mangrovesands.com/" target="_blank" rel="noreferrer">Venue website →</a></article>'}
             </div>
             <div class="hero-actions">
-              ${venue.slug === "island-vibes" ? '<a class="button primary" href="/island-vibes/trivia" data-link>Open Trivia Headquarters</a>' : ''}
+              ${venue.slug === "island-vibes" ? '<a class="button tournament-register-button" href="/island-vibes/tournaments/" data-link>Open Tournament Tuesdays</a><a class="button primary" href="/island-vibes/trivia" data-link>Open Trivia Headquarters</a>' : ''}
               <a class="button secondary" href="/${escapeHtml(venue.slug)}/live" data-link>Open Live Board</a>
               <a class="button ${venue.theme === "island" ? "primary" : "secondary"}" href="#venue-rounds">View playlists</a>
               <a class="button secondary" href="/playlists?venue=${encodeURIComponent(venue.slug)}" data-link>Open full catalog</a>
@@ -154,7 +235,7 @@
           <section class="section venue-quick-guide">
             <div class="section-heading"><div><p class="eyebrow">${escapeHtml(venue.shortName)} QUICK LINKS</p><h2>Everything for this venue</h2></div></div>
             <div class="venue-action-grid">
-              ${venue.slug === "island-vibes" ? '<a href="#tournament-tuesdays"><span>★</span><strong>Tournament Tuesdays</strong><small>Tuesday game night · Purchase required to play</small></a>' : ''}
+              ${venue.slug === "island-vibes" ? '<a href="/island-vibes/tournaments/" data-link><span>★</span><strong>Tournament Tuesdays</strong><small>Registration, brackets & Tuesday game nights</small></a>' : ''}
               <a href="#venue-rounds"><span>♫</span><strong>Musical Bingo</strong><small>Choose tonight’s playlist</small></a>
               ${venue.slug === "island-vibes" ? '<a href="/island-vibes/trivia" data-link><span>?</span><strong>Trivia Headquarters</strong><small>Teams, standings and results</small></a>' : '<a href="https://mangrovesands.com/" target="_blank" rel="noreferrer"><span>⌂</span><strong>Mangrove Sands</strong><small>Visit the venue website</small></a>'}
               <a href="/${escapeHtml(venue.slug)}/live" data-link><span>●</span><strong>Live Board</strong><small>Now playing and song history</small></a>
@@ -817,6 +898,9 @@
       const venue = DATA.venues[parts[0]];
       app.innerHTML = venuePage(venue);
       document.title = `${venue.shortName} Musical Bingo · XY&Z`;
+    } else if (path === "/island-vibes/tournaments") {
+      app.innerHTML = tournamentPage();
+      document.title = `Tournament Tuesdays · Island Vibes · XY&Z`;
     } else if (parts.length === 4 && parts[0] === "island-vibes" && parts[1] === "trivia" && parts[2] === "team") {
       const venue = DATA.venues["island-vibes"];
       app.innerHTML = triviaTeamPage(venue, parts[3]);

@@ -1687,3 +1687,38 @@ body[data-venue="island"] .site-footer {
 .venue-weekly-schedule .tournament-event{background:linear-gradient(145deg,rgba(244,185,66,.20),rgba(255,116,64,.10));border-color:rgba(244,185,66,.30)}
 .venue-weekly-schedule .tournament-event small{margin-top:.35rem;color:#ffe9ad;line-height:1.35;font-weight:800}
 @media(max-width:820px){.venue-event-times.island-three-events,.venue-weekly-schedule.island-three-events{grid-template-columns:1fr}}
+
+/* v27: fully restored Tournament Tuesdays environment */
+.tournament-home-cta,.tournament-register-button{background:linear-gradient(135deg,#f4b942,#ff7040);color:#111827!important;border-color:transparent!important;font-weight:900;box-shadow:0 14px 34px rgba(244,185,66,.18)}
+.tournament-page{min-height:70vh}
+.tournament-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.65fr);gap:2rem;align-items:center;padding:3rem 0 1.25rem}
+.tournament-hero-copy{padding:1.5rem 0}
+.tournament-kicker{display:inline-flex;padding:.48rem .72rem;border:1px solid rgba(244,185,66,.45);border-radius:999px;background:rgba(244,185,66,.12);font-size:.82rem;font-weight:900;letter-spacing:.12em;color:#ffe3a1}
+.tournament-hero h1{max-width:760px;margin:.8rem 0 1rem}
+.tournament-hero-badges{display:flex;flex-wrap:wrap;gap:.55rem;margin:1.25rem 0}
+.tournament-hero-badges span,.tournament-date-chip{display:inline-flex;padding:.48rem .68rem;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-weight:800;font-size:.86rem}
+.tournament-poster-card{margin:0;border-radius:24px;overflow:hidden;border:1px solid rgba(244,185,66,.28);background:#0b1724;box-shadow:0 24px 60px rgba(0,0,0,.35);transform:rotate(1deg)}
+.tournament-poster-card img{display:block;width:100%;height:auto}
+.tournament-event-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:1rem}
+.tournament-event-main,.tournament-how-it-works,.tournament-registration-form,.tournament-feature-grid article{border:1px solid rgba(255,255,255,.11);background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border-radius:22px;padding:1.35rem}
+.tournament-event-main{border-color:rgba(244,185,66,.30);background:linear-gradient(145deg,rgba(244,185,66,.13),rgba(255,112,64,.06))}
+.tournament-event-main h3{font-size:clamp(2rem,5vw,4rem);margin:.35rem 0}
+.event-label{font-size:.76rem;letter-spacing:.12em;font-weight:900;color:#ffe3a1}
+.tournament-detail-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-top:1.2rem}
+.tournament-detail-row span{padding:.8rem;border-radius:14px;background:rgba(0,0,0,.18);font-size:.88rem}
+.tournament-detail-row strong{display:block;color:#ffe3a1;margin-bottom:.25rem}
+.tournament-how-it-works ol{margin:.85rem 0 0;padding-left:1.15rem}
+.tournament-how-it-works li{margin:.65rem 0;line-height:1.45}
+.tournament-register{display:grid;grid-template-columns:.8fr 1.2fr;gap:1.2rem;align-items:start}
+.tournament-registration-form{display:grid;gap:.9rem}
+.tournament-registration-form label>span{display:block;margin-bottom:.4rem;font-weight:800}
+.tournament-registration-form input:not([type=checkbox]){width:100%;padding:.82rem .9rem;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(4,15,26,.75);color:#fff;font:inherit}
+.tournament-confirm{display:flex;gap:.65rem;align-items:flex-start;padding:.75rem;border-radius:12px;background:rgba(244,185,66,.08)}
+.tournament-confirm input{margin-top:.22rem}
+.form-hidden{display:none}
+.form-note{font-size:.82rem;opacity:.72;margin:0}
+.tournament-feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.tournament-feature-grid article>span{display:inline-grid;place-items:center;width:2.1rem;height:2.1rem;border-radius:50%;background:rgba(244,185,66,.15);color:#ffe3a1;font-weight:900}
+.tournament-feature-grid article strong{display:block;font-size:1.15rem;margin:.7rem 0 .25rem}
+.tournament-event a{display:inline-block;margin-top:.55rem;color:#ffe3a1;font-weight:900}
+@media(max-width:820px){.tournament-hero,.tournament-event-grid,.tournament-register{grid-template-columns:1fr}.tournament-poster-card{max-width:520px;transform:none}.tournament-detail-row,.tournament-feature-grid{grid-template-columns:1fr}.tournament-hero{padding-top:1.4rem}}

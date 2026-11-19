@@ -2,7 +2,7 @@ window.XYZ_BINGO = {
   site: {
     name: "XY&Z Productions",
     shortName: "XY&Z Productions",
-    baseUrl: "https://mellifluous-parfait-a01655.netlify.app",
+    baseUrl: "https://xyandzpro.netlify.app",
     instagram: "https://www.instagram.com/xyandzproductions/",
     contactLabel: "@XYandZproductions",
     location: "Vero Beach, Florida",

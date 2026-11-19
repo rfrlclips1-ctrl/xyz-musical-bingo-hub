@@ -173,3 +173,10 @@ Every round listed in `public/data.js` now has a clickable song catalog in `publ
 - Restored Island Vibes Tournament Tuesdays to the weekly event lineup and homepage summary.
 - Purchase required to play.
 - Preserves v25 trivia corrections and keeps team profile photos disabled.
+
+## v27 Tournament Tuesdays full restoration
+- Restored the dedicated Tournament Tuesdays environment at `/island-vibes/tournaments/`.
+- Added Tournament Tuesdays to the Island Vibes dropdown, homepage CTA, venue schedule, hero actions, and quick links.
+- Restored the November 24, 2026 Madden NFL event (8:00 PM, bar tabs, purchase required to play) and its flyer.
+- Restored a Netlify-backed player registration form with gamer tag/player name, optional rewards name, and optional last 4 of phone.
+- Preserves all v25/v26 trivia corrections and keeps team profile photos disabled.
