@@ -88,7 +88,7 @@
                   <h2>${escapeHtml(venue.name)}</h2>
                   <p>${escapeHtml(venue.description)}</p>
                   <span class="venue-tagline">${escapeHtml(venue.brandTagline)}</span>
-                  <div class="venue-event-times"><span class="schedule"><small>${venue.slug === "island-vibes" ? "MUSICAL BINGO" : "MUSICAL BINGO"}</small>${escapeHtml(venue.schedule)}</span>${venue.slug === "island-vibes" ? '<span class="schedule trivia-schedule"><small>TRIVIA</small>Thursdays · 8:00 PM</span>' : ''}</div>
+                  <div class="venue-event-times ${venue.slug === "island-vibes" ? "island-three-events" : ""}">${venue.slug === "island-vibes" ? '<span class="schedule tournament-schedule"><small>TOURNAMENT TUESDAYS</small>Tuesdays · Purchase required</span>' : ''}<span class="schedule"><small>MUSICAL BINGO</small>${escapeHtml(venue.schedule)}</span>${venue.slug === "island-vibes" ? '<span class="schedule trivia-schedule"><small>TRIVIA</small>Thursdays · 8:00 PM</span>' : ''}</div>
                 </div>
                 <span class="venue-enter">Enter ${escapeHtml(venue.shortName)} →</span>
               </a>`).join("")}
@@ -126,7 +126,8 @@
             <p class="eyebrow">${escapeHtml(venue.eyebrow)}</p>
             <h1>${escapeHtml(venue.shortName)}${venue.slug === "island-vibes" ? ' <span class="venue-title-extra">Musical Bingo + Trivia</span>' : ''}</h1>
             <p class="lead">${escapeHtml(venue.description)}</p>
-            <div class="venue-weekly-schedule ${escapeHtml(venue.theme)}">
+            <div class="venue-weekly-schedule ${escapeHtml(venue.theme)} ${venue.slug === "island-vibes" ? "island-three-events" : ""}">
+              ${venue.slug === "island-vibes" ? '<article class="tournament-event" id="tournament-tuesdays"><span>TOURNAMENT TUESDAYS</span><strong>Tuesdays</strong><b>Game Night</b><small>Purchase required to play</small></article>' : ''}
               <article><span>MUSICAL BINGO</span><strong>${venue.slug === "island-vibes" ? "Wednesdays" : "Thursdays"}</strong><b>${venue.slug === "island-vibes" ? "7:30 PM" : "5:30–7:30 PM"}</b></article>
               ${venue.slug === "island-vibes" ? '<article class="trivia-event"><span>TEAM TRIVIA</span><strong>Thursdays</strong><b>8:00 PM</b><a href="/island-vibes/trivia" data-link>Stats, teams & results →</a></article>' : '<article class="venue-link-event"><span>AT MANGROVE SANDS</span><strong>Golf Club & Restaurant</strong><b>Vero Beach</b><a href="https://mangrovesands.com/" target="_blank" rel="noreferrer">Venue website →</a></article>'}
             </div>
@@ -153,6 +154,7 @@
           <section class="section venue-quick-guide">
             <div class="section-heading"><div><p class="eyebrow">${escapeHtml(venue.shortName)} QUICK LINKS</p><h2>Everything for this venue</h2></div></div>
             <div class="venue-action-grid">
+              ${venue.slug === "island-vibes" ? '<a href="#tournament-tuesdays"><span>★</span><strong>Tournament Tuesdays</strong><small>Tuesday game night · Purchase required to play</small></a>' : ''}
               <a href="#venue-rounds"><span>♫</span><strong>Musical Bingo</strong><small>Choose tonight’s playlist</small></a>
               ${venue.slug === "island-vibes" ? '<a href="/island-vibes/trivia" data-link><span>?</span><strong>Trivia Headquarters</strong><small>Teams, standings and results</small></a>' : '<a href="https://mangrovesands.com/" target="_blank" rel="noreferrer"><span>⌂</span><strong>Mangrove Sands</strong><small>Visit the venue website</small></a>'}
               <a href="/${escapeHtml(venue.slug)}/live" data-link><span>●</span><strong>Live Board</strong><small>Now playing and song history</small></a>

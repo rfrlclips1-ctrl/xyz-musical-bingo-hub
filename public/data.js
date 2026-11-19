@@ -16,7 +16,7 @@ window.XYZ_BINGO = {
       shortName: "Island Vibes",
       eyebrow: "WEDNESDAY NIGHT MUSICAL BINGO",
       schedule: "Wednesdays · 7:30 PM",
-      description: "Musical Bingo Wednesdays at 7:30 PM and team Trivia Thursdays at 8:00 PM.",
+      description: "Tournament Tuesdays, Musical Bingo Wednesdays at 7:30 PM, and team Trivia Thursdays at 8:00 PM.",
       theme: "island",
       mark: "IV",
       logo: "/assets/island-vibes-logo.png",
@@ -24,7 +24,7 @@ window.XYZ_BINGO = {
       brandTagline: "Shell. Vibe. Repeat.",
       brandStyle: "Island Vibes weekly events",
       location: "Vero Beach, Florida",
-      announcement: "Scan your card, open tonight’s playlist, and keep the good vibes going.",
+      announcement: "Tournament Tuesdays are back on the weekly lineup. Purchase required to play.",
       externalUrl: "https://www.instagram.com/islandvibesverobeach/",
       externalLabel: "Visit Island Vibes on Instagram",
       rounds: [

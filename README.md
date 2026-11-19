@@ -167,3 +167,9 @@ A public phone number, business email, Facebook, TikTok, or other social links h
 ## v19 — Full Song Picker Catalogs
 
 Every round listed in `public/data.js` now has a clickable song catalog in `public/song-catalog.js`. The host picker contains 59–72 titles per round, search, played-state marking, undo, and manual fallback. Catalogs were reconstructed from the existing card pools and playlist material available in the project. Before a live event, compare the selected round against the latest Spotify playlist if that playlist has been edited since the cards were produced.
+
+
+## v26 restoration
+- Restored Island Vibes Tournament Tuesdays to the weekly event lineup and homepage summary.
+- Purchase required to play.
+- Preserves v25 trivia corrections and keeps team profile photos disabled.
