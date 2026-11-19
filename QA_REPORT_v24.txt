@@ -1,0 +1,8 @@
+XY&Z Productions v24 QA
+- Added missing Oct. 1, 2026 Island Vibes trivia result.
+- Verified Seannah longest winning streak: 9 straight played nights (Jul. 30-Oct. 8, 2026).
+- Verified Wise Ass Owls also has a 9-game recorded winning streak; site now presents the tie.
+- Current Seannah streak remains 4 straight (Oct. 22-Nov. 12, 2026).
+- Added verified team archive photo to Seannah profile (Oct. 8 winner photo).
+- Added verified team archive photo to TMobile Love profile (Oct. 15 first-win photo).
+- JavaScript syntax checks passed for app.js and trivia-data.js.

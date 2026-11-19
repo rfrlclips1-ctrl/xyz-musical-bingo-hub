@@ -1196,6 +1196,38 @@ window.ISLAND_TRIVIA = {
       ]
     },
     {
+      "date": "2026-10-01",
+      "partial": false,
+      "recap": "Seannah won with 399 points, extending the late-summer run to eight straight wins at the time. TMobile Love finished second with 279, peyt took third with 165, yeetty tty scored 48, and yooo team finished at -6.",
+      "results": [
+        {
+          "place": 1,
+          "team": "Seannah",
+          "score": 399
+        },
+        {
+          "place": 2,
+          "team": "TMobile Love",
+          "score": 279
+        },
+        {
+          "place": 3,
+          "team": "peyt",
+          "score": 165
+        },
+        {
+          "place": 4,
+          "team": "yeetty tty",
+          "score": 48
+        },
+        {
+          "place": 5,
+          "team": "yooo team",
+          "score": -6
+        }
+      ]
+    },
+    {
       "date": "2026-10-08",
       "partial": false,
       "recap": "The Immortal Seannah won a six-team night with 353 points. peyt finished second at 328 and Ty took third with 314.",
