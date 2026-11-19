@@ -1389,6 +1389,72 @@ window.ISLAND_TRIVIA = {
           "score": 178
         }
       ]
+    },
+    {
+      "date": "2026-11-05",
+      "partial": false,
+      "recap": "Seannah kept the momentum rolling with a 343-point win. Danu finished second at 315, and peyt added another podium with 233. TMobile Love did not play, beginning a two-game absence.",
+      "photos": [
+        {
+          "src": "/assets/trivia/2026-11-05-scoreboard.jpg",
+          "alt": "November 5 final trivia scoreboard at Island Vibes"
+        }
+      ],
+      "results": [
+        {
+          "place": 1,
+          "team": "Seannah",
+          "score": 343
+        },
+        {
+          "place": 2,
+          "team": "Danu",
+          "score": 315
+        },
+        {
+          "place": 3,
+          "team": "peyt",
+          "score": 233
+        }
+      ]
+    },
+    {
+      "date": "2026-11-12",
+      "partial": false,
+      "recap": "peyt led deep into the night, but Seannah surged ahead late to win with 246 points. peyt earned another runner-up finish at 190, Danu took third with 131, and TMobile Love missed a second straight game.",
+      "photos": [
+        {
+          "src": "/assets/trivia/2026-11-12-scoreboard.jpg",
+          "alt": "November 12 final trivia scoreboard at Island Vibes"
+        }
+      ],
+      "results": [
+        {
+          "place": 1,
+          "team": "Seannah",
+          "score": 246
+        },
+        {
+          "place": 2,
+          "team": "peyt",
+          "score": 190
+        },
+        {
+          "place": 3,
+          "team": "Danu",
+          "score": 131
+        },
+        {
+          "place": 4,
+          "team": "The",
+          "score": 42
+        },
+        {
+          "place": 5,
+          "team": "jadon",
+          "score": 31
+        }
+      ]
     }
   ]
 };

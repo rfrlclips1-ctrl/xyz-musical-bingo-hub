@@ -1,0 +1,4 @@
+XY&Z Productions v23 - November Trivia Catch-up
+Updated through November 12, 2026.
+Added Nov. 5 and Nov. 12 results, recaps, scoreboard photos, team stats, standings, streaks, profiles, and archive coverage.
+Validated public/app.js and public/trivia-data.js with node --check.

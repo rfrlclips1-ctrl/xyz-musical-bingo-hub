@@ -1,50 +1,169 @@
-# XY&Z Productions — Tournament Tuesdays Integration
+# Version 17: Song Picker Host Mode
 
-This patch ADDs the original Island Vibes Tournament Tuesdays experience to the EXISTING XY&Z Productions Netlify website. It does not replace the main website.
+The recommended host workflow is now manual paste-and-publish: choose the event, press GO LIVE, paste `Song Title — Artist`, and press Enter. This removes Spotify, djay Pro, What’s Now Playing, and desktop bridge dependencies from normal hosting.
 
-After publishing the existing project: https://xyandzpro.netlify.app/island-vibes/tournaments/
+# XY&Z Combined Musical Bingo Hub
 
-The current navigation gains: Island Vibes → Tournament Tuesdays.
+One deployable app with separate Island Vibes and Mangrove Sands experiences.
 
 ## What is included
 
-* Original Island Vibes tournament interface, its real logo, styles, and responsive layout
-* Public player registration through the new Netlify route
-* Shared Postgres-backed roster and player check-in
-* Private rewards names and optional last four phone digits
-* Five bracket formats, live scores, undo, pause, restart, regeneration, and history
-* Netlify Functions, Netlify Database migrations with tables prefixed iv_tourney_
-* Safe patch script that preserves all current source and Netlify functions
+- Shared XY&Z homepage with two venue entrances
+- Contact and business-inquiry page with Netlify Forms
+- XY&Z Productions business branding and Instagram link
+- Visually distinct venue pages
+- Venue-exclusive and shared playlist support
+- Full playlist library with search and venue filters
+- Direct venue/round QR routes
+- Legacy redirect pages for already-printed cards
+- Private multi-venue host dashboard
+- Optional live **Now Playing** and **Played Tonight** board
+- Windows djay Pro metadata bridge
+- Supabase schema and protected Netlify Functions
 
-## Apply to your existing source project
+## Main routes
 
-1. Download this ZIP and extract it.
-2. Find the real source project used to deploy xyandzpro.netlify.app. It should have index.html or public/index.html and your existing app.js, data.js, trivia data and Netlify functions.
-3. In the extracted patch folder, run:
+```text
+/
+/playlists
+/contact
+/island-vibes
+/island-vibes/80s-night
+/island-vibes/yallternative
+/island-vibes/northeaster
+/mangrove-sands
+/mangrove-sands/beach-bingo
+/mangrove-sands/turn-that-down
+/mangrove-sands/70s-summer
+/mangrove-sands/then-and-now
+/mangrove-sands/diner-music
+/mangrove-sands/outlaw-country
+/mangrove-sands/northeaster
+/host.html
+```
 
-   node scripts/apply-to-xyz.mjs "C:\path\to\your\XYandZ-site"
+Netlify's catch-all redirect serves `index.html`, and the browser router renders the requested venue or round.
 
-4. Open the existing website source folder in PowerShell and run:
+## Quick deploy
 
-   npm install
+1. Confirm the desired Netlify URL.
+2. Replace `https://mellifluous-parfait-a01655.netlify.app` if your final site name differs.
+3. Deploy the full folder to Netlify. `netlify.toml` already points to `public` and `netlify/functions`.
+4. The venue, playlist, Spotify, filtering, and QR-route features work immediately.
 
-5. In Netlify, for the EXISTING XY&Z site, add environment variable TOURNAMENT_HOST_CODE with value KavaHost1. Do not put this code into public JavaScript. Keep existing Supabase and bingo environment variables intact.
-6. Deploy the updated EXISTING site through its normal Netlify/GitHub workflow.
-7. Verify the backend at https://xyandzpro.netlify.app/.netlify/functions/iv-tournaments?health=1 . It should report ok: true and database: connected.
-8. Verify https://xyandzpro.netlify.app/island-vibes/tournaments/?view=join on a guest phone. Confirm the player appears on a second device in the Players tab, then test host check-in and brackets before publishing a new QR.
+## Adding or changing playlists
 
-Netlify Database requires a qualifying credit-based plan and consumes Free monthly credits while active. Free credit-based plans include 300 credits/month with a hard cap and no automatic paid recharge. Confirm the current plan and usage before switching it on.
+Edit only `public/data.js`.
 
-## Privacy
+A round contains:
 
-Public event responses include gamer tags and check-in status, NOT rewards names or last four digits. Host rewards access requires the private TOURNAMENT_HOST_CODE. Separate database tables are prefixed iv_tourney_, and no existing bingo/trivia tables are modified. The old suspended Vercel database is untouched.
+```js
+{
+  slug: "round-name",
+  title: "Round Name",
+  subtitle: "Short description",
+  categories: ["Category"],
+  spotifyUrl: "https://open.spotify.com/playlist/...",
+  venues: ["island-vibes", "mangrove-sands"],
+  accent: "storm"
+}
+```
 
-## Deployment access
+Then include the round slug in each venue's `rounds` array. A shared round can use one Spotify playlist while still rendering separately under both venue routes.
 
-This ZIP is a patch, NOT a complete replacement of the XY&Z website. You must merge it into your existing source repository to preserve current functions and all deployed data routes. Do not drag-and-drop this ZIP over your production site.
+## Live board setup
 
-The new environment is tested against a local SQL database; a final real phone-to-roster test is needed after Netlify has provisioned its database. If your Netlify project isn't already on a credit-based plan with Database access, enable it via the site dashboard first.
+The playlist hub does not require Supabase. Live song display is optional.
+
+To enable it:
+
+1. Create a Supabase project.
+2. Run `supabase/setup.sql`.
+3. In Netlify, set:
+
+```text
+SUPABASE_URL
+SUPABASE_PUBLISHABLE_KEY
+SUPABASE_SECRET_KEY
+HOST_BRIDGE_KEY
+```
+
+4. Redeploy.
+5. Open `/host.html`, choose a venue and round, and start a session.
+6. Configure the Windows bridge in `bridge/README.txt`.
+
+Guest phones poll Supabase directly every four seconds only while a round page is open. Protected writes go through Netlify Functions using the server-side secret key.
+
+## Preserving old printed cards
+
+Already-printed QR codes still point to the two old Netlify sites. The `legacy` folder contains tiny redirect builds:
+
+- Deploy `legacy/island-vibes` to the existing Island Vibes site.
+- Deploy `legacy/mangrove-sands` to the existing Mangrove Sands site.
+
+Each redirect keeps the old `?round=...` value and sends the player to the correct venue route in the new app.
+
+## Branding assets
+
+The app now uses the supplied production branding files:
+
+- `public/assets/island-vibes-logo.png` — Island Vibes venue identity.
+- `public/assets/mangrove-sands-primary.png` — primary transparent Mangrove Sands Golf Club & Restaurant logo.
+- `public/assets/xyz-productions-logo.png` — supplied XY&Z Productions business logo.
+- `public/assets/mangrove-sands-alternate.jpg` — alternate Mangrove Sands Golf Club logo for light presentation.
+- `public/assets/mangrove-sands-mascot.png` — Mangrove Sands mascot used only inside the Mangrove Sands venue experience.
+
+Each venue has its own header treatment, background graphics, accent colors, buttons, playlist cards, footer treatment, and mobile round-page branding.
+
+To replace an asset later, keep the same filename and overwrite it. No code changes are required unless the new image has a very different aspect ratio.
+
+## Important open item
+
+The Spotify URL for **Diner Music** is intentionally blank because the earlier production notes listed it as missing. Add it in `public/data.js` before creating a new Diner Music QR code.
 
 
+## v5 branding and playlist update
 
-Venue Wi-Fi sign-ups: up to 45 registrations per minute per shared IP and 150/day per event. The existing honeypot rejects simple bots.
+- Mangrove Sands now uses only the supplied Mangrove Sands assets: the transparent club logo, alternate white-background logo, and venue mascot.
+- Island Vibes lists 11 venue routes.
+- Mangrove Sands lists 8 venue routes.
+- The Mangrove Sands mascot is restricted to the Mangrove Sands experience and is not used on the XY&Z contact page.
+- The XY&Z contact page uses only XY&Z Productions branding.
+- Shared rounds keep one playlist source but have separate venue-branded pages and QR destinations.
+- Rounds whose direct Spotify URL is not yet stored open their existing venue app route so the cards remain usable.
+
+
+## Contact and business inquiries
+
+The `/contact` page includes:
+
+- XY&Z Productions branding and services
+- Instagram link to `@XYandZproductions`
+- Vero Beach, Florida service area
+- Current venue partner links
+- Netlify business-inquiry form
+
+The hidden static form in `public/index.html` allows Netlify to detect the form even though the visible page is rendered by JavaScript. Form submissions appear in the Netlify dashboard under **Forms**.
+
+A public phone number, business email, Facebook, TikTok, or other social links have not been invented. Add them to `public/data.js` and the contact template after the official details are supplied.
+
+## v13 Island Vibes Trivia Sports Update
+- Header brand changed to XY&Z Productions.
+- Island Vibes home tile now promotes Thursday trivia at 8:00 PM.
+- Island Vibes page features Musical Bingo and Trivia as equal weekly experiences.
+- Trivia Headquarters reorganized into tabbed, sports-style sections to reduce scrolling.
+- Added individual team profile routes at `/island-vibes/trivia/team/<team-slug>`.
+- Team pages include rank, recent form, wins, podiums, averages, records, and full game logs.
+- Tipping functionality is intentionally reserved for the next project phase.
+
+
+## v15 Live Board
+- Guest routes: `/island-vibes/live` and `/mangrove-sands/live`
+- Private host controls: `/host.html`
+- Host dashboard includes manual one-song publishing and a three-song demo, so the live system can be tested before connecting djay Pro.
+- Deploy the full project root to Netlify and configure Supabase plus the four required environment variables.
+
+
+## v19 — Full Song Picker Catalogs
+
+Every round listed in `public/data.js` now has a clickable song catalog in `public/song-catalog.js`. The host picker contains 59–72 titles per round, search, played-state marking, undo, and manual fallback. Catalogs were reconstructed from the existing card pools and playlist material available in the project. Before a live event, compare the selected round against the latest Spotify playlist if that playlist has been edited since the cards were produced.
