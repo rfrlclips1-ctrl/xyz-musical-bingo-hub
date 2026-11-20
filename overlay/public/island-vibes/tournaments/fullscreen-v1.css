@@ -1,0 +1,70 @@
+/* Tournament Tuesdays fullscreen projector + mobile bracket layout */
+.iv-present-button{margin-left:auto;min-height:42px}
+.iv-live-presentation[hidden]{display:none!important}
+.iv-live-open{overflow:hidden!important}
+.iv-live-presentation{position:fixed;z-index:99999;inset:0;width:100vw;height:100vh;height:100dvh;display:flex;flex-direction:column;background:#f8fbf5;color:#113950;font-family:Inter,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;overflow:hidden}
+.iv-live-presentation:fullscreen{width:100%;height:100%;height:100dvh}
+.iv-live-presentation button{cursor:pointer}
+.iv-live-header{flex:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px clamp(12px,2.5vw,32px);background:#083c60;color:#fff;border-bottom:4px solid #eac16b;min-height:76px}
+.iv-live-brand{display:flex;gap:12px;align-items:center;min-width:0}
+.iv-live-brand img{width:51px;height:51px;border:2px solid #e3c782;border-radius:50%;object-fit:cover;background:#fff;flex:none}
+.iv-live-brand div{display:flex;flex-direction:column;min-width:0;gap:3px}
+.iv-live-brand small{font-size:10px;font-weight:850;letter-spacing:.13em;color:#a8f0e4}
+.iv-live-brand strong{font-size:clamp(15px,2vw,24px);text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.iv-live-header-actions,.iv-live-tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.iv-live-host{font-size:11px;font-weight:850;color:#fae1ad}
+.iv-live-button,.iv-live-tab{border:1px solid #bdd7d8;border-radius:9px;background:#fff;color:#0b536e;font-size:13px;font-weight:850;min-height:42px;padding:9px 12px;white-space:nowrap}
+.iv-live-button:focus-visible,.iv-live-tab:focus-visible{outline:3px solid #efa93d;outline-offset:2px}
+.iv-live-close{background:#f4d78b;color:#173d50;border:0}
+.iv-live-toolbar{flex:none;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:10px clamp(12px,2.5vw,32px);background:#edf6f1;border-bottom:1px solid #c5dfdf}
+.iv-live-tabs{display:flex;flex-wrap:wrap;gap:7px}
+.iv-live-tab{background:#fff;border:2px solid #c1dddf;font-size:14px}
+.iv-live-tab.selected{color:#fff;background:#0c647e;border-color:#0c647e}
+#iv-live-scale{min-width:48px;text-align:center;font-size:13px;font-weight:900}
+.iv-live-scroll{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-x pan-y pinch-zoom;padding:14px 18px 30px;background:linear-gradient(160deg,#f5faf5,#e8f2f1);scrollbar-width:thin}
+.iv-live-spacer{position:relative;min-width:0;min-height:0}
+.iv-live-track{position:absolute;top:0;left:0;transform-origin:top left;width:max-content}
+.iv-live-track .bracket-track{display:flex;width:max-content;min-width:0;gap:22px;align-items:flex-start}
+.iv-live-track .bracket-column{width:256px;gap:12px}
+.iv-live-track .round-title{padding:9px 12px;margin:0;background:#0b5470;color:#fff;border-radius:9px;letter-spacing:.08em;text-align:center}
+.iv-live-track .match-card{border:2px solid #abcfd2;box-shadow:0 4px 12px #06283c18;border-radius:12px;background:white}
+.iv-live-track .match-card.is-done{border-color:#47a18a}
+.iv-live-track .match-header{background:#e9f3f5;font-size:12px;min-height:32px}
+.iv-live-track .slot{font-size:15px;font-weight:800;min-height:46px;padding:10px 12px}
+.iv-live-track .slot-score{font-size:18px;font-variant-numeric:tabular-nums;color:#104f6b}
+.iv-live-track .slot.winner{background:#e0f5e9}
+.iv-live-track .score-edit{padding:9px;gap:6px;flex-wrap:wrap}
+.iv-live-track .score-input{width:52px;min-height:40px;font-size:16px}
+.iv-live-track .score-edit .btn{min-height:40px;white-space:nowrap;font-size:12px}
+.iv-live-footer{flex:none;display:flex;gap:12px;justify-content:space-between;padding:8px 20px;background:#083c60;color:#dff5ee;font-size:11px;font-weight:700}
+/* Existing confirmation overlays and save toasts stay usable in native fullscreen. */
+.iv-live-presentation .overlay{z-index:100002}
+.iv-live-presentation .toast{z-index:100003}
+@media(max-width:720px){
+.bracket-toolbar .iv-present-button{width:100%;margin:5px 0 0}
+.iv-live-header{padding:7px 10px;gap:8px;min-height:64px}
+.iv-live-brand img{height:37px;width:37px}
+.iv-live-brand small{font-size:8px;letter-spacing:.02em}
+.iv-live-brand strong{font-size:14px;max-width:48vw}
+.iv-live-header-actions{gap:3px}
+.iv-live-host{display:none}
+.iv-live-close{min-height:38px;padding:8px;font-size:11px}
+.iv-live-toolbar{padding:7px 10px;gap:7px}
+.iv-live-tabs{flex:1 1 100%;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}
+.iv-live-tab{min-height:42px;font-size:12px;padding:8px 10px}
+.iv-live-tools{width:100%;justify-content:space-between;gap:4px}
+.iv-live-tools .iv-live-button{padding:7px 9px;min-height:39px;font-size:11px}
+.iv-live-scroll{padding:10px}
+.iv-live-track .bracket-column{width:232px}
+.iv-live-footer{padding:6px 10px;font-size:10px}
+.iv-live-footer span:last-child{display:none}
+}
+@media(max-height:470px) and (orientation:landscape){
+.iv-live-header{min-height:45px;padding:4px 12px}
+.iv-live-brand img{width:33px;height:33px}
+.iv-live-brand small{display:none}
+.iv-live-toolbar{padding:4px 10px}
+.iv-live-tab,.iv-live-button{min-height:34px;padding:5px 9px}
+.iv-live-footer{display:none}
+}
+@media print{.iv-live-presentation{display:none!important}}
