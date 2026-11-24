@@ -31,13 +31,37 @@ function validSettings(o,n){
  return {format,seeding:o.seeding==='random'?'random':o.seeding==='keep'?'keep':'registration',swissRounds};
 }
 function hostAuthorized(request,env){
+ // The private four-digit PIN is configured using TOURNAMENT_HOST_CODE in Netlify.
+ // Longer host codes remain supported for a safe transition.
  const expected=String(env.HOST_CODE||''),actual=String(request.headers.get('x-host-code')||'');
- if(expected.length<8||actual.length!==expected.length)return false;
+ if((!/^[0-9]{4}$/.test(expected)&&expected.length<8)||actual.length!==expected.length)return false;
  let diff=0;
  for(let i=0;i<actual.length;i++)diff|=actual.charCodeAt(i)^expected.charCodeAt(i);
  return diff===0;
 }
-function requireHost(request,env){if(!hostAuthorized(request,env))throw err('Host authorization required.',403);}
+async function takeHostFailureSlot(db,request){
+ // Rate-limit invalid attempts in shared storage, not process memory.
+ const ip=clean(request.headers.get('X-NF-CLIENT-CONNECTION-IP')||
+   request.headers.get('CF-Connecting-IP')||
+   request.headers.get('X-Forwarded-For')||'unknown',95).split(',')[0].trim();
+ const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(ip));
+ const clientKey=[...new Uint8Array(digest)].slice(0,12).map(n=>n.toString(16).padStart(2,'0')).join('');
+ const t=Math.floor(Date.now()/1000);
+ const windows=[
+  {key:'host-pin:ip:'+Math.floor(t/900)+':'+clientKey,expires:t+900,limit:6},
+  {key:'host-pin:global:'+Math.floor(t/3600),expires:t+3600,limit:80}
+ ];
+ for(const w of windows){
+  await p(db,'INSERT INTO iv_tourney_request_limits(id,counter,expires_at) VALUES(?,1,?) ON CONFLICT(id) DO UPDATE SET counter=iv_tourney_request_limits.counter+1',w.key,w.expires).run();
+  const record=await p(db,'SELECT counter FROM iv_tourney_request_limits WHERE id=?',w.key).first();
+  if(Number(record?.counter||0)>w.limit)throw err('Too many incorrect host PIN attempts. Please try again later.',429);
+ }
+}
+async function requireHost(request,env,db){
+ if(hostAuthorized(request,env))return;
+ await takeHostFailureSlot(db,request);
+ throw err('Host authorization required.',403);
+}
 async function initialize(db){
  const row=await p(db,'SELECT id FROM iv_tourney_events LIMIT 1').first();
  if(row)return;
@@ -311,7 +335,7 @@ async function handleAPI(request,env,ctx){
   return j({ok:true,database:'connected',app:'Island Vibes Tournament Hub',mode:'shared-online'});
  }
  if(request.method==='GET'&&route==='/api/rewards'){
-  requireHost(request,env);
+  await requireHost(request,env,db);
   const eventId=clean(url.searchParams.get('eventId'),120);
   return j(await privateList(db,eventId));
  }
@@ -325,11 +349,11 @@ async function handleAPI(request,env,ctx){
  const data=await request.json().catch(()=>{throw err('Invalid JSON.');});
  if(route==='/api/rewards'){
   if(data.type==='register')return j(await register(db,request,data));
-  if(data.type==='upsert'){requireHost(request,env);return j(await savePrivate(db,data));}
+  if(data.type==='upsert'){await requireHost(request,env,db);return j(await savePrivate(db,data));}
   throw err('Unknown rewards operation.');
  }
- if(data.type==='auth'){requireHost(request,env);return j({ok:true});}
- requireHost(request,env);
+ if(data.type==='auth'){await requireHost(request,env,db);return j({ok:true});}
+ await requireHost(request,env,db);
  return j(await hostAction(db,data));
 }
 export default {
