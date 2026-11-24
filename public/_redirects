@@ -1,2 +1,4 @@
+# Madden Nov 24 printed flyer: preserve the existing QR URL once Netlify service resumes
+/island-vibes/tournaments/ event=madden-2026-11-24 view=join https://island-vibes-madden-signup.vercel.app/ 302!
 /host  /host.html  200
 /*     /index.html  200
